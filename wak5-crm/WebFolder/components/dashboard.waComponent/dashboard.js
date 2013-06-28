@@ -11,7 +11,8 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-
+		WAK5CRMUTIL.createMainMenubarEventHandler();
+		
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock
 

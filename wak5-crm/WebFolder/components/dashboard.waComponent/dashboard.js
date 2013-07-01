@@ -4,14 +4,16 @@
 // Add the code that needs to be shared between components here
 
 function constructor (id) {
-
+	var leadsButton = getHtmlId('leadsButton'),
+		signedInComponent = getHtmlId('signedInComponent');
+	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
 	this.name = 'dashboard';
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		WAK5CRMUTIL.createMainMenubarEventHandler();
+		WAK5CRMUTIL.createMainMenubarEventHandler(leadsButton, signedInComponent);
 		
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock

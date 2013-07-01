@@ -15,6 +15,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	login2.login = function login2_login (event)// @startlock
 	{// @endlock
 		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
+		waf.sources.lead.all();
 	};// @lock
 
 // @region eventManager// @startlock

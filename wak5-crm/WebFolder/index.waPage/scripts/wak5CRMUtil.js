@@ -13,18 +13,15 @@ var WAK5CRMUTIL = (function() {
     	
     
     //Add event handlers for Radio Button Tab
-    wak5CRMUtilObj.createMainMenubarEventHandler = function(leadsButton, signedInComponent) {
+    wak5CRMUtilObj.createMainMenubarEventHandler = function(optionsObject) {
     	$(document).off('click', '.metroRadio button');
 		
     	$(document).on('click', '.metroRadio button', function (e) {
 	   		WAK5CRMUTIL.metroRadioSelect($(this).attr('id'));
-	   		//console.log($(this).attr('id'));
-	   		//console.log(leadsButton);
-	   		
 	   		//Did user click a Radio Tab Button?
 	   		switch($(this).attr('id')) {
-	   			case leadsButton :
-				$$(signedInComponent).loadComponent('/components/leads.waComponent');
+	   			case optionsObject.leadsButton :
+				$$(optionsObject.signedInComponent).loadComponent('/components/leads.waComponent');
 				break;
 				
 				

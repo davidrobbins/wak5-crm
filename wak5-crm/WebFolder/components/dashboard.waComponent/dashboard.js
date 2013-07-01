@@ -5,7 +5,8 @@
 
 function constructor (id) {
 	var leadsButton = getHtmlId('leadsButton'),
-		signedInComponent = getHtmlId('signedInComponent');
+		signedInComponent = getHtmlId('signedInComponent'),
+		optionsObject = {leadsButton: leadsButton, signedInComponent: signedInComponent};
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -13,7 +14,7 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		WAK5CRMUTIL.createMainMenubarEventHandler(leadsButton, signedInComponent);
+		WAK5CRMUTIL.createMainMenubarEventHandler(optionsObject);
 		
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock

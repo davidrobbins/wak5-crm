@@ -6,8 +6,9 @@
 function constructor (id) {
 	var leadsButton = getHtmlId('leadsButton'),
 		contactsButton = getHtmlId('contactsButton'),
+		accountsButton = getHtmlId('accountsButton'),
 		signedInComponent = getHtmlId('signedInComponent'),
-		optionsObject = {leadsButton: leadsButton,contactsButton: contactsButton, signedInComponent: signedInComponent};
+		optionsObject = {accountsButton: accountsButton, leadsButton: leadsButton,contactsButton: contactsButton, signedInComponent: signedInComponent};
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;

@@ -28,6 +28,10 @@ var WAK5CRMUTIL = (function() {
 				$$(optionsObject.signedInComponent).loadComponent('/components/contacts.waComponent');
 				break;
 				
+				case optionsObject.accountsButton :
+				$$(optionsObject.signedInComponent).loadComponent('/components/accounts.waComponent');
+				break;
+				
 				
 	   		} //end - switch
 		});

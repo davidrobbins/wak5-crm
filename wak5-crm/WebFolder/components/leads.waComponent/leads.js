@@ -14,16 +14,10 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 
 	// @region namespaceDeclaration// @startlock
-	var leadsCancelButton = {};	// @button
 	var dataGrid2 = {};	// @dataGrid
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
-
-	leadsCancelButton.click = function leadsCancelButton_click (event)// @startlock
-	{// @endlock
-		$$(tabView2).selectTab(1);
-	};// @lock
 
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
@@ -31,7 +25,6 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_leadsCancelButton", "click", leadsCancelButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
 	// @endregion// @endlock
 

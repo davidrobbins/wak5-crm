@@ -9,11 +9,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	login2.logout = function login2_logout (event)// @startlock
 	{// @endlock
+		$$('blackContainer').show();
 		$$('mainComponent').loadComponent({path: '/components/splashScreen.waComponent'});
 	};// @lock
 
 	login2.login = function login2_login (event)// @startlock
 	{// @endlock
+		$$('blackContainer').hide();
 		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
 		waf.sources.lead.all();
 	};// @lock

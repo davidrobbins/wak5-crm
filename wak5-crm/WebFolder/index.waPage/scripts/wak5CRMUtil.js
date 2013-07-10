@@ -3,6 +3,8 @@
 var WAK5CRMUTIL = (function() {
 	var wak5CRMUtilObj = {}; //This is the object we will return to create our module.
 	
+	
+	
 	//M E T R O   R A D I O   B U T T O N   T A B   (S T A R T)
 	//Let's make a Metro Radio Button Tab constructor.
 	wak5CRMUtilObj.MetroRadioMenuBar = function (el) {
@@ -11,6 +13,26 @@ var WAK5CRMUTIL = (function() {
 		this.subscribers =  {
 			any: []
 		};
+		
+		this.handleClick = function(ev) {
+			var theRadioButton = $('#' + ev.currentTarget.id),
+			radioButtonsContainer = theRadioButton.parent();
+			
+			radioButtonsContainer.children().removeClass('selectedRadio');
+			theRadioButton.addClass('selectedRadio');
+			
+		 	this.publish({buttonElemId: ev.currentTarget.id}, "on select");
+		};
+		
+		function bind(context, methodName) {
+		  return function() {
+		  	return context[methodName].apply(context, arguments);
+		  };
+		}
+		
+		//Create event handler.
+		$(this.el).off('click', 'button');
+		$(this.el).on('click', 'button', bind(this, "handleClick"));
 	};
 	
 	wak5CRMUtilObj.MetroRadioMenuBar.prototype.setSelectedMenuItem = function(num) {
@@ -51,6 +73,7 @@ var WAK5CRMUTIL = (function() {
 		this.visitSubscribers('publish', publication, type);
 	}
 	
+	/*
 	wak5CRMUtilObj.metroRadioSelect = function(buttonRef) {
 		var theRadioButton = $('#' + buttonRef),
 			radioButtonsContainer = theRadioButton.parent();
@@ -58,8 +81,10 @@ var WAK5CRMUTIL = (function() {
 		radioButtonsContainer.children().removeClass('selectedRadio');
 		theRadioButton.addClass('selectedRadio');
 	};
+    */
     	
     //Add event handlers for Radio Button Tab
+    /*
     wak5CRMUtilObj.createMainMenubarEventHandler = function(optionsObject) {
     	$(document).off('click', '.metroRadio button');
 		
@@ -81,6 +106,7 @@ var WAK5CRMUTIL = (function() {
 	   		} //end - switch
 		});
 	};
+	*/
 	//M E T R O   R A D I O   B U T T O N   T A B   (E N D)
 	
 	

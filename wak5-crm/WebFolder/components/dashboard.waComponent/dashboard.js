@@ -19,8 +19,6 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		function handleMainMenuBarSelect(ev) {
-		  //console.log(ev);
-		  //Object {buttonElemId: "mainComponent_leadsButton"}
 		  switch(ev.buttonElemId) {
 	   			case leadsButton :
 				$$(optionsObject.signedInComponent).loadComponent('/components/leads.waComponent');
@@ -37,7 +35,7 @@ function constructor (id) {
 		} //end - function handleMainMenuBarSelect
 		
 		mainMenubarObj.subscribe(handleMainMenuBarSelect, "on select"); 
-		WAK5CRMUTIL.createMainMenubarEventHandler(optionsObject);
+		//WAK5CRMUTIL.createMainMenubarEventHandler(optionsObject);
 		
 		mainMenubarObj.setSelectedMenuItem(1);
 		

@@ -9,9 +9,8 @@ function constructor (id) {
 		accountsButton = getHtmlId('accountsButton'),
 		signedInComponent = getHtmlId('signedInComponent'),
 		mainMenubarContainer = getHtmlId('mainMenubarContainer'),
-		mainMenubarObj = new WAK5CRMUTIL.MetroRadioMenuBar(mainMenubarContainer),
-		optionsObject = {accountsButton: accountsButton, leadsButton: leadsButton,contactsButton: contactsButton, signedInComponent: signedInComponent};
-	
+		mainMenubarObj = new WAK5CRMUTIL.MetroRadioMenuBar(mainMenubarContainer);
+			
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
 	this.name = 'dashboard';
@@ -21,22 +20,20 @@ function constructor (id) {
 		function handleMainMenuBarSelect(ev) {
 		  switch(ev.buttonElemId) {
 	   			case leadsButton :
-				$$(optionsObject.signedInComponent).loadComponent('/components/leads.waComponent');
+				$$(signedInComponent).loadComponent('/components/leads.waComponent');
 				break;
 				
 				case contactsButton :
-				$$(optionsObject.signedInComponent).loadComponent('/components/contacts.waComponent');
+				$$(signedInComponent).loadComponent('/components/contacts.waComponent');
 				break;
 				
 				case accountsButton :
-				$$(optionsObject.signedInComponent).loadComponent('/components/accounts.waComponent');
+				$$(signedInComponent).loadComponent('/components/accounts.waComponent');
 				break;	
 	   		} //end - switch
 		} //end - function handleMainMenuBarSelect
 		
 		mainMenubarObj.subscribe(handleMainMenuBarSelect, "on select"); 
-		//WAK5CRMUTIL.createMainMenubarEventHandler(optionsObject);
-		
 		mainMenubarObj.setSelectedMenuItem(1);
 		
 	// @region namespaceDeclaration// @startlock

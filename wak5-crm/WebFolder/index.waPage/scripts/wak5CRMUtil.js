@@ -4,6 +4,12 @@ var WAK5CRMUTIL = (function() {
 	var wak5CRMUtilObj = {}; //This is the object we will return to create our module.
 	
 	
+	//Private methods.
+	function bind(context, methodName) {
+	  return function() {
+	  	return context[methodName].apply(context, arguments);
+	  };
+	}
 	
 	//M E T R O   R A D I O   B U T T O N   T A B   (S T A R T)
 	//Let's make a Metro Radio Button Tab constructor.
@@ -20,15 +26,8 @@ var WAK5CRMUTIL = (function() {
 			
 			radioButtonsContainer.children().removeClass('selectedRadio');
 			theRadioButton.addClass('selectedRadio');
-			
 		 	this.publish({buttonElemId: ev.currentTarget.id}, "on select");
 		};
-		
-		function bind(context, methodName) {
-		  return function() {
-		  	return context[methodName].apply(context, arguments);
-		  };
-		}
 		
 		//Create event handler.
 		$(this.el).off('click', 'button');
@@ -71,42 +70,7 @@ var WAK5CRMUTIL = (function() {
 	
 	wak5CRMUtilObj.MetroRadioMenuBar.prototype.publish = function(publication, type) {
 		this.visitSubscribers('publish', publication, type);
-	}
-	
-	/*
-	wak5CRMUtilObj.metroRadioSelect = function(buttonRef) {
-		var theRadioButton = $('#' + buttonRef),
-			radioButtonsContainer = theRadioButton.parent();
-			
-		radioButtonsContainer.children().removeClass('selectedRadio');
-		theRadioButton.addClass('selectedRadio');
 	};
-    */
-    	
-    //Add event handlers for Radio Button Tab
-    /*
-    wak5CRMUtilObj.createMainMenubarEventHandler = function(optionsObject) {
-    	$(document).off('click', '.metroRadio button');
-		
-    	$(document).on('click', '.metroRadio button', function (e) {
-	   		WAK5CRMUTIL.metroRadioSelect($(this).attr('id'));
-	   		//Did user click a Radio Tab Button?
-	   		switch($(this).attr('id')) {
-	   			case optionsObject.leadsButton :
-				$$(optionsObject.signedInComponent).loadComponent('/components/leads.waComponent');
-				break;
-				
-				case optionsObject.contactsButton :
-				$$(optionsObject.signedInComponent).loadComponent('/components/contacts.waComponent');
-				break;
-				
-				case optionsObject.accountsButton :
-				$$(optionsObject.signedInComponent).loadComponent('/components/accounts.waComponent');
-				break;	
-	   		} //end - switch
-		});
-	};
-	*/
 	//M E T R O   R A D I O   B U T T O N   T A B   (E N D)
 	
 	

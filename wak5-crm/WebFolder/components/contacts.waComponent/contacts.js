@@ -14,13 +14,20 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 
 	// @region namespaceDeclaration// @startlock
-	var button1 = {};	// @button
+	var contactsSaveButton = {};	// @button
+	var contactsCancelButton = {};	// @button
 	var dataGrid1 = {};	// @dataGrid
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
 
-	button1.click = function button1_click (event)// @startlock
+	contactsSaveButton.click = function contactsSaveButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.lead.save();
+		$$(tabView1).selectTab(1);
+	};// @lock
+
+	contactsCancelButton.click = function contactsCancelButton_click (event)// @startlock
 	{// @endlock
 		$$(tabView1).selectTab(1);
 	};// @lock
@@ -31,7 +38,8 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_button1", "click", button1.click, "WAF");
+	WAF.addListener(this.id + "_contactsSaveButton", "click", contactsSaveButton.click, "WAF");
+	WAF.addListener(this.id + "_contactsCancelButton", "click", contactsCancelButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");
 	// @endregion// @endlock
 

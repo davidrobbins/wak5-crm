@@ -14,14 +14,26 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 
 	// @region namespaceDeclaration// @startlock
+	var submitConvertLeadButton = {};	// @button
+	var convertLeadButton = {};	// @button
 	var leadNewButton = {};	// @button
 	var leadSaveButton = {};	// @button
 	var leadCancelButton = {};	// @button
-	var button2 = {};	// @button
+	var convertLeadCancelButton = {};	// @button
 	var dataGrid2 = {};	// @dataGrid
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	submitConvertLeadButton.click = function submitConvertLeadButton_click (event)// @startlock
+	{// @endlock
+		$$(tabView2).selectTab(1);
+	};// @lock
+
+	convertLeadButton.click = function convertLeadButton_click (event)// @startlock
+	{// @endlock
+		$$(tabView2).selectTab(3);
+	};// @lock
 
 	leadNewButton.click = function leadNewButton_click (event)// @startlock
 	{// @endlock
@@ -47,7 +59,7 @@ function constructor (id) {
 		$$(tabView2).selectTab(1);
 	};// @lock
 
-	button2.click = function button2_click (event)// @startlock
+	convertLeadCancelButton.click = function convertLeadCancelButton_click (event)// @startlock
 	{// @endlock
 		$$(tabView2).selectTab(2);
 	};// @lock
@@ -58,10 +70,12 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_submitConvertLeadButton", "click", submitConvertLeadButton.click, "WAF");
+	WAF.addListener(this.id + "_convertLeadButton", "click", convertLeadButton.click, "WAF");
 	WAF.addListener(this.id + "_leadNewButton", "click", leadNewButton.click, "WAF");
 	WAF.addListener(this.id + "_leadSaveButton", "click", leadSaveButton.click, "WAF");
 	WAF.addListener(this.id + "_leadCancelButton", "click", leadCancelButton.click, "WAF");
-	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
+	WAF.addListener(this.id + "_convertLeadCancelButton", "click", convertLeadCancelButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
 	// @endregion// @endlock
 

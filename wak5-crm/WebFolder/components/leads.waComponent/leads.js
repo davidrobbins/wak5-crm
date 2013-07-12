@@ -68,7 +68,7 @@ function constructor (id) {
 	{// @endlock
 		$$(tabView2).selectTab(2);
 		//Add to recent items.
-		wak5CRMUtilObj.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsComponent_recentItemsBodyContainer'); 
+		WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsComponent_recentItemsBodyContainer'); 
 		// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
 	};// @lock
 

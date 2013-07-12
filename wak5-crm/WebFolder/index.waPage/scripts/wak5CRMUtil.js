@@ -78,6 +78,7 @@ var WAK5CRMUTIL = (function() {
 	//R E C E N T   I T E M S   (S T A R T)
 	//Create New Recent Item
 	wak5CRMUtilObj.newRecentItem = function(dataClassName, titleKey, titleValue, entityKey, targetContainer) {
+		debugger;
 		var recentItem = ds.RecentItem.newEntity(); // create the entity
 		recentItem.dataClassName.setValue(dataClassName);
 		recentItem.title.setValue(titleKey + titleValue); 
@@ -86,7 +87,8 @@ var WAK5CRMUTIL = (function() {
 		
 		ds.RecentItem.newRecentItem(dataClassName, titleKey, titleValue, entityKey, {
 			onSuccess: function(event) {
-				wak5CRMUtilObj.loadRecentItems('recentItemsBodyContainer', event.result);
+				//wak5CRMUtilObj.loadRecentItems('recentItemsBodyContainer', event.result);
+				wak5CRMUtilObj.loadRecentItems(targetContainer, event.result);
 			}
 		});
 	}; //end - newRecentItem.
@@ -145,7 +147,6 @@ var WAK5CRMUTIL = (function() {
 			$('#' + targetContainer).html(myHTML);	
 		}
 	}; //end - crmUtilObj.loadRecentItems
-	
 	//R E C E N T   I T E M S   (E N D)
 	
 	return wak5CRMUtilObj;

@@ -75,5 +75,78 @@ var WAK5CRMUTIL = (function() {
 	
 	
 	
+	//R E C E N T   I T E M S   (S T A R T)
+	//Create New Recent Item
+	wak5CRMUtilObj.newRecentItem = function(dataClassName, titleKey, titleValue, entityKey, targetContainer) {
+		var recentItem = ds.RecentItem.newEntity(); // create the entity
+		recentItem.dataClassName.setValue(dataClassName);
+		recentItem.title.setValue(titleKey + titleValue); 
+		recentItem.entityKey.setValue(entityKey);
+		recentItem.sortOrder.setValue(0);
+		
+		ds.RecentItem.newRecentItem(dataClassName, titleKey, titleValue, entityKey, {
+			onSuccess: function(event) {
+				wak5CRMUtilObj.loadRecentItems('recentItemsBodyContainer', event.result);
+			}
+		});
+	}; //end - newRecentItem.
+	
+	//Load Recent Items - Try Again!
+	//N O T E :   R E F A C T O R   U S I N G   T E M P L A T E S. (July 11, 2013).
+	wak5CRMUtilObj.loadRecentItems = function(targetContainer, recentItemsArr) {
+		var myHTML,
+			sessionCurrentUser = WAF.directory.currentUser(),
+			theDataClass, theView, convertedString, 
+			theTitle, theNewPath, $this, theConverted,
+			recentItemsCollection, theEntityID, theSortOrder,
+			theEntityKey;
+		
+		if (recentItemsArr == null) {
+			waf.ds.RecentItem.all({
+				orderBy: "sortOrder",
+				onSuccess: function(event) {
+					recentItemsCollection = event.entityCollection;
+					if (recentItemsCollection.length > 0) {	
+						myHTML = '<ul class="recentItemsList">';
+						recentItemsCollection.forEach({
+							onSuccess: function(evRecentItem) {	
+								theSortOrder = evRecentItem.entity.sortOrder.getValue();
+								theDataClass = evRecentItem.entity.dataClassName.getValue();
+								theEntityKey = evRecentItem.entity.entityKey.getValue();
+								theTitle = evRecentItem.entity.title.getValue(); 
+								myHTML += '<li><a data-class="' + theDataClass + '"data-entity="' + theEntityKey + '"data-sortorder="' + theSortOrder + '" class="recentItem" href="#">' + theTitle + '</a></li>'; //data-converted="' + convertedString + '"
+							}			
+						});	
+						myHTML += '</ul>';	
+						
+					} else {
+						myHTML = 'No recent Items.';
+					} //end if.
+					$('#' + targetContainer).html(myHTML);	
+				} //onSuccess
+			}); 
+			
+		} else {
+			//We have a recent items array.
+			if (recentItemsArr.length > 0) {
+				myHTML = '<ul class="recentItemsList">';
+				
+				recentItemsArr.forEach(function(recentItem) {
+					theSortOrder = recentItem.sortOrder;
+					theDataClass = recentItem.dataClassName;
+					theEntityKey= recentItem.entityKey;
+					theTitle = recentItem.title;
+					myHTML += '<li><a data-class="' + theDataClass + '"data-entity="' + theEntityKey + '"data-sortorder="' + theSortOrder + '" class="recentItem" href="#">' + theTitle + '</a></li>'; //data-converted="' + convertedString + '"
+				});
+				myHTML += '</ul>';	
+			} else {
+				myHTML = 'No recent Items.';
+			}
+			$('#' + targetContainer).html(myHTML);	
+		}
+	}; //end - crmUtilObj.loadRecentItems
+	
+	//R E C E N T   I T E M S   (E N D)
+	
 	return wak5CRMUtilObj;
 }()); //end - WAK5CRMUTIL.

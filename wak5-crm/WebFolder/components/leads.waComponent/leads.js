@@ -50,8 +50,8 @@ function constructor (id) {
 
 	leadSaveButton.click = function leadSaveButton_click (event)// @startlock
 	{// @endlock
-		waf.sources.lead.save();
 		$$(tabView2).selectTab(1);
+		waf.sources.lead.save();
 	};// @lock
 
 	leadCancelButton.click = function leadCancelButton_click (event)// @startlock
@@ -67,6 +67,9 @@ function constructor (id) {
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
 		$$(tabView2).selectTab(2);
+		//Add to recent items.
+		wak5CRMUtilObj.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsComponent_recentItemsBodyContainer'); 
+		// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
 	};// @lock
 
 	// @region eventManager// @startlock

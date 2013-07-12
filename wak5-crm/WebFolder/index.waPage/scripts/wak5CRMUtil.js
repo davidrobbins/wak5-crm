@@ -12,7 +12,8 @@ var WAK5CRMUTIL = (function() {
 	}
 	//P R I V A T E   M E T H O D S   (E N D).
 	
-	
+	//M A I N   M E N U B A R
+	wak5CRMUtilObj.mainMenubarObj = {};
 	
 	//M E T R O   R A D I O   B U T T O N   T A B   (S T A R T)
 	//Let's make a Metro Radio Button Tab constructor.
@@ -165,17 +166,17 @@ var WAK5CRMUTIL = (function() {
 		 	
 		 	switch(theDataClass) {
 				case "accounts":
-				//waf.widgets.menuBar1.crmSetSelectedMenuItem('menuItem3');
+				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(3);
 				waf.sources.account.selectByKey($this.data('entity'));
 				break;
 					
 				case "contacts":
-				//waf.widgets.menuBar1.crmSetSelectedMenuItem('menuItem4');
+				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(2);
 				waf.sources.contact.selectByKey($this.data('entity'));
 				break;
 					
 				case "leads":
-//				waf.widgets.menuBar1.crmSetSelectedMenuItem('menuItem2');
+				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1); //Note: Refactor setSelectedMenuItem();
 				waf.sources.lead.selectByKey($this.data('entity'));
 				break;
 			}

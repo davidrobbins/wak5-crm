@@ -8,9 +8,9 @@ function constructor (id) {
 		contactsButton = getHtmlId('contactsButton'),
 		accountsButton = getHtmlId('accountsButton'),
 		signedInComponent = getHtmlId('signedInComponent'),
-		mainMenubarContainer = getHtmlId('mainMenubarContainer'),
-		mainMenubarObj = new WAK5CRMUTIL.MetroRadioMenuBar(mainMenubarContainer);
-			
+		mainMenubarContainer = getHtmlId('mainMenubarContainer');
+		
+	WAK5CRMUTIL.mainMenubarObj = new WAK5CRMUTIL.MetroRadioMenuBar(mainMenubarContainer);		
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
 	this.name = 'dashboard';
@@ -33,8 +33,8 @@ function constructor (id) {
 	   		} //end - switch
 		} //end - function handleMainMenuBarSelect
 		
-		mainMenubarObj.subscribe(handleMainMenuBarSelect, "on select"); 
-		mainMenubarObj.setSelectedMenuItem(1);
+		WAK5CRMUTIL.mainMenubarObj.subscribe(handleMainMenuBarSelect, "on select"); 
+		WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1);
 				
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock

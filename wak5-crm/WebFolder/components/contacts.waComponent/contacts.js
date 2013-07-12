@@ -35,6 +35,9 @@ function constructor (id) {
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
 		$$(tabView1).selectTab(2);
+		//Add to recent items.
+		WAK5CRMUTIL.newRecentItem("contacts", "Contact: ", waf.sources.contact.firstName + " " + waf.sources.contact.lastName, waf.sources.contact.ID, 'mainComponent_recentItemsComponent_recentItemsBodyContainer'); 
+		// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
 	};// @lock
 
 	// @region eventManager// @startlock

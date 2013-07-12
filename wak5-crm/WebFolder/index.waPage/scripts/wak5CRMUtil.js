@@ -1,5 +1,4 @@
-﻿//Utility library for Wakanda CRM application.
-
+﻿//Utility library for Wakanda CRM application.d
 var WAK5CRMUTIL = (function() {
 	var wak5CRMUtilObj = {}; //This is the object we will return to create our module.
 	
@@ -78,7 +77,6 @@ var WAK5CRMUTIL = (function() {
 	//R E C E N T   I T E M S   (S T A R T)
 	//Create New Recent Item
 	wak5CRMUtilObj.newRecentItem = function(dataClassName, titleKey, titleValue, entityKey, targetContainer) {
-		debugger;
 		var recentItem = ds.RecentItem.newEntity(); // create the entity
 		recentItem.dataClassName.setValue(dataClassName);
 		recentItem.title.setValue(titleKey + titleValue); 
@@ -146,6 +144,43 @@ var WAK5CRMUTIL = (function() {
 			$('#' + targetContainer).html(myHTML);	
 		}
 	}; //end - crmUtilObj.loadRecentItems
+	
+	//R E C E N T   I T E M S   E V E N T   H A N D L E R.
+	//Call this once at Startup.
+	wak5CRMUtilObj.setRecentItemsEventHandler = function() {
+		var theSortOrder, theDataClass,  theEntityID,
+			$this, theNewPath, theView;
+			
+		$('.recentItem').live('click', function(e) {
+			$this = $(this);
+			theSortOrder = $this.data('sortorder');
+		 	theDataClass = $this.data('class');
+		 	theEntityID = $this.data('entity');
+		 	//theConverted = $this.data('converted');
+		 	theNewPath = '/' + theDataClass + '.waComponent';
+			theView = "detail";	
+		 	//$$('bodyComponent').loadComponent({path: theNewPath, userData: {view: theView}});
+		 	
+		 	alert(theDataClass);
+		 	
+		 	switch(theDataClass) {
+				case "accounts":
+				//waf.widgets.menuBar1.crmSetSelectedMenuItem('menuItem3');
+				waf.sources.account.selectByKey($this.data('entity'));
+				break;
+					
+				case "contacts":
+				//waf.widgets.menuBar1.crmSetSelectedMenuItem('menuItem4');
+				waf.sources.contact.selectByKey($this.data('entity'));
+				break;
+					
+				case "leads":
+//				waf.widgets.menuBar1.crmSetSelectedMenuItem('menuItem2');
+				waf.sources.lead.selectByKey($this.data('entity'));
+				break;
+			}
+		}); // end - event handlers for recent items link.
+	} //end - setRecentItemsEventHandler().
 	//R E C E N T   I T E M S   (E N D)
 	
 	return wak5CRMUtilObj;

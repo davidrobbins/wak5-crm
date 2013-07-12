@@ -87,7 +87,6 @@ var WAK5CRMUTIL = (function() {
 		
 		ds.RecentItem.newRecentItem(dataClassName, titleKey, titleValue, entityKey, {
 			onSuccess: function(event) {
-				//wak5CRMUtilObj.loadRecentItems('recentItemsBodyContainer', event.result);
 				wak5CRMUtilObj.loadRecentItems(targetContainer, event.result);
 			}
 		});

@@ -12,6 +12,8 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 
+		WAK5CRMUTIL.loadRecentItems('mainComponent_recentItemsComponent_recentItemsBodyContainer'); //Note: Need to refactor to not reference components directly (July 11. 2013).
+
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock
 

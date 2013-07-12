@@ -35,7 +35,7 @@ function constructor (id) {
 		
 		mainMenubarObj.subscribe(handleMainMenuBarSelect, "on select"); 
 		mainMenubarObj.setSelectedMenuItem(1);
-		
+				
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock
 

@@ -1,14 +1,18 @@
-﻿//Utility library for Wakanda CRM application.d
+﻿//Utility library for Wakanda CRM application.
+
 var WAK5CRMUTIL = (function() {
 	var wak5CRMUtilObj = {}; //This is the object we will return to create our module.
 	
 	
-	//Private methods.
+	//P R I V A T E   M E T H O D S   (S T A R T).
 	function bind(context, methodName) {
 	  return function() {
 	  	return context[methodName].apply(context, arguments);
 	  };
 	}
+	//P R I V A T E   M E T H O D S   (E N D).
+	
+	
 	
 	//M E T R O   R A D I O   B U T T O N   T A B   (S T A R T)
 	//Let's make a Metro Radio Button Tab constructor.
@@ -149,19 +153,15 @@ var WAK5CRMUTIL = (function() {
 	//Call this once at Startup.
 	wak5CRMUtilObj.setRecentItemsEventHandler = function() {
 		var theSortOrder, theDataClass,  theEntityID,
-			$this, theNewPath, theView;
-			
+			$this, theNewPath, theView;	
 		$('.recentItem').live('click', function(e) {
 			$this = $(this);
 			theSortOrder = $this.data('sortorder');
 		 	theDataClass = $this.data('class');
 		 	theEntityID = $this.data('entity');
-		 	//theConverted = $this.data('converted');
-		 	theNewPath = '/' + theDataClass + '.waComponent';
+		 	theNewPath = 'components/' + theDataClass + '.waComponent';
 			theView = "detail";	
-		 	//$$('bodyComponent').loadComponent({path: theNewPath, userData: {view: theView}});
-		 	
-		 	alert(theDataClass);
+		 	$$('mainComponent_signedInComponent').loadComponent({path: theNewPath, userData: {view: theView}}); //Note: Refactor to not reference component directly.
 		 	
 		 	switch(theDataClass) {
 				case "accounts":

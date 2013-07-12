@@ -10,7 +10,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
-		WAK5CRMUTIL.setRecentItemsEventHandler(); //Event Handler for Recent Items.
+		
+		WAK5CRMUTIL.setRecentItemsEventHandler();
 		
 		if (WAF.directory.currentUser() === null) {
 			/*

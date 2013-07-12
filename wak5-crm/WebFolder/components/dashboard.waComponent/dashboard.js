@@ -8,6 +8,7 @@ function constructor (id) {
 		contactsButton = getHtmlId('contactsButton'),
 		accountsButton = getHtmlId('accountsButton'),
 		signedInComponent = getHtmlId('signedInComponent'),
+		recentItemsBodyContainer = getHtmlId('recentItemsBodyContainer'),
 		mainMenubarContainer = getHtmlId('mainMenubarContainer');
 		
 	WAK5CRMUTIL.mainMenubarObj = new WAK5CRMUTIL.MetroRadioMenuBar(mainMenubarContainer);		
@@ -35,7 +36,8 @@ function constructor (id) {
 		
 		WAK5CRMUTIL.mainMenubarObj.subscribe(handleMainMenuBarSelect, "on select"); 
 		WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1);
-				
+		WAK5CRMUTIL.loadRecentItems(recentItemsBodyContainer);
+		
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock
 

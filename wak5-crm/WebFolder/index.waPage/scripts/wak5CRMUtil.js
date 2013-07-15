@@ -90,7 +90,6 @@ var WAK5CRMUTIL = (function() {
 		
 		ds.RecentItem.newRecentItem(dataClassName, titleKey, titleValue, entityKey, {
 			onSuccess: function(event) {
-				console.log("loading recent items after adding one.");
 				wak5CRMUtilObj.loadRecentItems(targetContainer, event.result);
 			}
 		});

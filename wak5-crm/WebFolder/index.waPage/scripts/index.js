@@ -63,6 +63,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
         
 		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent', userData: {view: "dave"}});
 		waf.sources.lead.all();
+		waf.sources.contact.all();
+		waf.sources.account.all();
 	};// @lock
 
 // @region eventManager// @startlock

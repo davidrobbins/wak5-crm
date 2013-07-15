@@ -22,6 +22,7 @@ function constructor (id) {
 		}, 40);
 
 	// @region namespaceDeclaration// @startlock
+	var newContactButton = {};	// @button
 	var contactsSaveButton = {};	// @button
 	var contactsCancelButton = {};	// @button
 	var dataGrid1 = {};	// @dataGrid
@@ -29,9 +30,22 @@ function constructor (id) {
 
 	// eventHandlers// @lock
 
+	newContactButton.click = function newContactButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.contact.addNewElement();
+		waf.sources.contact.serverRefresh({
+			onSuccess: function(event) {
+				$$(tabView1).selectTab(2);
+				//$$(firstNameInputfield).focus();
+				//crmUtil.setDisableLeadsQuickAdd("disable");
+				//$$(leadsTitle).setValue("Lead Information");
+			}
+		});
+	};// @lock
+
 	contactsSaveButton.click = function contactsSaveButton_click (event)// @startlock
 	{// @endlock
-		waf.sources.lead.save();
+		waf.sources.contact.save();
 		$$(tabView1).selectTab(1);
 	};// @lock
 
@@ -49,6 +63,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_newContactButton", "click", newContactButton.click, "WAF");
 	WAF.addListener(this.id + "_contactsSaveButton", "click", contactsSaveButton.click, "WAF");
 	WAF.addListener(this.id + "_contactsCancelButton", "click", contactsCancelButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");

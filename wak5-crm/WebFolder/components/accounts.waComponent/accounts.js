@@ -20,12 +20,26 @@ function constructor (id) {
 			}
 		}, 40);
 	// @region namespaceDeclaration// @startlock
+	var newAccountButton = {};	// @button
 	var accountsCancelButton = {};	// @button
 	var accountsSaveButton = {};	// @button
 	var dataGrid1 = {};	// @dataGrid
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	newAccountButton.click = function newAccountButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.account.addNewElement();
+		waf.sources.account.serverRefresh({
+			onSuccess: function(event) {
+				$$(tabView1).selectTab(2);
+				//$$(firstNameInputfield).focus();
+				//crmUtil.setDisableLeadsQuickAdd("disable");
+				//$$(leadsTitle).setValue("Lead Information");
+			}
+		});
+	};// @lock
 
 	accountsCancelButton.click = function accountsCancelButton_click (event)// @startlock
 	{// @endlock
@@ -42,12 +56,15 @@ function constructor (id) {
 	{// @endlock
 		$$(tabView1).selectTab(2);
 		//Add to recent items.
+		console.log(waf.sources.account.name);
+		console.log(waf.sources.account.ID);
 		WAK5CRMUTIL.newRecentItem("accounts", "Account: ", waf.sources.account.name, waf.sources.account.ID, 'mainComponent_recentItemsBodyContainer'); 
 		// Note: Refactor so "mainComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
 
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_newAccountButton", "click", newAccountButton.click, "WAF");
 	WAF.addListener(this.id + "_accountsCancelButton", "click", accountsCancelButton.click, "WAF");
 	WAF.addListener(this.id + "_accountsSaveButton", "click", accountsSaveButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid1", "onRowDblClick", dataGrid1.onRowDblClick, "WAF");

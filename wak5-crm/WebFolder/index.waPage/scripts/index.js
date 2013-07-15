@@ -10,7 +10,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
-		
 		WAK5CRMUTIL.setRecentItemsEventHandler();
 		
 		if (WAF.directory.currentUser() === null) {
@@ -62,7 +61,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
         $('#headerContainer').css("backgroundColor", "#7f7f7f");
         $('#headerTitle').css("color", "#ffffff");
         
-		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
+		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent', userData: {view: "dave"}});
 		waf.sources.lead.all();
 	};// @lock
 

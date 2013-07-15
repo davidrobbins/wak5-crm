@@ -38,12 +38,12 @@ var WAK5CRMUTIL = (function() {
 		$(this.el).on('click', 'button', bind(this, "handleClick"));
 	};
 	
-	wak5CRMUtilObj.MetroRadioMenuBar.prototype.setSelectedMenuItem = function(num) {
+	wak5CRMUtilObj.MetroRadioMenuBar.prototype.setSelectedMenuItem = function(num, optionsObject) {
 	  var radioButtonsContainer$ = $(this.el),
 	  childButtons$ = radioButtonsContainer$.children('button');
 	  childButtons$.removeClass('selectedRadio');
 	  childButtons$.eq(num).addClass('selectedRadio');
-	  this.publish({buttonElemId: childButtons$.eq(num)["0"].id}, "on select");
+	  this.publish({buttonElemId: childButtons$.eq(num)["0"].id, options: optionsObject}, "on select");
 	};
 	
 	//Observer Pattern methods.
@@ -162,21 +162,22 @@ var WAK5CRMUTIL = (function() {
 		 	theEntityID = $this.data('entity');
 		 	theNewPath = 'components/' + theDataClass + '.waComponent';
 			theView = "detail";	
-		 	$$('mainComponent_signedInComponent').loadComponent({path: theNewPath, userData: {view: theView}}); //Note: Refactor to not reference component directly.
+			
+		 	//$$('mainComponent_signedInComponent').loadComponent({path: theNewPath, userData: {view: theView}}); //Note: Refactor to not reference component directly.
 		 	
 		 	switch(theDataClass) {
 				case "accounts":
-				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(3);
+				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(3, {view: theView});
 				waf.sources.account.selectByKey($this.data('entity'));
 				break;
 					
 				case "contacts":
-				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(2);
+				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(2, {view: theView});
 				waf.sources.contact.selectByKey($this.data('entity'));
 				break;
 					
 				case "leads":
-				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1); //Note: Refactor setSelectedMenuItem();
+				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1, {view: theView}); //Note: Refactor setSelectedMenuItem();
 				waf.sources.lead.selectByKey($this.data('entity'));
 				break;
 			}

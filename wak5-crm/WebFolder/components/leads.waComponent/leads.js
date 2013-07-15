@@ -12,7 +12,15 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-
+		setTimeout(function() {
+			if (data.userData.view == "detail") {
+				$$(tabView2).selectTab(2);
+				//$$(accountsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
+			} else {
+				$$(tabView2).selectTab(1);
+			}
+		}, 40);
+		
 	// @region namespaceDeclaration// @startlock
 	var submitConvertLeadButton = {};	// @button
 	var convertLeadButton = {};	// @button
@@ -68,7 +76,7 @@ function constructor (id) {
 	{// @endlock
 		$$(tabView2).selectTab(2);
 		//Add to recent items.
-		WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsComponent_recentItemsBodyContainer'); 
+		WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsBodyContainer'); 
 		// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
 	};// @lock
 

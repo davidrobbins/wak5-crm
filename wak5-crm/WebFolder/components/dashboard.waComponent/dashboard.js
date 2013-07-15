@@ -18,24 +18,30 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		//console.log(data);
+		
 		function handleMainMenuBarSelect(ev) {
+		
+		if (!ev.options) {ev.options = {view: "list"};}
+		//console.log(ev.options.view);
+		//{path: theNewPath, userData: {view: theView}
 		  switch(ev.buttonElemId) {
 	   			case leadsButton :
-				$$(signedInComponent).loadComponent('/components/leads.waComponent');
+				$$(signedInComponent).loadComponent({path: '/components/leads.waComponent', userData: {view: ev.options.view}});
 				break;
 				
 				case contactsButton :
-				$$(signedInComponent).loadComponent('/components/contacts.waComponent');
+				$$(signedInComponent).loadComponent({path: '/components/contacts.waComponent', userData: {view: ev.options.view}});
 				break;
 				
 				case accountsButton :
-				$$(signedInComponent).loadComponent('/components/accounts.waComponent');
+				$$(signedInComponent).loadComponent({path: '/components/accounts.waComponent', userData: {view: ev.options.view}});
 				break;	
 	   		} //end - switch
 		} //end - function handleMainMenuBarSelect
 		
 		WAK5CRMUTIL.mainMenubarObj.subscribe(handleMainMenuBarSelect, "on select"); 
-		WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1);
+		WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1, {view: "list"});
 		WAK5CRMUTIL.loadRecentItems(recentItemsBodyContainer);
 		
 	// @region namespaceDeclaration// @startlock

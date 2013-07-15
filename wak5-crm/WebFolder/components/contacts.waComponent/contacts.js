@@ -4,7 +4,8 @@
 // Add the code that needs to be shared between components here
 
 function constructor (id) {
-	var tabView1 = getHtmlId('tabView1');
+	var tabView1 = getHtmlId('tabView1'),
+		firstNameInputfield = getHtmlId('firstNameInputfield');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -36,8 +37,7 @@ function constructor (id) {
 		waf.sources.contact.serverRefresh({
 			onSuccess: function(event) {
 				$$(tabView1).selectTab(2);
-				//$$(firstNameInputfield).focus();
-				//crmUtil.setDisableLeadsQuickAdd("disable");
+				$$(firstNameInputfield).focus();
 				//$$(leadsTitle).setValue("Lead Information");
 			}
 		});
@@ -45,7 +45,11 @@ function constructor (id) {
 
 	contactsSaveButton.click = function contactsSaveButton_click (event)// @startlock
 	{// @endlock
-		waf.sources.contact.save();
+		waf.sources.contact.save({
+			onSuccess: function(event) {
+				WAK5CRMUTIL.newRecentItem("contacts", "Contact: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer'); 
+			}
+		});
 		$$(tabView1).selectTab(1);
 	};// @lock
 

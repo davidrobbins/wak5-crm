@@ -36,7 +36,25 @@ function constructor (id) {
 
 	submitConvertLeadButton.click = function submitConvertLeadButton_click (event)// @startlock
 	{// @endlock
-		$$(tabView2).selectTab(1);
+		//$$(tabView2).selectTab(1);
+		waf.sources.lead.convertLead({
+			onSuccess: function(event) {
+				WAK5CRMUTIL.loadRecentItems('mainComponent_recentItemsBodyContainer', event.result.recentItemArray); // Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
+				waf.sources.account.all();
+				waf.sources.contact.all({
+					onSuccess: function(evContact) {
+						waf.sources.contact.selectByKey(event.result.contactID);
+						WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(2, {view: "detail"});
+						//$$('bodyComponent').loadComponent({path: '/contacts.waComponent', userData: {view: "detail"}});
+					}
+				});
+				waf.sources.lead.query("converted == false", {
+					onSuccess: function(evLead) {
+						//$$(id + "_tabView2").selectTab(1);
+					} //onSuccess
+				});
+			} //end - onSuccess.
+		});//end - convertLead().
 	};// @lock
 
 	convertLeadButton.click = function convertLeadButton_click (event)// @startlock

@@ -62,7 +62,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
         $('#headerTitle').css("color", "#ffffff");
         
 		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent', userData: {view: "dave"}});
-		waf.sources.lead.all();
+		//waf.sources.lead.all();
+		waf.sources.lead.query("converted == false");
 		waf.sources.contact.all();
 		waf.sources.account.all();
 	};// @lock

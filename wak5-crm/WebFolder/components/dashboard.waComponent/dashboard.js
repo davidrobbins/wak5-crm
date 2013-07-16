@@ -18,14 +18,13 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		//console.log(data);
 		
 		function handleMainMenuBarSelect(ev) {
-		
-		if (!ev.options) {ev.options = {view: "list"};}
-		//console.log(ev.options.view);
-		//{path: theNewPath, userData: {view: theView}
-		  switch(ev.buttonElemId) {
+			if (!ev.options) {
+				ev.options = {view: "list"};
+			}
+			
+		  	switch(ev.buttonElemId) {
 	   			case leadsButton :
 				$$(signedInComponent).loadComponent({path: '/components/leads.waComponent', userData: {view: ev.options.view}});
 				break;

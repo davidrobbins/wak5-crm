@@ -38,7 +38,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	login2.logout = function login2_logout (event)// @startlock
 	{// @endlock
-		$$('blackContainer').show();
+		//$$('blackContainer').show();
+		$$('container1').show();
 		/*
 		$('#headerContainer').animate({
             backgroundColor: "#7f7f7f"
@@ -52,7 +53,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	login2.login = function login2_login (event)// @startlock
 	{// @endlock
-		$$('blackContainer').hide();
+		//$$('blackContainer').hide();
+		$$('container1').hide();
 		/*
 		$('#headerContainer').animate({
             backgroundColor: "#7f7f7f"

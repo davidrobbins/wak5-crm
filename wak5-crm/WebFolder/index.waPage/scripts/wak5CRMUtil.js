@@ -15,6 +15,30 @@ var WAK5CRMUTIL = (function() {
 	//M A I N   M E N U B A R
 	wak5CRMUtilObj.mainMenubarObj = {};
 	
+	//M E S S A G E   O B J E C T
+	wak5CRMUtilObj.setMessage = function(text, displayTime, messageType) {
+		//4c4c4c
+		var displayTime = displayTime || 5000,
+			messageType = messageType || "normal";
+			
+		//$$('messageText').setTextColor('#cc0000'); //e60000 4c4c4c
+		switch(messageType) {
+			case "normal" :
+			$$('messageText').setTextColor('#4c4c4c'); 
+			break;
+			
+			case "error":
+			$$('messageText').setTextColor('#cc0000'); 
+			break;
+		}
+
+		
+		$$('messageText').setValue(text);
+		$$('messageContainer').show();
+		setTimeout(function() {$$('messageContainer').hide();}, displayTime);
+	};
+	
+	
 	//M E T R O   R A D I O   B U T T O N   T A B   (S T A R T)
 	//Let's make a Metro Radio Button Tab constructor.
 	wak5CRMUtilObj.MetroRadioMenuBar = function (el) {

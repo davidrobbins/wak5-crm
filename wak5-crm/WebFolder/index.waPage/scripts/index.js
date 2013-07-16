@@ -11,6 +11,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
 		WAK5CRMUTIL.setRecentItemsEventHandler();
+		//$$('messageContainer').hide();
 		
 		if (WAF.directory.currentUser() === null) {
 			/*

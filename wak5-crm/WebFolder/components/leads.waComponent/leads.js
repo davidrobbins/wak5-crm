@@ -110,6 +110,7 @@ function constructor (id) {
 		$$(tabView1).selectTab(1);
 		waf.sources.lead.save({
 			onSuccess: function(event) {
+				WAK5CRMUTIL.setMessage("Lead: " + event.dataSource.firstName + " " + event.dataSource.lastName + " has been saved to the server.", 7000, "normal");
 				WAK5CRMUTIL.newRecentItem("leads", "Lead: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer'); 
 			}
 		});

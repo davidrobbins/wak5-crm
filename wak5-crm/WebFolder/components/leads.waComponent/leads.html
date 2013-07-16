@@ -2,6 +2,7 @@
     <meta name="generator" content="Wakanda GUIDesigner"/>
     <meta name="WAF.catalog" content="Lead"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Lead" data-scope="global" data-lib="WAF" data-id="lead" data-dataType="string" data-autoLoad="true" content="lead"/>
+    <meta data-type="dataSource" data-lib="WAF" data-source="{id}leadTypeArr" data-source-type="array" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-scope="local" data-id="{id}leadTypeArr" data-attributes="title:string" content="leadTypeArr"/>
     
     
     
@@ -52,9 +53,8 @@
  	 		<div id="{id}container5" data-type="container" data-linked-tag="{id}menuItem4" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowDrop','allowBind']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container waf-container-level-1 waf-level-1 waf-tabView-container-level-0">
 	 	 	 	<div id="{id}dataGrid2" data-type="dataGrid" data-selection-mode="single" data-readOnly="true" data-lib="WAF" data-label-position="top" data-label="" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-column="[{'sourceAttID':'ID','colID':'ID','width':'70','title':'ID'},{'sourceAttID':'firstName','colID':'firstName','width':'180','title':'First%20Name'},{'sourceAttID':'lastName','colID':'lastName','width':'180','title':'Last%20Name'},{'sourceAttID':'title','colID':'title','width':'150','title':'Title'},{'sourceAttID':'phone','colID':'phone','width':'150','title':'Phone'},{'sourceAttID':'city','colID':'city','width':'170','title':'City'}]" data-binding="lead" class="waf-widget waf-dataGrid "></div>
  	 	 		<button id="{id}leadNewButton" data-type="button" data-text="New Lead" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
- 	 	 		<div id="{id}combobox1" data-type="combobox" data-limit="20" data-lib="WAF" data-label-position="left" data-label="Filter:" data-editable="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoDispatch="true" class="waf-widget waf-combobox "><select><option value="one">one</option><option value="two">two</option><option value="three">three</option></select></div>
- 	 	 		<label id="{id}label12" for="{id}combobox1" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-label waf-label-combobox">Filter:</label>
- 	 	 	</div>
+ 	 	 		<div id="{id}combobox1" data-type="combobox" data-limit="20" data-lib="WAF" data-label-position="left" data-label="" data-editable="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoDispatch="true" class="waf-widget waf-combobox " data-binding="{id}leadTypeArr" data-binding-options="[title]" data-binding-key="title"><select><option value="">[title]</option></select></div>
+ 	 	 			</div>
  	 		<div id="{id}container6" data-type="container" data-linked-tag="{id}menuItem5" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowDrop','allowBind']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container waf-container-level-1 waf-level-1 waf-tabView-container-level-0">
 	 	 	 		<div id="{id}accordion1" data-type="accordion" data-linked-tag="{id}container1,{id}container4,{id}container11" data-lib="WAF" data-header-height="40" data-expand-several="true" data-duration="400" data-context="['disallowDrodAndBind']" data-content-height="490" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-accordion ">
 	 	 	 	 	<div id="{id}container1" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowRemove']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-2 waf-level-2 accordion-section waf-state-expanded">
@@ -129,5 +129,4 @@
  	 	 	</div>
  	 	</div>
  	</div>
-	
 	</section>

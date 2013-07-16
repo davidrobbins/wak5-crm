@@ -11,7 +11,9 @@ function constructor (id) {
 	var $comp = this;
 	this.name = 'leads';
 	// @endregion// @endlock
-
+	
+	//console.log($comp.sourcesVar);
+	
 	this.load = function (data) {// @lock
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
@@ -22,7 +24,15 @@ function constructor (id) {
 			}
 		}, 40);
 		
+		$comp.sourcesVar.leadTypeArr = [];
+		$comp.sourcesVar.leadTypeArr.push({title: 'Open Leads'});
+		$comp.sourcesVar.leadTypeArr.push({title: 'Converted Leads'});
+		$comp.sources.leadTypeArr.sync();
+		
+		console.log($comp.sourcesVar.leadTypeArr);
+		
 	// @region namespaceDeclaration// @startlock
+	var leadTypeArrEvent = {};	// @dataSource
 	var submitConvertLeadButton = {};	// @button
 	var convertLeadButton = {};	// @button
 	var leadNewButton = {};	// @button
@@ -33,6 +43,21 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	leadTypeArrEvent.onCurrentElementChange = function leadTypeArrEvent_onCurrentElementChange (event)// @startlock
+	{// @endlock
+		//console.log(event.dataSource.title);
+		switch(event.dataSource.title) {
+			case "Converted Leads":
+			waf.sources.lead.query("converted == true");
+			break;
+			
+			case "Open Leads":
+			waf.sources.lead.query("converted == false");
+			break;
+		}
+
+	};// @lock
 
 	submitConvertLeadButton.click = function submitConvertLeadButton_click (event)// @startlock
 	{// @endlock
@@ -103,6 +128,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_leadTypeArr", "onCurrentElementChange", leadTypeArrEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_submitConvertLeadButton", "click", submitConvertLeadButton.click, "WAF");
 	WAF.addListener(this.id + "_convertLeadButton", "click", convertLeadButton.click, "WAF");
 	WAF.addListener(this.id + "_leadNewButton", "click", leadNewButton.click, "WAF");

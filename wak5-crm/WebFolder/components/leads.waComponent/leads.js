@@ -4,7 +4,7 @@
 // Add the code that needs to be shared between components here
 
 function constructor (id) {
-	var tabView2 = getHtmlId('tabView2'),
+	var tabView1 = getHtmlId('tabView1'),
 		firstNameInputfield = getHtmlId('firstNameInputfield');
 	
 	// @region beginComponentDeclaration// @startlock
@@ -17,10 +17,10 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				$$(tabView2).selectTab(2);
+				$$(tabView1).selectTab(2);
 				//$$(accountsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
 			} else {
-				$$(tabView2).selectTab(1);
+				$$(tabView1).selectTab(1);
 			}
 		}, 40);
 		
@@ -32,6 +32,7 @@ function constructor (id) {
 		console.log($comp.sourcesVar.leadTypeArr);
 		
 	// @region namespaceDeclaration// @startlock
+	var button2 = {};	// @button
 	var leadTypeArrEvent = {};	// @dataSource
 	var submitConvertLeadButton = {};	// @button
 	var convertLeadButton = {};	// @button
@@ -43,6 +44,11 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	button2.click = function button2_click (event)// @startlock
+	{// @endlock
+		$$(tabView1).selectTab(1);
+	};// @lock
 
 	leadTypeArrEvent.onCurrentElementChange = function leadTypeArrEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
@@ -84,7 +90,7 @@ function constructor (id) {
 
 	convertLeadButton.click = function convertLeadButton_click (event)// @startlock
 	{// @endlock
-		$$(tabView2).selectTab(3);
+		$$(tabView1).selectTab(3);
 	};// @lock
 
 	leadNewButton.click = function leadNewButton_click (event)// @startlock
@@ -92,7 +98,7 @@ function constructor (id) {
 		waf.sources.lead.addNewElement();
 		waf.sources.lead.serverRefresh({
 			onSuccess: function(event) {
-				$$(tabView2).selectTab(2);
+				$$(tabView1).selectTab(2);
 				$$(firstNameInputfield).focus();
 				//$$(leadsTitle).setValue("Lead Information");
 			}
@@ -101,7 +107,7 @@ function constructor (id) {
 
 	leadSaveButton.click = function leadSaveButton_click (event)// @startlock
 	{// @endlock
-		$$(tabView2).selectTab(1);
+		$$(tabView1).selectTab(1);
 		waf.sources.lead.save({
 			onSuccess: function(event) {
 				WAK5CRMUTIL.newRecentItem("leads", "Lead: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer'); 
@@ -111,23 +117,29 @@ function constructor (id) {
 
 	leadCancelButton.click = function leadCancelButton_click (event)// @startlock
 	{// @endlock
-		$$(tabView2).selectTab(1);
+		$$(tabView1).selectTab(1);
 	};// @lock
 
 	convertLeadCancelButton.click = function convertLeadCancelButton_click (event)// @startlock
 	{// @endlock
-		$$(tabView2).selectTab(2);
+		$$(tabView1).selectTab(2);
 	};// @lock
 
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
-		$$(tabView2).selectTab(2);
-		//Add to recent items.
-		WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsBodyContainer'); 
-		// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
+		if (waf.sources.lead.converted) {
+			$$(tabView1).selectTab(4);
+		} else {
+			$$(tabView1).selectTab(2);
+			//Add to recent items.
+			WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsBodyContainer'); 
+			// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013)
+		}
+
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_leadTypeArr", "onCurrentElementChange", leadTypeArrEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_submitConvertLeadButton", "click", submitConvertLeadButton.click, "WAF");
 	WAF.addListener(this.id + "_convertLeadButton", "click", convertLeadButton.click, "WAF");

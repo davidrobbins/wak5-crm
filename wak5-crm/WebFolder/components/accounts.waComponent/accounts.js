@@ -63,6 +63,7 @@ function constructor (id) {
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
+		waf.sources.activity.query("account.ID = :1", waf.sources.account.getCurrentElement().ID.getValue());
 		//$$(accordion1).expand(1);
 		$$(tabView1).selectTab(2);
 		//Add to recent items.

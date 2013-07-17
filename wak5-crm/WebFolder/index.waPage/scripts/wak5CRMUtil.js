@@ -12,6 +12,14 @@ var WAK5CRMUTIL = (function() {
 	}
 	//P R I V A T E   M E T H O D S   (E N D).
 	
+	
+	//M E S S A G E S
+	wak5CRMUtilObj.messages = {
+		leads: {
+		
+		}
+	};
+	
 	//M A I N   M E N U B A R
 	wak5CRMUtilObj.mainMenubarObj = {};
 	

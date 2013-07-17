@@ -44,6 +44,9 @@ function constructor (id) {
 
 	accountsCancelButton.click = function accountsCancelButton_click (event)// @startlock
 	{// @endlock
+		if (waf.sources.accounts.isNewElement()) {
+			waf.sources.accounts.removeCurrentReference();
+		}
 		$$(tabView1).selectTab(1);
 	};// @lock
 

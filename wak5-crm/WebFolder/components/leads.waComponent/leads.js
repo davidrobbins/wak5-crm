@@ -12,7 +12,6 @@ function constructor (id) {
 	this.name = 'leads';
 	// @endregion// @endlock
 	
-	//console.log($comp.sourcesVar);
 	
 	this.load = function (data) {// @lock
 		setTimeout(function() {
@@ -28,9 +27,7 @@ function constructor (id) {
 		$comp.sourcesVar.leadTypeArr.push({title: 'Open Leads'});
 		$comp.sourcesVar.leadTypeArr.push({title: 'Converted Leads'});
 		$comp.sources.leadTypeArr.sync();
-		
-		console.log($comp.sourcesVar.leadTypeArr);
-		
+				
 	// @region namespaceDeclaration// @startlock
 	var button2 = {};	// @button
 	var leadTypeArrEvent = {};	// @dataSource
@@ -52,7 +49,6 @@ function constructor (id) {
 
 	leadTypeArrEvent.onCurrentElementChange = function leadTypeArrEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
-		//console.log(event.dataSource.title);
 		switch(event.dataSource.title) {
 			case "Converted Leads":
 			waf.sources.lead.query("converted == true");
@@ -124,6 +120,9 @@ function constructor (id) {
 	leadCancelButton.click = function leadCancelButton_click (event)// @startlock
 	{// @endlock
 		$$(tabView1).selectTab(1);
+		if (waf.sources.lead.isNewElement()) {
+			waf.sources.lead.removeCurrentReference();
+		}
 	};// @lock
 
 	convertLeadCancelButton.click = function convertLeadCancelButton_click (event)// @startlock

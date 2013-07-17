@@ -55,6 +55,10 @@ function constructor (id) {
 
 	contactsCancelButton.click = function contactsCancelButton_click (event)// @startlock
 	{// @endlock
+		if (waf.sources.contacts.isNewElement()) {
+			waf.sources.contacts.removeCurrentReference();
+		}
+
 		$$(tabView1).selectTab(1);
 	};// @lock
 

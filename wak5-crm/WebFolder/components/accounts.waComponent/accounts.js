@@ -5,7 +5,8 @@
 
 function constructor (id) {
 	var tabView1 = getHtmlId('tabView1'),
-		nameInputField = getHtmlId('nameInputField');
+		nameInputField = getHtmlId('nameInputField'),
+		accordian1 = getHtmlId('accordian1');
 		
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -62,6 +63,7 @@ function constructor (id) {
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
+		//$$(accordion1).expand(1);
 		$$(tabView1).selectTab(2);
 		//Add to recent items.
 		console.log(waf.sources.account.name);

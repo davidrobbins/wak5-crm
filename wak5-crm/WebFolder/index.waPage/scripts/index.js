@@ -39,6 +39,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	login2.logout = function login2_logout (event)// @startlock
 	{// @endlock
+		waf.sources.lead.setEntityCollection();
+		waf.sources.contact.setEntityCollection();
+		waf.sources.account.setEntityCollection();
+		waf.sources.recentItems.setEntityCollection();
+		waf.sources.activity.setEntityCollection();
+		
 		//$$('blackContainer').show();
 		$$('container1').show();
 		/*

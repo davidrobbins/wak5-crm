@@ -5,7 +5,8 @@
 
 function constructor (id) {
 	var tabView1 = getHtmlId('tabView1'),
-		firstNameInputfield = getHtmlId('firstNameInputfield');
+		firstNameInputfield = getHtmlId('firstNameInputfield'),
+		accordian1 = getHtmlId('accordian1');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -132,9 +133,12 @@ function constructor (id) {
 
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
+		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		
 		if (waf.sources.lead.converted) {
 			$$(tabView1).selectTab(4);
 		} else {
+			//$$(accordion1).expand(1);
 			$$(tabView1).selectTab(2);
 			//Add to recent items.
 			WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsBodyContainer'); 

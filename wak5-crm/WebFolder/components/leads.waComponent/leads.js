@@ -112,6 +112,11 @@ function constructor (id) {
 			onSuccess: function(event) {
 				WAK5CRMUTIL.setMessage("Lead: " + event.dataSource.firstName + " " + event.dataSource.lastName + " has been saved to the server.", 7000, "normal");
 				WAK5CRMUTIL.newRecentItem("leads", "Lead: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer'); 
+			},
+			
+			onError: function(error) {
+				//error['error'][0].message + " (" + error['error'][0].errCode + ")"
+				//WAK5CRMUTIL.setMessage(error['error'][0].message + " (" + error['error'][0].errCode + ")", 7000, "error");
 			}
 		});
 	};// @lock

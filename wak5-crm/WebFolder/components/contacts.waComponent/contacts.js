@@ -13,6 +13,8 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		waf.sources.activity.all();
+		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				$$(tabView1).selectTab(2);
@@ -55,8 +57,8 @@ function constructor (id) {
 
 	contactsCancelButton.click = function contactsCancelButton_click (event)// @startlock
 	{// @endlock
-		if (waf.sources.contacts.isNewElement()) {
-			waf.sources.contacts.removeCurrentReference();
+		if (waf.sources.contact.isNewElement()) {
+			waf.sources.contact.removeCurrentReference();
 		}
 
 		$$(tabView1).selectTab(1);

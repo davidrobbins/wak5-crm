@@ -13,7 +13,9 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		waf.sources.activity.all();
+		//waf.sources.contact.declareDependencies("activityCollection");
+		//waf.sources.activity.all();
+		//WAF.sources.pTO_Request.declareDependencies("requestor");
 		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
@@ -66,6 +68,7 @@ function constructor (id) {
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
+		waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());
 		$$(tabView1).selectTab(2);
 		//Add to recent items.
 		WAK5CRMUTIL.newRecentItem("contacts", "Contact: ", waf.sources.contact.firstName + " " + waf.sources.contact.lastName, waf.sources.contact.ID, 'mainComponent_recentItemsBodyContainer'); 

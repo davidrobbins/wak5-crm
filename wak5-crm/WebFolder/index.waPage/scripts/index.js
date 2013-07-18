@@ -42,7 +42,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		waf.sources.lead.setEntityCollection();
 		waf.sources.contact.setEntityCollection();
 		waf.sources.account.setEntityCollection();
-		waf.sources.recentItems.setEntityCollection();
 		waf.sources.activity.setEntityCollection();
 		
 		//$$('blackContainer').show();

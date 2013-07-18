@@ -69,7 +69,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
         $('#headerContainer').css("backgroundColor", "#7f7f7f");
         $('#headerTitle').css("color", "#ffffff");
         
-		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent', userData: {view: "dave"}});
+		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
 		//waf.sources.lead.all();
 		waf.sources.lead.query("converted == false");
 		waf.sources.contact.all();

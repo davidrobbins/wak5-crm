@@ -6,7 +6,8 @@
 function constructor (id) {
 	var tabView1 = getHtmlId('tabView1'),
 		nameInputField = getHtmlId('nameInputField'),
-		accordian1 = getHtmlId('accordian1');
+		accordian1 = getHtmlId('accordian1'),
+		activitySmallComponent = getHtmlId('activitySmallComponent');
 		
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -14,6 +15,8 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		$$(activitySmallComponent).loadComponent({path: '/components/smallActivity.waComponent', userData: {view: "account"}});
+		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				$$(tabView1).selectTab(2);
@@ -67,8 +70,6 @@ function constructor (id) {
 		//$$(accordion1).expand(1);
 		$$(tabView1).selectTab(2);
 		//Add to recent items.
-		console.log(waf.sources.account.name);
-		console.log(waf.sources.account.ID);
 		WAK5CRMUTIL.newRecentItem("accounts", "Account: ", waf.sources.account.name, waf.sources.account.ID, 'mainComponent_recentItemsBodyContainer'); 
 		// Note: Refactor so "mainComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
 

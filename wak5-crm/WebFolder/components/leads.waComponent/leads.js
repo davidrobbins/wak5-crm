@@ -6,7 +6,8 @@
 function constructor (id) {
 	var tabView1 = getHtmlId('tabView1'),
 		firstNameInputfield = getHtmlId('firstNameInputfield'),
-		accordian1 = getHtmlId('accordian1');
+		accordian1 = getHtmlId('accordian1'),
+		activitySmallComponent = getHtmlId('activitySmallComponent');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -15,6 +16,8 @@ function constructor (id) {
 	
 	
 	this.load = function (data) {// @lock
+		$$(activitySmallComponent).loadComponent({path: '/components/smallActivity.waComponent', userData: {view: "lead"}});
+		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				$$(tabView1).selectTab(2);

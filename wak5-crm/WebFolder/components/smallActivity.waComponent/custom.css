@@ -1,1 +1,1 @@
-﻿#waf-body #{id}dataGrid1 {	border-width: 1px;	border-color: #e5e5e5;	border-style: solid;}
+﻿#waf-body #{id}dataGrid1 {	border-width: 1px;	border-color: #e5e5e5;	border-style: solid;}#{id}combobox1, #{id}combobox2 {	border: solid;	border-width: 1px;	border-color: inherit;#999999;}

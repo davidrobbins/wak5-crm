@@ -19,6 +19,7 @@ function constructor (id) {
 		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
+				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());
 				$$(tabView1).selectTab(2);
 				//$$(accountsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
 			} else {
@@ -60,7 +61,7 @@ function constructor (id) {
 	contactsCancelButton.click = function contactsCancelButton_click (event)// @startlock
 	{// @endlock
 		if (waf.sources.contact.isNewElement()) {
-			waf.sources.contact.removeCurrentReference();
+			//waf.sources.contact.removeCurrentReference();
 		}
 
 		$$(tabView1).selectTab(1);

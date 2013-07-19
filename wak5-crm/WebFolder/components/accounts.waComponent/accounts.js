@@ -20,6 +20,7 @@ function constructor (id) {
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				$$(tabView1).selectTab(2);
+				waf.sources.activity.query("account.ID = :1", waf.sources.account.getCurrentElement().ID.getValue());
 				//$$(accountsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
 			} else {
 				$$(tabView1).selectTab(1);
@@ -49,7 +50,7 @@ function constructor (id) {
 	accountsCancelButton.click = function accountsCancelButton_click (event)// @startlock
 	{// @endlock
 		if (waf.sources.account.isNewElement()) {
-			waf.sources.account.removeCurrentReference();
+			//waf.sources.account.removeCurrentReference();
 		}
 		$$(tabView1).selectTab(1);
 	};// @lock

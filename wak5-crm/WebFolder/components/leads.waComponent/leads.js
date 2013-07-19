@@ -21,6 +21,7 @@ function constructor (id) {
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				$$(tabView1).selectTab(2);
+				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 				//$$(accountsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
 			} else {
 				$$(tabView1).selectTab(1);
@@ -125,7 +126,7 @@ function constructor (id) {
 	{// @endlock
 		$$(tabView1).selectTab(1);
 		if (waf.sources.lead.isNewElement()) {
-			waf.sources.lead.removeCurrentReference();
+			//waf.sources.lead.removeCurrentReference();
 		}
 	};// @lock
 

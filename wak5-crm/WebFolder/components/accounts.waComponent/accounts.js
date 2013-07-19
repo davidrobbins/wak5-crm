@@ -26,7 +26,7 @@ function constructor (id) {
 			} else {
 				$$(tabView1).selectTab(1);
 			}
-		}, 200);
+		}, 400);
 	// @region namespaceDeclaration// @startlock
 	var newAccountButton = {};	// @button
 	var accountsCancelButton = {};	// @button
@@ -65,7 +65,7 @@ function constructor (id) {
 		});
 		$$(tabView1).selectTab(1);
 		//Bug report: isNewElement(). The following line is only work-around.
-		waf.sources.account.collectionRefresh();
+		//waf.sources.account.collectionRefresh(); BAD BAD
 	};// @lock
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock

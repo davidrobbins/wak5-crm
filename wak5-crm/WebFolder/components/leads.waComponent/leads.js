@@ -26,7 +26,7 @@ function constructor (id) {
 			} else {
 				$$(tabView1).selectTab(1);
 			}
-		}, 200);
+		}, 400);
 		
 		$comp.sourcesVar.leadTypeArr = [];
 		$comp.sourcesVar.leadTypeArr.push({title: 'Open Leads'});
@@ -111,9 +111,12 @@ function constructor (id) {
 		$$(tabView1).selectTab(1);
 		waf.sources.lead.save({
 			onSuccess: function(event) {
+				console.log(event);
 				WAK5CRMUTIL.setMessage("Lead: " + event.dataSource.firstName + " " + event.dataSource.lastName + " has been saved to the server.", 7000, "normal");
 				WAK5CRMUTIL.newRecentItem("leads", "Lead: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer'); 
-			},
+				//WAK5CRMUTIL.setMessage("Lead: " + waf.sources.lead.firstName + " " + waf.sources.lead.lastName + " has been saved to the server.", 7000, "normal");
+				//WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsBodyContainer'); 
+		},
 			
 			onError: function(error) {
 				//error['error'][0].message + " (" + error['error'][0].errCode + ")"
@@ -122,7 +125,7 @@ function constructor (id) {
 		});
 		
 		//Bug report: isNewElement(). The following line is only work-around.
-		waf.sources.lead.collectionRefresh();
+		//waf.sources.lead.collectionRefresh(); //BAD BAD BAD
 	};// @lock
 
 	leadCancelButton.click = function leadCancelButton_click (event)// @startlock

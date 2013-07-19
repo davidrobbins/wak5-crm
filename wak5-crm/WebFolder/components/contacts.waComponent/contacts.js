@@ -26,7 +26,7 @@ function constructor (id) {
 			} else {
 				$$(tabView1).selectTab(1);
 			}
-		}, 200);
+		}, 400);
 
 	// @region namespaceDeclaration// @startlock
 	var newContactButton = {};	// @button
@@ -58,7 +58,7 @@ function constructor (id) {
 		});
 		$$(tabView1).selectTab(1);
 		//Bug report: isNewElement(). The following line is only work-around.
-		waf.sources.contact.collectionRefresh();
+		//waf.sources.contact.collectionRefresh(); BAD BAD
 
 	};// @lock
 

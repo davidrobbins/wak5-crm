@@ -12,6 +12,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	{// @endlock
 
 		WAK5CRMUTIL.setRecentItemsEventHandler();
+		waf.sources.lead.declareDependencies('owner');
+		waf.sources.contact.declareDependencies('owner');
+		waf.sources.account.declareDependencies('owner');
+		
 		//$$('messageContainer').hide();
 		
 		if (WAF.directory.currentUser() === null) {

@@ -13,11 +13,18 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 
 	// @region namespaceDeclaration// @startlock
+	var signUpButton = {};	// @button
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
 
+	signUpButton.click = function signUpButton_click (event)// @startlock
+	{// @endlock
+		WAK5CRMUTIL.signUp(signUpObj);
+	};// @lock
+
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_signUpButton", "click", signUpButton.click, "WAF");
 	// @endregion// @endlock
 
 	};// @lock

@@ -215,5 +215,28 @@ var WAK5CRMUTIL = (function() {
 	} //end - setRecentItemsEventHandler().
 	//R E C E N T   I T E M S   (E N D)
 	
+	//S I G N U P
+	wak5CRMUtilObj.signUp = function(signUpObj) {
+		waf.ds.User.addUser({
+			onSuccess: function(event) {
+				wak5CRMUtilObj.setMessage(event.result.errorMessage);
+				
+				if (waf.directory.currentUser() !== null) {
+					signUpObj.name = "";
+					signUpObj.email = "";
+					signUpObj.password = "";
+					signUpObj.verifyPassword = "";
+					waf.sources.signUpObj.sync();
+					
+					$$('container1').hide();
+			        $('#headerContainer').css("backgroundColor", "#7f7f7f");
+			        $('#headerTitle').css("color", "#ffffff");
+					$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
+					
+				} //end - if (waf.directory.currentUser() !== null)
+			} //end - onSuccess
+		}, signUpObj);	//end - waf.ds.User.addUser
+	};
+	
 	return wak5CRMUtilObj;
 }()); //end - WAK5CRMUTIL.

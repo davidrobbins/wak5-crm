@@ -9,7 +9,8 @@ function constructor (id) {
 		container2 = getHtmlId('container2'),
 		activityDataGrid = getHtmlId('dataGrid1'),
 		combobox1 = getHtmlId('combobox1'),
-		combobox2 = getHtmlId('combobox2');
+		combobox2 = getHtmlId('combobox2'),
+		textField2 = getHtmlId('textField2');
 		
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -72,29 +73,30 @@ function constructor (id) {
 	newSmallTaskButton.click = function newSmallTaskButton_click (event)// @startlock
 	{// @endlock
 		waf.sources.activity.addNewElement();
-		waf.sources.activity.serverRefresh();
-		waf.sources.activity.type = "task";
-		
-		switch(data.userData.view) {
-			case "account":
-			waf.sources.activity.account.set(waf.sources.account);
-			break;
-			
-			case "lead":
-			waf.sources.activity.lead.set(waf.sources.lead);
-			break;
-			
-			case "contact":
-			waf.sources.activity.contact.set(waf.sources.contact);
-			break;
-		}
-		
-		waf.sources.activity.save({
+		waf.sources.activity.serverRefresh({
 			onSuccess: function(event) {
-				$$(activityDataGrid).hide();;
+				waf.sources.activity.type = "task";
+				
+				switch(data.userData.view) {
+					case "account":
+					waf.sources.activity.account.set(waf.sources.account);
+					break;
+					
+					case "lead":
+					waf.sources.activity.lead.set(waf.sources.lead);
+					break;
+					
+					case "contact":
+					waf.sources.activity.contact.set(waf.sources.contact);
+					break;
+				}
+				
+				$$(activityDataGrid).hide();
 				$$(container2).show();
+				$$(textField2).focus();
 			}
 		});
+		
 	};// @lock
 
 	smallActivityCancelButton.click = function smallActivityCancelButton_click (event)// @startlock

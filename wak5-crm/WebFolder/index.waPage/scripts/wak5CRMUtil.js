@@ -194,23 +194,21 @@ var WAK5CRMUTIL = (function() {
 		 	theEntityID = $this.data('entity');
 		 	theNewPath = 'components/' + theDataClass + '.waComponent';
 			theView = "detail";	
-			
-		 	//$$('mainComponent_signedInComponent').loadComponent({path: theNewPath, userData: {view: theView}}); //Note: Refactor to not reference component directly.
-		 	
+				 	
 		 	switch(theDataClass) {
 				case "accounts":
+				waf.sources.account.selectByKey(theEntityID);
 				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(3, {view: theView});
-				waf.sources.account.selectByKey($this.data('entity'));
 				break;
 					
 				case "contacts":
+				waf.sources.contact.selectByKey(theEntityID);
 				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(2, {view: theView});
-				waf.sources.contact.selectByKey($this.data('entity'));
 				break;
 					
 				case "leads":
+				waf.sources.lead.selectByKey(theEntityID);
 				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1, {view: theView}); //Note: Refactor setSelectedMenuItem();
-				waf.sources.lead.selectByKey($this.data('entity'));
 				break;
 			}
 		}); // end - event handlers for recent items link.

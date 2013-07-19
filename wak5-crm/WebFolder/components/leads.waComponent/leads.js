@@ -6,33 +6,33 @@
 function constructor (id) {
 	var tabView1 = getHtmlId('tabView1'),
 		firstNameInputfield = getHtmlId('firstNameInputfield'),
-		accordian1 = getHtmlId('accordian1'),
-		activitySmallComponent = getHtmlId('activitySmallComponent');
+		accordion1 = getHtmlId('accordion1'),
+		activitySmallComponent = getHtmlId('activitySmallComponent'),
+		leadsTitle = getHtmlId('leadsTitle');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
 	this.name = 'leads';
 	// @endregion// @endlock
-	
-	
+
 	this.load = function (data) {// @lock
 		$$(activitySmallComponent).loadComponent({path: '/components/smallActivity.waComponent', userData: {view: "lead"}});
 		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
+				$$(leadsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
 				$$(tabView1).selectTab(2);
 				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
-				//$$(accountsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
 			} else {
 				$$(tabView1).selectTab(1);
 			}
-		}, 40);
+		}, 200);
 		
 		$comp.sourcesVar.leadTypeArr = [];
 		$comp.sourcesVar.leadTypeArr.push({title: 'Open Leads'});
 		$comp.sourcesVar.leadTypeArr.push({title: 'Converted Leads'});
 		$comp.sources.leadTypeArr.sync();
-				
+					
 	// @region namespaceDeclaration// @startlock
 	var button2 = {};	// @button
 	var leadTypeArrEvent = {};	// @dataSource
@@ -101,7 +101,7 @@ function constructor (id) {
 			onSuccess: function(event) {
 				$$(tabView1).selectTab(2);
 				$$(firstNameInputfield).focus();
-				//$$(leadsTitle).setValue("Lead Information");
+				$$(leadsTitle).setValue("New Lead");
 			}
 		});
 	};// @lock
@@ -142,7 +142,8 @@ function constructor (id) {
 		if (waf.sources.lead.converted) {
 			$$(tabView1).selectTab(4);
 		} else {
-			//$$(accordion1).expand(1);
+			$$(accordion1).expand(1);
+			$$(leadsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
 			$$(tabView1).selectTab(2);
 			//Add to recent items.
 			WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsBodyContainer'); 

@@ -17,23 +17,24 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		/**/
-		//
-		$comp.sourcesVar.statusArr = [];
-		$comp.sourcesVar.statusArr.push({title: 'Not Started'});
-		$comp.sourcesVar.statusArr.push({title: 'Deferred'});
-		$comp.sourcesVar.statusArr.push({title: 'In Progress'});
-		$comp.sourcesVar.statusArr.push({title: 'Completed'});
-		$comp.sourcesVar.statusArr.push({title: 'Waiting on Someone'});
-		$comp.sources.statusArr.sync();
+		setTimeout(function() {
+			$comp.sourcesVar.statusArr = [];
+			$comp.sourcesVar.statusArr.push({title: 'Not Started'});
+			$comp.sourcesVar.statusArr.push({title: 'Deferred'});
+			$comp.sourcesVar.statusArr.push({title: 'In Progress'});
+			$comp.sourcesVar.statusArr.push({title: 'Completed'});
+			$comp.sourcesVar.statusArr.push({title: 'Waiting on Someone'});
+			$comp.sources.statusArr.sync();
+			
+			$comp.sourcesVar.activityPriorityArr = [];
+			$comp.sourcesVar.activityPriorityArr.push({title: 'Normal'});
+			$comp.sourcesVar.activityPriorityArr.push({title: 'High'});
+			$comp.sourcesVar.activityPriorityArr.push({title: 'Highest'});
+			$comp.sourcesVar.activityPriorityArr.push({title: 'Low'});
+			$comp.sourcesVar.activityPriorityArr.push({title: 'Lowest'});
+			$comp.sources.activityPriorityArr.sync();
+		}, 200);
 		
-		$comp.sourcesVar.activityPriorityArr = [];
-		$comp.sourcesVar.activityPriorityArr.push({title: 'Normal'});
-		$comp.sourcesVar.activityPriorityArr.push({title: 'High'});
-		$comp.sourcesVar.activityPriorityArr.push({title: 'Highest'});
-		$comp.sourcesVar.activityPriorityArr.push({title: 'Low'});
-		$comp.sourcesVar.activityPriorityArr.push({title: 'Lowest'});
-		$comp.sources.activityPriorityArr.sync();
 		
 	// @region namespaceDeclaration// @startlock
 	var statusArrEvent = {};	// @dataSource

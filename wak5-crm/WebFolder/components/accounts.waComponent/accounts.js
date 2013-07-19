@@ -6,8 +6,9 @@
 function constructor (id) {
 	var tabView1 = getHtmlId('tabView1'),
 		nameInputField = getHtmlId('nameInputField'),
-		accordian1 = getHtmlId('accordian1'),
-		activitySmallComponent = getHtmlId('activitySmallComponent');
+		accordion1 = getHtmlId('accordion1'),
+		activitySmallComponent = getHtmlId('activitySmallComponent'),
+		accountTitle = getHtmlId('accountTitle');
 		
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -21,11 +22,11 @@ function constructor (id) {
 			if (data.userData.view == "detail") {
 				$$(tabView1).selectTab(2);
 				waf.sources.activity.query("account.ID = :1", waf.sources.account.getCurrentElement().ID.getValue());
-				//$$(accountsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
+				$$(accountTitle).setValue("Account Information: " + waf.sources.account.name);
 			} else {
 				$$(tabView1).selectTab(1);
 			}
-		}, 40);
+		}, 200);
 	// @region namespaceDeclaration// @startlock
 	var newAccountButton = {};	// @button
 	var accountsCancelButton = {};	// @button
@@ -42,7 +43,7 @@ function constructor (id) {
 			onSuccess: function(event) {
 				$$(tabView1).selectTab(2);
 				$$(nameInputField).focus();
-				//$$(leadsTitle).setValue("Lead Information");
+				$$(accountTitle).setValue("New Account");
 			}
 		});
 	};// @lock
@@ -68,7 +69,8 @@ function constructor (id) {
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
 		waf.sources.activity.query("account.ID = :1", waf.sources.account.getCurrentElement().ID.getValue());
-		//$$(accordion1).expand(1);
+		$$(accountTitle).setValue("Account Information: " + waf.sources.account.name);
+		$$(accordion1).expand(1);
 		$$(tabView1).selectTab(2);
 		//Add to recent items.
 		WAK5CRMUTIL.newRecentItem("accounts", "Account: ", waf.sources.account.name, waf.sources.account.ID, 'mainComponent_recentItemsBodyContainer'); 

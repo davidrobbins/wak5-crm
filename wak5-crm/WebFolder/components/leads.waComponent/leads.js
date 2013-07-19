@@ -120,6 +120,9 @@ function constructor (id) {
 				//WAK5CRMUTIL.setMessage(error['error'][0].message + " (" + error['error'][0].errCode + ")", 7000, "error");
 			}
 		});
+		
+		//Bug report: isNewElement(). The following line is only work-around.
+		waf.sources.lead.collectionRefresh();
 	};// @lock
 
 	leadCancelButton.click = function leadCancelButton_click (event)// @startlock

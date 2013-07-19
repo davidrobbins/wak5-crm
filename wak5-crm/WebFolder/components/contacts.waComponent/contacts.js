@@ -57,6 +57,9 @@ function constructor (id) {
 			}
 		});
 		$$(tabView1).selectTab(1);
+		//Bug report: isNewElement(). The following line is only work-around.
+		waf.sources.contact.collectionRefresh();
+
 	};// @lock
 
 	contactsCancelButton.click = function contactsCancelButton_click (event)// @startlock

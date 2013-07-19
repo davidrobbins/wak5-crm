@@ -64,6 +64,8 @@ function constructor (id) {
 			}
 		});
 		$$(tabView1).selectTab(1);
+		//Bug report: isNewElement(). The following line is only work-around.
+		waf.sources.account.collectionRefresh();
 	};// @lock
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock

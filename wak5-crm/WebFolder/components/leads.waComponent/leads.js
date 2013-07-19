@@ -126,7 +126,8 @@ function constructor (id) {
 	{// @endlock
 		$$(tabView1).selectTab(1);
 		if (waf.sources.lead.isNewElement()) {
-			//waf.sources.lead.removeCurrentReference();
+			//Bug Report: isNewElement() reports true for an entity that has been saved it is still the current entity.
+			waf.sources.lead.removeCurrentReference();
 		}
 	};// @lock
 

@@ -219,9 +219,10 @@ var WAK5CRMUTIL = (function() {
 	wak5CRMUtilObj.signUp = function(signUpObj) {
 		waf.ds.User.addUser({
 			onSuccess: function(event) {
-				wak5CRMUtilObj.setMessage(event.result.errorMessage);
+				WAK5CRMUTIL.setMessage(event.result.errorMessage);
 				
 				if (waf.directory.currentUser() !== null) {
+					$$('login2').refresh();
 					signUpObj.name = "";
 					signUpObj.email = "";
 					signUpObj.password = "";

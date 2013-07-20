@@ -131,10 +131,12 @@ function constructor (id) {
 	leadCancelButton.click = function leadCancelButton_click (event)// @startlock
 	{// @endlock
 		$$(tabView1).selectTab(1);
+		/**/
 		if (waf.sources.lead.isNewElement()) {
 			//Bug Report: isNewElement() reports true for an entity that has been saved it is still the current entity.
 			waf.sources.lead.removeCurrentReference();
 		}
+		
 	};// @lock
 
 	convertLeadCancelButton.click = function convertLeadCancelButton_click (event)// @startlock

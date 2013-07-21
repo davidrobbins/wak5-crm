@@ -5,40 +5,33 @@
 <meta name="generator" content="Wakanda GUIDesigner"/>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
 	<meta name="wakanda-version" content="5 build 5.137042"/>
-		<meta name="wakanda-build" content="5.137042"/>
-		
-		
+	<meta name="wakanda-build" content="5.137042"/>
+	
+	
 
-		<meta name="WAF.catalog" content="*"/>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<meta name="WAF.config.loadCSS" id="waf-interface-css" content="styles/index.css"/>
-		<meta name="WAF.config.loadCSS" id="waf-project-css" content="/application.css"/>
-		<meta name="WAF.config.loadCSS" content="/index.waPage/styles/custom.css"/>
+	<meta name="WAF.catalog" content="*"/>	
+	<meta name="WAF.config.loadCSS" id="waf-interface-css" content="styles/index.css"/>
+	<meta name="WAF.config.loadCSS" id="waf-project-css" content="/application.css"/>
+	<meta name="WAF.config.loadCSS" content="/index.waPage/styles/custom.css"/>
 
-		<meta name="WAF.config.loadJS" id="waf-script" content="scripts/index.js"/>
-		<meta name="WAF.config.loadJS" content="/index.waPage/scripts/wak5CRMUtil.js"/>
+	<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Lead" data-lib="WAF" data-id="lead" data-dataType="string" data-autoLoad="false" content="lead"/>
+	<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Contact" data-lib="WAF" data-id="contact" data-dataType="string" data-autoLoad="false" content="contact"/>
+	<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Account" data-lib="WAF" data-id="account" data-dataType="string" data-autoLoad="false" content="account"/>
+	<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Activity" data-lib="WAF" data-id="activity" data-dataType="string" data-autoLoad="false" content="activity"/>
+	
+	<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="object" data-source="signUpObj" data-lib="WAF" data-id="signUpObj" data-dataType="string" data-autoLoad="true" data-attributes="name:string,email:string,password:string,verifyPassword:string" content="signUpObj"/>
+	<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Note" data-lib="WAF" data-id="note" data-dataType="string" data-autoLoad="false" content="note"/>		<meta name="WAF.config.loadJS" id="waf-script" content="scripts/index.js"/>
+	<meta name="WAF.config.loadJS" content="/index.waPage/scripts/wak5CRMUtil.js"/>
+	<meta name="WAF.config.loadJS" content="/index.waPage/scripts/handlebars.js"/>
 
-		<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Lead" data-lib="WAF" data-id="lead" data-dataType="string" data-autoLoad="false" content="lead"/>
-		<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Contact" data-lib="WAF" data-id="contact" data-dataType="string" data-autoLoad="false" content="contact"/>
-		<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Account" data-lib="WAF" data-id="account" data-dataType="string" data-autoLoad="false" content="account"/>
-		<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Activity" data-lib="WAF" data-id="activity" data-dataType="string" data-autoLoad="false" content="activity"/>
-		
-		<meta name="WAF.config.datasources" data-type="dataSource" data-source-type="object" data-source="signUpObj" data-lib="WAF" data-id="signUpObj" data-dataType="string" data-autoLoad="true" data-attributes="name:string,email:string,password:string,verifyPassword:string" content="signUpObj"/>
-		<meta data-type="dataSource" data-lib="WAF" data-source="Priority" data-source-type="dataClass" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-id="priority" content="priority"/></head>
+	<script type="text/x-handlebars-template" id="note-list-template">
+		<li class="noteListItem">
+			<div data-id="{{dataId}}" class="noteIdent">{{title}} {{date}}</div>
+			<div>{{body}}</div>
+			
+		</li>
+	</script>
+</head>
 
 <body id="waf-body" data-workspace-width="0" data-workspace-orientation="portrait" data-workspace-height="0" data-viewport-width="device-width" data-viewport-minimum-scale="1.0" data-viewport-maximum-scale="1.0" data-viewport-initial-scale="1.0" data-type="document" data-theme="default" data-rpc-validation="false" data-rpc-namespace="rpc" data-rpc-activate="false" data-platform="desktop" data-lib="WAF" data-group="[]" data-entire-model="true" data-apple-meta-tags-status-bar="default" style="visibility:hidden;bottom:;right:;">
 		<div id="headerContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" class="waf-widget waf-container waf-container-level-0 waf-level-0">

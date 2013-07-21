@@ -20,6 +20,9 @@ var WAK5CRMUTIL = (function() {
 		}
 	};
 	
+	//N O T E   L I S T   T E M P L A T E
+	wak5CRMUtilObj.noteListTemplateFn = function() {};
+	
 	//M A I N   M E N U B A R
 	wak5CRMUtilObj.mainMenubarObj = {};
 	

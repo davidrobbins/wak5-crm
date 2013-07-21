@@ -20,12 +20,17 @@ function constructor (id) {
 		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());
 				$$(tabView1).selectTab(2);
-				$$(contactTitle).setValue("Contact Information: " + waf.sources.contact.fullName);
 			} else {
 				$$(tabView1).selectTab(1);
 			}
+		}, 80);
+		
+		setTimeout(function() {
+			if (data.userData.view == "detail") {
+				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());
+				$$(contactTitle).setValue("Contact Information: " + waf.sources.contact.fullName);
+			} 
 		}, 400);
 
 	// @region namespaceDeclaration// @startlock

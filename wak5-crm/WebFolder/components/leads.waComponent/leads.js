@@ -20,12 +20,18 @@ function constructor (id) {
 		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				$$(leadsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
 				$$(tabView1).selectTab(2);
-				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 			} else {
 				$$(tabView1).selectTab(1);
 			}
+		}, 80);
+		
+		
+		setTimeout(function() {
+			if (data.userData.view == "detail") {
+				$$(leadsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
+				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+			} 
 		}, 400);
 		
 		$comp.sourcesVar.leadTypeArr = [];

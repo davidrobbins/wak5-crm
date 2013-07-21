@@ -21,10 +21,15 @@ function constructor (id) {
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				$$(tabView1).selectTab(2);
-				waf.sources.activity.query("account.ID = :1", waf.sources.account.getCurrentElement().ID.getValue());
-				$$(accountTitle).setValue("Account Information: " + waf.sources.account.name);
 			} else {
 				$$(tabView1).selectTab(1);
+			}
+		}, 80);
+		
+		setTimeout(function() {
+			if (data.userData.view == "detail") {
+				waf.sources.activity.query("account.ID = :1", waf.sources.account.getCurrentElement().ID.getValue());
+				$$(accountTitle).setValue("Account Information: " + waf.sources.account.name);
 			}
 		}, 400);
 	// @region namespaceDeclaration// @startlock

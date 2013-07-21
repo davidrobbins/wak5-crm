@@ -25,7 +25,6 @@ var WAK5CRMUTIL = (function() {
 	
 	//M E S S A G E   O B J E C T
 	wak5CRMUtilObj.setMessage = function(text, displayTime, messageType) {
-		//4c4c4c
 		var displayTime = displayTime || 5000,
 			messageType = messageType || "normal";
 			
@@ -42,8 +41,8 @@ var WAK5CRMUTIL = (function() {
 
 		
 		$$('messageText').setValue(text);
-		$$('messageContainer').show();
-		setTimeout(function() {$$('messageContainer').hide();}, displayTime);
+		$('#messageContainer').fadeIn(400); //show
+		setTimeout(function() {$('#messageContainer').fadeOut(400);}, displayTime); //.hide
 	};
 	
 	

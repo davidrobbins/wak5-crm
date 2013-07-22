@@ -102,6 +102,9 @@ function constructor (id) {
 
 	leadNewButton.click = function leadNewButton_click (event)// @startlock
 	{// @endlock
+		waf.sources.activity.setEntityCollection();
+		waf.sources.note.setEntityCollection();
+		
 		waf.sources.lead.addNewElement();
 		waf.sources.lead.serverRefresh({
 			onSuccess: function(event) {
@@ -153,6 +156,7 @@ function constructor (id) {
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
 		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 		
 		if (waf.sources.lead.converted) {
 			$$(tabView1).selectTab(4);

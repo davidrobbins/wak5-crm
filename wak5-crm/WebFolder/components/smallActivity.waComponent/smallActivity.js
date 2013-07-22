@@ -8,10 +8,6 @@ function constructor (id) {
 	var container1 = getHtmlId('container1'),
 		container2 = getHtmlId('container2'),
 		activityDataGrid = getHtmlId('dataGrid1'),
-		//combobox1 = getHtmlId('combobox1'),
-		//combobox2 = getHtmlId('combobox2'),
-		//combobox99$ = getHtmlObj('combobox99'),
-		//combobox99 = getHtmlId('combobox99'),
 		textField2 = getHtmlId('textField2'),
 		textField3 = getHtmlObj('textField3'),
 		textField4 = getHtmlObj('textField4');
@@ -22,11 +18,7 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-
-		textField3.autocomplete({source: ["In Progress", "Not Started", "Deferred", "Completed", "Waiting on Someone"]});
-		//textField4.autocomplete({source: ["In Progress", "Normal", "High", "Highest", "Low", "Lowest"]});
-		
-		
+	
 		textField3.autocomplete({source: function(request, response) {
 			response(["In Progress", "Not Started", "Deferred", "Completed", "Waiting on Someone"]);
 		}});
@@ -66,7 +58,7 @@ function constructor (id) {
 	{// @endlock
 		waf.sources.activity.save({
 			onSuccess: function(event) {
-				WAK5CRMUTIL.setMessage("Task " + event.dataSource.subject + " has been saved to the server.", 7000, "normal");
+				WAK5CRMUTIL.setMessage("Task " + event.dataSource.subject + " has been saved to the server.", 5000, "normal");
 				$$(activityDataGrid).show();;
 				$$(container2).hide();
 			}
@@ -115,8 +107,6 @@ function constructor (id) {
 	{// @endlock
 		$$(activityDataGrid).hide();
 		$$(container2).show();
-		$$(combobox1).setValue(waf.sources.activity.priority);
-		$$(combobox2).setValue(waf.sources.activity.status);
 	};// @lock
 
 	// @region eventManager// @startlock

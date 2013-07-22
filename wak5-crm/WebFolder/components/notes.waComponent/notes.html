@@ -3,7 +3,15 @@
     <meta name="WAF.catalog" content="Note"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Note" data-scope="local" data-lib="WAF" data-id="{id}note" data-dataType="string" data-autoLoad="true" content="note"/>
     <div id="{id}notesContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-container waf-container-level-0 waf-level-0">
-	 		<div id="{id}notesTitle" data-type="richText" data-lib="WAF" class="waf-widget waf-richText " data-autoWidth="true" data-label="" data-label-position="left" data-target="_blank" data-overflow="Hidden" data-plainText="true" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false">Notes</div>
- 		<div id="{id}notesListContainer" data-type="container" data-lib="WAF" class="waf-widget waf-container waf-container-level-1 waf-level-1" data-label="" data-label-position="top" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="true" data-constraint-right="true"></div>
+	 		<div id="{id}notesTitle" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="true" class="waf-widget waf-richText ">Notes</div>
+ 		<div id="{id}notesListContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container waf-container-level-1 waf-level-1">
+ 	 	
+ 	 		<button id="{id}button1" data-type="button" data-text="Cancel" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
+ 	 	</div>
+ 		<div id="{id}addNoteContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-hideonload="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-2 waf-level-2">
+	 	 	<textarea placeholder="Add a note..." id="{id}inputNote" data-type="textField" data-readOnly="false" data-password="false" data-multiline="true" data-lib="WAF" data-label-position="left" data-label="" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-textField "></textarea>
+			<button id="{id}saveNoteButton" data-type="button" data-text="Save" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
+ 	 		<button id="{id}cancelNoteButton" data-type="button" data-text="Cancel" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
+ 	 	</div>
  	</div>
 	</section>

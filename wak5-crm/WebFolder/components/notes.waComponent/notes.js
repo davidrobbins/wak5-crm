@@ -38,6 +38,17 @@ function constructor (id) {
 		buildNoteGrid();
 		addNoteContainer$.css('height', 42);
 	
+		console.log(notesListContainer$);
+		
+		notesListContainer$.on('mouseenter', '.noteListItem', function (event) {
+	   		$(this).addClass('noteSelected');
+		});
+		
+		notesListContainer$.on('mouseleave', '.noteListItem', function (event) {
+	   		$(this).removeClass('noteSelected');
+		});
+		
+		
 	// @region namespaceDeclaration// @startlock
 	var cancelNoteButton = {};	// @button
 	var button1 = {};	// @button

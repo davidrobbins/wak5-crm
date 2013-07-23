@@ -3,19 +3,60 @@
 
 // Add the code that needs to be shared between components here
 
+//noteComponent 850x270  top: 173  left:20 right:20 bottom:5
+
 function constructor (id) {
 	var tabView1 = getHtmlId('tabView1'),
 		firstNameInputfield = getHtmlId('firstNameInputfield'),
 		accordion1 = getHtmlId('accordion1'),
 		activitySmallComponent = getHtmlId('activitySmallComponent'),
-		leadsTitle = getHtmlId('leadsTitle');
+		leadsTitle = getHtmlId('leadsTitle'),
+		notesListContainer$ = getHtmlObj('notesListContainer'),
+		inputNoteBody$ = getHtmlObj('inputNoteBody'),
+		inputNoteTitle$ = getHtmlObj('inputNoteTitle'),
+		inputNoteBodyRef = getHtmlId('inputNoteBody'),
+		inputNoteTitleRef = getHtmlId('inputNoteTitle'),
+		addNoteContainer$ = getHtmlObj('addNoteContainer');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
 	this.name = 'leads';
 	// @endregion// @endlock
-
+	
+	function buildNoteGrid() {
+		notesListContainer$.children().remove(); 
+		
+		//ds.Note.all({
+		ds.Note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue(), {
+			orderBy: "createDate desc",
+			onSuccess: function(ev1) {
+				ev1.entityCollection.forEach({
+					onSuccess: function(ev2) {	
+						noteData = 	{
+							title:  	ev2.entity.title.getValue(),
+							body: 		ev2.entity.body.getValue(),
+							createDate: ev2.entity.createDate.getValue(),
+							dataId: 	ev2.entity.ID.getValue()
+						};
+						notesListContainer$.append(WAK5CRMUTIL.noteListTemplateFn(noteData));
+					}
+				}); //ev1.entityCollection.forEach
+			}
+		});
+	} //end - buildNoteGrid
+		
 	this.load = function (data) {// @lock
+		buildNoteGrid();
+		addNoteContainer$.css('height', 42);
+		
+		notesListContainer$.on('mouseenter', '.noteListItem', function (event) {
+	   		$(this).addClass('noteSelected');
+		});
+		
+		notesListContainer$.on('mouseleave', '.noteListItem', function (event) {
+	   		$(this).removeClass('noteSelected');
+		});
+		
 		$$(activitySmallComponent).loadComponent({path: '/components/smallActivity.waComponent', userData: {view: "lead"}});
 		
 		setTimeout(function() {
@@ -40,6 +81,9 @@ function constructor (id) {
 		$comp.sources.leadTypeArr.sync();
 					
 	// @region namespaceDeclaration// @startlock
+	var saveNoteButton = {};	// @button
+	var inputNoteBody = {};	// @textField
+	var cancelNoteButton = {};	// @button
 	var button2 = {};	// @button
 	var leadTypeArrEvent = {};	// @dataSource
 	var submitConvertLeadButton = {};	// @button
@@ -52,6 +96,44 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	saveNoteButton.click = function saveNoteButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.note.body = inputNoteBody$.val();
+		waf.sources.note.title = inputNoteTitle$.val();
+		waf.sources.note.lead.set(waf.sources.lead);
+		
+		waf.sources.note.save({
+			onSuccess: function(event) {
+				//inputNoteBody$.val();
+				//inputNoteTitle$.val();
+				$$(inputNoteBodyRef).setValue();
+				$$(inputNoteTitleRef).setValue();
+				inputNoteBody$.css('height', 22);
+				addNoteContainer$.css('height', 42);
+				buildNoteGrid();
+			}
+		});
+	};// @lock
+
+	inputNoteBody.focus = function inputNoteBody_focus (event)// @startlock
+	{// @endlock
+		waf.sources.note.addNewElement();
+		waf.sources.note.serverRefresh({
+			onSuccess: function(event) {
+				inputNoteBody$.css('height', 120);
+				addNoteContainer$.css('height', 182);
+			}
+		});
+	};// @lock
+
+	cancelNoteButton.click = function cancelNoteButton_click (event)// @startlock
+	{// @endlock
+		$$(inputNoteBodyRef).setValue();
+		$$(inputNoteTitleRef).setValue();
+		inputNoteBody$.css('height', 22);
+		addNoteContainer$.css('height', 42);
+	};// @lock
 
 	button2.click = function button2_click (event)// @startlock
 	{// @endlock
@@ -102,15 +184,15 @@ function constructor (id) {
 
 	leadNewButton.click = function leadNewButton_click (event)// @startlock
 	{// @endlock
-		waf.sources.activity.setEntityCollection();
-		waf.sources.note.setEntityCollection();
-		
 		waf.sources.lead.addNewElement();
 		waf.sources.lead.serverRefresh({
 			onSuccess: function(event) {
 				$$(tabView1).selectTab(2);
 				$$(firstNameInputfield).focus();
 				$$(leadsTitle).setValue("New Lead");
+				waf.sources.activity.setEntityCollection();
+				waf.sources.note.setEntityCollection();
+				notesListContainer$.children().remove(); 
 			}
 		});
 	};// @lock
@@ -156,7 +238,8 @@ function constructor (id) {
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
 		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
-		waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		buildNoteGrid();
 		
 		if (waf.sources.lead.converted) {
 			$$(tabView1).selectTab(4);
@@ -172,6 +255,9 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_saveNoteButton", "click", saveNoteButton.click, "WAF");
+	WAF.addListener(this.id + "_inputNoteBody", "focus", inputNoteBody.focus, "WAF");
+	WAF.addListener(this.id + "_cancelNoteButton", "click", cancelNoteButton.click, "WAF");
 	WAF.addListener(this.id + "_button2", "click", button2.click, "WAF");
 	WAF.addListener(this.id + "_leadTypeArr", "onCurrentElementChange", leadTypeArrEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_submitConvertLeadButton", "click", submitConvertLeadButton.click, "WAF");

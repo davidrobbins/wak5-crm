@@ -31,7 +31,6 @@ function constructor (id) {
 				}); //ev1.entityCollection.forEach
 			}
 		});
-		
 	}
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;

@@ -5,18 +5,18 @@
 
 function constructor (id) {
 	var notesListContainer$ = getHtmlObj('notesListContainer'),
-		inputNote$ = getHtmlObj('inputNote'),
+		inputNoteBody$ = getHtmlObj('inputNoteBody'),
 		inputNoteTitle$ = getHtmlObj('inputNoteTitle'),
-		inputNote = getHtmlId('inputNote'),
-		inputNoteTitle = getHtmlId('inputNoteTitle'),
+		inputNoteBodyRef = getHtmlId('inputNoteBody'),
+		inputNoteTitleRef = getHtmlId('inputNoteTitle'),
 		addNoteContainer$ = getHtmlObj('addNoteContainer');
 		
-	console.log(inputNote);
 	
 	function buildNoteGrid() {
 		notesListContainer$.children().remove(); 
 		
 		ds.Note.all({
+			orderBy: "createDate desc",
 			onSuccess: function(ev1) {
 				ev1.entityCollection.forEach({
 					onSuccess: function(ev2) {	
@@ -54,7 +54,7 @@ function constructor (id) {
 	// @region namespaceDeclaration// @startlock
 	var cancelNoteButton = {};	// @button
 	var saveNoteButton = {};	// @button
-	var inputNote = {};	// @textField
+	var inputNoteBody = {};	// @textField
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
@@ -62,29 +62,28 @@ function constructor (id) {
 	cancelNoteButton.click = function cancelNoteButton_click (event)// @startlock
 	{// @endlock
 		
-		console.log(inputNote);
-		
-		
 		//inputNote$.val("");
 		//inputNoteTitle$.val("");
-		//console.log(inputNote);
-		//console.log(inputNoteTitle);
+		//console.log(inputNoteBodyRef);
+		//console.log(inputNoteTitleRef);
 		
-		//$$(inputNote).setValue();
-		$$(inputNoteTitle).setValue();
-		//inputNote$.css('height', 22);
-		//addNoteContainer$.css('height', 42);
+		$$(inputNoteBodyRef).setValue();
+		$$(inputNoteTitleRef).setValue();
+		inputNoteBody$.css('height', 22);
+		addNoteContainer$.css('height', 42);
 	};// @lock
 
 	saveNoteButton.click = function saveNoteButton_click (event)// @startlock
 	{// @endlock
-		waf.sources.note.body = inputNote$.val();
+		waf.sources.note.body = inputNoteBody$.val();
 		waf.sources.note.title = inputNoteTitle$.val();
 		waf.sources.note.save({
 			onSuccess: function(event) {
-				inputNote$.val("");
-				inputNoteTitle$.val("");
-				inputNote$.css('height', 22);
+				//inputNoteBody$.val();
+				//inputNoteTitle$.val();
+				$$(inputNoteBodyRef).setValue();
+				$$(inputNoteTitleRef).setValue();
+				inputNoteBody$.css('height', 22);
 				addNoteContainer$.css('height', 42);
 				buildNoteGrid();
 			}
@@ -93,12 +92,12 @@ function constructor (id) {
 		
 	};// @lock
 
-	inputNote.focus = function inputNote_focus (event)// @startlock
+	inputNoteBody.focus = function inputNoteBody_focus (event)// @startlock
 	{// @endlock
 		waf.sources.note.addNewElement();
 		waf.sources.note.serverRefresh({
 			onSuccess: function(event) {
-				inputNote$.css('height', 120);
+				inputNoteBody$.css('height', 120);
 				addNoteContainer$.css('height', 182);
 			}
 		});
@@ -109,7 +108,7 @@ function constructor (id) {
 	// @region eventManager// @startlock
 	WAF.addListener(this.id + "_cancelNoteButton", "click", cancelNoteButton.click, "WAF");
 	WAF.addListener(this.id + "_saveNoteButton", "click", saveNoteButton.click, "WAF");
-	WAF.addListener(this.id + "_inputNote", "focus", inputNote.focus, "WAF");
+	WAF.addListener(this.id + "_inputNoteBody", "focus", inputNoteBody.focus, "WAF");
 	// @endregion// @endlock
 
 	};// @lock

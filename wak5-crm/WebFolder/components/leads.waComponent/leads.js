@@ -46,7 +46,7 @@ function constructor (id) {
 	} //end - buildNoteGrid
 		
 	this.load = function (data) {// @lock
-		buildNoteGrid();
+		//buildNoteGrid();
 		addNoteContainer$.css('height', 42);
 		
 		notesListContainer$.on('mouseenter', '.noteListItem', function (event) {

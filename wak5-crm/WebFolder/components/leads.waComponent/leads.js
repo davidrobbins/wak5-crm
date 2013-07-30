@@ -5,6 +5,7 @@
 
 //noteComponent 850x270  top: 173  left:20 right:20 bottom:5
 
+//Notes: activitySmallComponent : /components/smallActivity.waComponent 912 x 470  top: 10 bottom: 10 right: 10 left: 10
 function constructor (id) {
 	var tabView1 = getHtmlId('tabView1'),
 		firstNameInputfield = getHtmlId('firstNameInputfield'),
@@ -57,7 +58,7 @@ function constructor (id) {
 	   		$(this).removeClass('noteSelected');
 		});
 		
-		$$(activitySmallComponent).loadComponent({path: '/components/smallActivity.waComponent', userData: {view: "lead"}});
+		//$$(activitySmallComponent).loadComponent({path: '/components/smallActivity.waComponent', userData: {view: "lead"}});
 		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
@@ -81,6 +82,7 @@ function constructor (id) {
 		$comp.sources.leadTypeArr.sync();
 					
 	// @region namespaceDeclaration// @startlock
+	var newLeadActivityButton = {};	// @button
 	var saveNoteButton = {};	// @button
 	var inputNoteBody = {};	// @textField
 	var cancelNoteButton = {};	// @button
@@ -96,6 +98,16 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	newLeadActivityButton.click = function newLeadActivityButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.activity.addNewElement();
+		waf.sources.activity.serverRefresh({
+			onSuccess: function(event) {
+				
+			}
+		});
+	};// @lock
 
 	saveNoteButton.click = function saveNoteButton_click (event)// @startlock
 	{// @endlock
@@ -187,12 +199,18 @@ function constructor (id) {
 		waf.sources.lead.addNewElement();
 		waf.sources.lead.serverRefresh({
 			onSuccess: function(event) {
-				$$(tabView1).selectTab(2);
-				$$(firstNameInputfield).focus();
-				$$(leadsTitle).setValue("New Lead");
-				waf.sources.activity.setEntityCollection();
-				waf.sources.note.setEntityCollection();
-				notesListContainer$.children().remove(); 
+				waf.sources.lead.save({
+					onSuccess: function(ev2) {
+						console.log("new lead saved");
+						console.log(ev2);
+						$$(tabView1).selectTab(2);
+						$$(firstNameInputfield).focus();
+						$$(leadsTitle).setValue("New Lead");
+						waf.sources.activity.setEntityCollection();
+						waf.sources.note.setEntityCollection();
+						notesListContainer$.children().remove(); 
+					}
+				});
 			}
 		});
 	};// @lock
@@ -202,7 +220,6 @@ function constructor (id) {
 		$$(tabView1).selectTab(1);
 		waf.sources.lead.save({
 			onSuccess: function(event) {
-				//console.log(event);
 				WAK5CRMUTIL.setMessage("Lead: " + event.dataSource.firstName + " " + event.dataSource.lastName + " has been saved to the server.", 5000, "normal");
 				WAK5CRMUTIL.newRecentItem("leads", "Lead: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer'); 
 				//WAK5CRMUTIL.setMessage("Lead: " + waf.sources.lead.firstName + " " + waf.sources.lead.lastName + " has been saved to the server.", 7000, "normal");
@@ -255,6 +272,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_newLeadActivityButton", "click", newLeadActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_saveNoteButton", "click", saveNoteButton.click, "WAF");
 	WAF.addListener(this.id + "_inputNoteBody", "focus", inputNoteBody.focus, "WAF");
 	WAF.addListener(this.id + "_cancelNoteButton", "click", cancelNoteButton.click, "WAF");

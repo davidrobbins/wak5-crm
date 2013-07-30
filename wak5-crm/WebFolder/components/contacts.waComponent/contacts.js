@@ -4,11 +4,14 @@
 // Add the code that needs to be shared between components here
 
 function constructor (id) {
-	var tabView1 = getHtmlId('tabView1'),
-		firstNameInputfield = getHtmlId('firstNameInputfield'),
-		accordion1 = getHtmlId('accordion1'),
-		activitySmallComponent = getHtmlId('activitySmallComponent'),
-		contactTitle = getHtmlId('contactTitle');
+	var	firstNameInputfield = getHtmlId('firstNameInputfield'),
+		contactsListContainer = getHtmlId('contactsListContainer'),
+		contactsDetailContainer = getHtmlId('contactsDetailContainer');
+		
+		 //tabView1 = getHtmlId('tabView1'),
+		//accordion1 = getHtmlId('accordion1'),
+		//activitySmallComponent = getHtmlId('activitySmallComponent'),
+		//contactTitle = getHtmlId('contactTitle');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -16,20 +19,20 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		$$(activitySmallComponent).loadComponent({path: '/components/smallActivity.waComponent', userData: {view: "contact"}});
+		//$$(activitySmallComponent).loadComponent({path: '/components/smallActivity.waComponent', userData: {view: "contact"}});
 		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				$$(tabView1).selectTab(2);
+				//$$(tabView1).selectTab(2);
 			} else {
-				$$(tabView1).selectTab(1);
+				//$$(tabView1).selectTab(1);
 			}
 		}, 80);
 		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());
-				$$(contactTitle).setValue("Contact Information: " + waf.sources.contact.fullName);
+				//$$(contactTitle).setValue("Contact Information: " + waf.sources.contact.fullName);
 			} 
 		}, 400);
 
@@ -47,9 +50,12 @@ function constructor (id) {
 		waf.sources.contact.addNewElement();
 		waf.sources.contact.serverRefresh({
 			onSuccess: function(event) {
-				$$(tabView1).selectTab(2);
+				//$$(tabView1).selectTab(2);
+				
+				$$(contactsListContainer).hide();
+				$$(contactsDetailContainer).show();
 				$$(firstNameInputfield).focus();
-				$$(contactTitle).setValue("New Contact");
+				//$$(contactTitle).setValue("New Contact");
 			}
 		});
 	};// @lock
@@ -58,10 +64,13 @@ function constructor (id) {
 	{// @endlock
 		waf.sources.contact.save({
 			onSuccess: function(event) {
+				$$(contactsDetailContainer).hide();
+				$$(contactsListContainer).show();
+				
 				WAK5CRMUTIL.newRecentItem("contacts", "Contact: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer'); 
 			}
 		});
-		$$(tabView1).selectTab(1);
+		//$$(tabView1).selectTab(1);
 		//Bug report: isNewElement(). The following line is only work-around.
 		//waf.sources.contact.collectionRefresh(); BAD BAD
 
@@ -72,16 +81,28 @@ function constructor (id) {
 		if (waf.sources.contact.isNewElement()) {
 			waf.sources.contact.removeCurrentReference();
 		}
+		
+		$$(contactsDetailContainer).hide();
+		$$(contactsListContainer).show();
+		
+		
 
-		$$(tabView1).selectTab(1);
+		//$$(tabView1).selectTab(1);
 	};// @lock
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
 		waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());
-		$$(contactTitle).setValue("Contact Information: " + waf.sources.contact.fullName);
-		$$(accordion1).expand(1);
-		$$(tabView1).selectTab(2);
+		
+		$$(contactsListContainer).hide();
+		$$(contactsDetailContainer).show();
+		
+	
+	
+		
+		//$$(contactTitle).setValue("Contact Information: " + waf.sources.contact.fullName);
+		//$$(accordion1).expand(1);
+		//$$(tabView1).selectTab(2);
 		//Add to recent items.
 		WAK5CRMUTIL.newRecentItem("contacts", "Contact: ", waf.sources.contact.firstName + " " + waf.sources.contact.lastName, waf.sources.contact.ID, 'mainComponent_recentItemsBodyContainer'); 
 		// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).

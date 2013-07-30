@@ -18,8 +18,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		waf.sources.contact.declareDependencies('owner');
 		waf.sources.account.declareDependencies('owner');
 		
-		//$$('messageContainer').hide();
-		
 		if (WAF.directory.currentUser() === null) {
 			/*
 		 	$$('blackContainer').show();
@@ -50,14 +48,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		waf.sources.contact.setEntityCollection();
 		waf.sources.account.setEntityCollection();
 		waf.sources.activity.setEntityCollection();
+		waf.sources.note.setEntityCollection();
 		
-		//$$('blackContainer').show();
 		$$('container1').show();
-		/*
-		$('#headerContainer').animate({
-            backgroundColor: "#7f7f7f"
-        }, 900);
-        */
         $('#headerContainer').css("backgroundColor", "#e5e5e5");
         $('#headerTitle').css("color", "#7f7f7f");
         
@@ -66,21 +59,16 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	login2.login = function login2_login (event)// @startlock
 	{// @endlock
-		//$$('blackContainer').hide();
 		$$('container1').hide();
-		/*
-		$('#headerContainer').animate({
-            backgroundColor: "#7f7f7f"
-        }, 900);
-        */
         $('#headerContainer').css("backgroundColor", "#7f7f7f");
         $('#headerTitle').css("color", "#ffffff");
         
-		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
-		//waf.sources.lead.all();
-		waf.sources.lead.query("converted == false");
+        waf.sources.lead.query("converted == false");
 		waf.sources.contact.all();
 		waf.sources.account.all();
+		
+		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
+		
 	};// @lock
 
 // @region eventManager// @startlock

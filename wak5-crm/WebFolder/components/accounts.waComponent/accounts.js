@@ -46,9 +46,14 @@ function constructor (id) {
 		waf.sources.account.addNewElement();
 		waf.sources.account.serverRefresh({
 			onSuccess: function(event) {
-				$$(tabView1).selectTab(2);
-				$$(nameInputField).focus();
-				$$(accountTitle).setValue("New Account");
+				waf.sources.account.save({
+					onSuccess: function(ev2) {
+						console.log("account save");
+						$$(tabView1).selectTab(2);
+						$$(nameInputField).focus();
+						$$(accountTitle).setValue("New Account");
+					}
+				});
 			}
 		});
 	};// @lock

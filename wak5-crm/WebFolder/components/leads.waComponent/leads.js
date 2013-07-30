@@ -7,6 +7,12 @@
 
 //Notes: activitySmallComponent : /components/smallActivity.waComponent 912 x 470  top: 10 bottom: 10 right: 10 left: 10
 function constructor (id) {
+	var leadsListContainer = getHtmlId('leadsListContainer'),
+		leadsDetailContainer = getHtmlId('leadsDetailContainer'),
+		leadsConvertContainer = getHtmlId('leadsConvertContainer'),
+		leadsNoAccessContainer = getHtmlId('leadsNoAccessContainer');
+		
+	/*
 	var tabView1 = getHtmlId('tabView1'),
 		firstNameInputfield = getHtmlId('firstNameInputfield'),
 		accordion1 = getHtmlId('accordion1'),
@@ -18,16 +24,17 @@ function constructor (id) {
 		inputNoteBodyRef = getHtmlId('inputNoteBody'),
 		inputNoteTitleRef = getHtmlId('inputNoteTitle'),
 		addNoteContainer$ = getHtmlObj('addNoteContainer');
-	
+	*/
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
 	this.name = 'leads';
 	// @endregion// @endlock
 	
+	/*
 	function buildNoteGrid() {
 		notesListContainer$.children().remove(); 
 		
-		//ds.Note.all({
+		
 		ds.Note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue(), {
 			orderBy: "createDate desc",
 			onSuccess: function(ev1) {
@@ -45,9 +52,11 @@ function constructor (id) {
 			}
 		});
 	} //end - buildNoteGrid
+	*/
+	
 		
 	this.load = function (data) {// @lock
-		//buildNoteGrid();
+		/*
 		addNoteContainer$.css('height', 42);
 		
 		notesListContainer$.on('mouseenter', '.noteListItem', function (event) {
@@ -57,9 +66,9 @@ function constructor (id) {
 		notesListContainer$.on('mouseleave', '.noteListItem', function (event) {
 	   		$(this).removeClass('noteSelected');
 		});
+		*/
 		
-		//$$(activitySmallComponent).loadComponent({path: '/components/smallActivity.waComponent', userData: {view: "lead"}});
-		
+		/*	
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				$$(tabView1).selectTab(2);
@@ -67,21 +76,27 @@ function constructor (id) {
 				$$(tabView1).selectTab(1);
 			}
 		}, 80);
+		*/
 		
-		
+		/*
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				$$(leadsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
 				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 			} 
 		}, 400);
+		*/
 		
+		/**/
 		$comp.sourcesVar.leadTypeArr = [];
 		$comp.sourcesVar.leadTypeArr.push({title: 'Open Leads'});
 		$comp.sourcesVar.leadTypeArr.push({title: 'Converted Leads'});
 		$comp.sources.leadTypeArr.sync();
-					
+		
+		
+				
 	// @region namespaceDeclaration// @startlock
+	var dataGrid2 = {};	// @dataGrid
 	var newLeadActivityButton = {};	// @button
 	var saveNoteButton = {};	// @button
 	var inputNoteBody = {};	// @textField
@@ -94,10 +109,34 @@ function constructor (id) {
 	var leadSaveButton = {};	// @button
 	var leadCancelButton = {};	// @button
 	var convertLeadCancelButton = {};	// @button
-	var dataGrid2 = {};	// @dataGrid
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
+	{// @endlock
+		
+		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		//buildNoteGrid();
+		
+		if (waf.sources.lead.converted) {
+			//$$(tabView1).selectTab(4);
+			$$(leadsListContainer).hide();
+			$$(leadsNoAccessContainer).show();
+			
+		} else {
+			$$(leadsListContainer).hide();
+			$$(leadsDetailContainer).show();
+				
+			//$$(accordion1).expand(1);
+			//$$(leadsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
+			//$$(tabView1).selectTab(2);
+			//Add to recent items.
+			WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsBodyContainer'); 
+			// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013)
+		}
+	};// @lock
 
 	newLeadActivityButton.click = function newLeadActivityButton_click (event)// @startlock
 	{// @endlock
@@ -111,14 +150,13 @@ function constructor (id) {
 
 	saveNoteButton.click = function saveNoteButton_click (event)// @startlock
 	{// @endlock
+		/*
 		waf.sources.note.body = inputNoteBody$.val();
 		waf.sources.note.title = inputNoteTitle$.val();
 		waf.sources.note.lead.set(waf.sources.lead);
 		
 		waf.sources.note.save({
 			onSuccess: function(event) {
-				//inputNoteBody$.val();
-				//inputNoteTitle$.val();
 				$$(inputNoteBodyRef).setValue();
 				$$(inputNoteTitleRef).setValue();
 				inputNoteBody$.css('height', 22);
@@ -126,10 +164,12 @@ function constructor (id) {
 				buildNoteGrid();
 			}
 		});
+		*/
 	};// @lock
 
 	inputNoteBody.focus = function inputNoteBody_focus (event)// @startlock
 	{// @endlock
+		/*
 		waf.sources.note.addNewElement();
 		waf.sources.note.serverRefresh({
 			onSuccess: function(event) {
@@ -137,19 +177,24 @@ function constructor (id) {
 				addNoteContainer$.css('height', 182);
 			}
 		});
+		*/
 	};// @lock
 
 	cancelNoteButton.click = function cancelNoteButton_click (event)// @startlock
 	{// @endlock
+		/*
 		$$(inputNoteBodyRef).setValue();
 		$$(inputNoteTitleRef).setValue();
 		inputNoteBody$.css('height', 22);
 		addNoteContainer$.css('height', 42);
+		*/
 	};// @lock
 
 	button2.click = function button2_click (event)// @startlock
 	{// @endlock
-		$$(tabView1).selectTab(1);
+		//$$(tabView1).selectTab(1);
+		$$(leadsNoAccessContainer).hide();
+		$$(leadsListContainer).show();
 	};// @lock
 
 	leadTypeArrEvent.onCurrentElementChange = function leadTypeArrEvent_onCurrentElementChange (event)// @startlock
@@ -169,6 +214,8 @@ function constructor (id) {
 	submitConvertLeadButton.click = function submitConvertLeadButton_click (event)// @startlock
 	{// @endlock
 		//$$(tabView2).selectTab(1);
+		
+		
 		waf.sources.lead.convertLead({
 			onSuccess: function(event) {
 				WAK5CRMUTIL.loadRecentItems('mainComponent_recentItemsBodyContainer', event.result.recentItemArray); // Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
@@ -191,7 +238,9 @@ function constructor (id) {
 
 	convertLeadButton.click = function convertLeadButton_click (event)// @startlock
 	{// @endlock
-		$$(tabView1).selectTab(3);
+		//$$(tabView1).selectTab(3);
+		$$(leadsDetailContainer).hide();
+		$$(leadsConvertContainer).show();
 	};// @lock
 
 	leadNewButton.click = function leadNewButton_click (event)// @startlock
@@ -201,14 +250,17 @@ function constructor (id) {
 			onSuccess: function(event) {
 				waf.sources.lead.save({
 					onSuccess: function(ev2) {
-						console.log("new lead saved");
-						console.log(ev2);
-						$$(tabView1).selectTab(2);
-						$$(firstNameInputfield).focus();
-						$$(leadsTitle).setValue("New Lead");
-						waf.sources.activity.setEntityCollection();
-						waf.sources.note.setEntityCollection();
-						notesListContainer$.children().remove(); 
+						$$(leadsListContainer).hide();
+						$$(leadsDetailContainer).show();
+						
+						//console.log("new lead saved");
+						//console.log(ev2);
+						//$$(tabView1).selectTab(2);
+						//$$(firstNameInputfield).focus();
+						//$$(leadsTitle).setValue("New Lead");
+						//waf.sources.activity.setEntityCollection();
+						//waf.sources.note.setEntityCollection();
+						//notesListContainer$.children().remove(); 
 					}
 				});
 			}
@@ -217,7 +269,11 @@ function constructor (id) {
 
 	leadSaveButton.click = function leadSaveButton_click (event)// @startlock
 	{// @endlock
-		$$(tabView1).selectTab(1);
+		//$$(tabView1).selectTab(1);
+		
+		$$(leadsDetailContainer).hide();
+		$$(leadsListContainer).show();
+		
 		waf.sources.lead.save({
 			onSuccess: function(event) {
 				WAK5CRMUTIL.setMessage("Lead: " + event.dataSource.firstName + " " + event.dataSource.lastName + " has been saved to the server.", 5000, "normal");
@@ -238,40 +294,29 @@ function constructor (id) {
 
 	leadCancelButton.click = function leadCancelButton_click (event)// @startlock
 	{// @endlock
-		$$(tabView1).selectTab(1);
+		//$$(tabView1).selectTab(1);
 		/**/
 		if (waf.sources.lead.isNewElement()) {
 			//Bug Report: isNewElement() reports true for an entity that has been saved it is still the current entity.
 			waf.sources.lead.removeCurrentReference();
 		}
 		
+		$$(leadsDetailContainer).hide();
+		$$(leadsListContainer).show();
+		
+		
 	};// @lock
 
 	convertLeadCancelButton.click = function convertLeadCancelButton_click (event)// @startlock
 	{// @endlock
-		$$(tabView1).selectTab(2);
-	};// @lock
-
-	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
-	{// @endlock
-		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
-		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
-		buildNoteGrid();
 		
-		if (waf.sources.lead.converted) {
-			$$(tabView1).selectTab(4);
-		} else {
-			$$(accordion1).expand(1);
-			$$(leadsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
-			$$(tabView1).selectTab(2);
-			//Add to recent items.
-			WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsBodyContainer'); 
-			// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013)
-		}
-
+		//$$(tabView1).selectTab(2);
+		$$(leadsConvertContainer).hide();
+		$$(leadsDetailContainer).show();
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_newLeadActivityButton", "click", newLeadActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_saveNoteButton", "click", saveNoteButton.click, "WAF");
 	WAF.addListener(this.id + "_inputNoteBody", "focus", inputNoteBody.focus, "WAF");
@@ -284,7 +329,6 @@ function constructor (id) {
 	WAF.addListener(this.id + "_leadSaveButton", "click", leadSaveButton.click, "WAF");
 	WAF.addListener(this.id + "_leadCancelButton", "click", leadCancelButton.click, "WAF");
 	WAF.addListener(this.id + "_convertLeadCancelButton", "click", convertLeadCancelButton.click, "WAF");
-	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
 	// @endregion// @endlock
 
 	};// @lock

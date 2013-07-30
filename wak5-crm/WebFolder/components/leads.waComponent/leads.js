@@ -10,7 +10,9 @@ function constructor (id) {
 	var leadsListContainer = getHtmlId('leadsListContainer'),
 		leadsDetailContainer = getHtmlId('leadsDetailContainer'),
 		leadsConvertContainer = getHtmlId('leadsConvertContainer'),
-		leadsNoAccessContainer = getHtmlId('leadsNoAccessContainer');
+		leadsNoAccessContainer = getHtmlId('leadsNoAccessContainer'),
+		leadsDetailMainContainer = getHtmlId('leadsDetailMainContainer'),
+		leadsActivityDetailContainer = getHtmlId('leadsActivityDetailContainer');
 		
 	/*
 	var tabView1 = getHtmlId('tabView1'),
@@ -68,24 +70,28 @@ function constructor (id) {
 		});
 		*/
 		
-		/*	
+		/**/
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				$$(tabView1).selectTab(2);
+				$$(leadsDetailContainer).hide();
+				$$(leadsListContainer).show();
+				//$$(tabView1).selectTab(2);
 			} else {
-				$$(tabView1).selectTab(1);
+				$$(leadsListContainer).hide();
+				$$(leadsDetailContainer).show();
+				//$$(tabView1).selectTab(1);
 			}
 		}, 80);
-		*/
 		
-		/*
+		
+		/**/
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				$$(leadsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
+				//$$(leadsTitle).setValue("Lead Information: " + waf.sources.lead.fullName);
 				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 			} 
 		}, 400);
-		*/
+		
 		
 		/**/
 		$comp.sourcesVar.leadTypeArr = [];
@@ -96,6 +102,9 @@ function constructor (id) {
 		
 				
 	// @region namespaceDeclaration// @startlock
+	var leadSaveActivityButton = {};	// @button
+	var leadCancelActivityButton = {};	// @button
+	var dataGrid3 = {};	// @dataGrid
 	var dataGrid2 = {};	// @dataGrid
 	var newLeadActivityButton = {};	// @button
 	var saveNoteButton = {};	// @button
@@ -112,6 +121,37 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	leadSaveActivityButton.click = function leadSaveActivityButton_click (event)// @startlock
+	{// @endlock
+		$$(leadsActivityDetailContainer).hide();
+		$$(leadsDetailMainContainer).show();
+		
+		waf.sources.activity.save({
+			onSuccess: function(event) {
+				WAK5CRMUTIL.setMessage("Activity for lead: " + event.dataSource.firstName + " " + event.dataSource.lastName + " has been saved to the server.", 5000, "normal");
+		},
+			
+			onError: function(error) {
+				//error['error'][0].message + " (" + error['error'][0].errCode + ")"
+				//WAK5CRMUTIL.setMessage(error['error'][0].message + " (" + error['error'][0].errCode + ")", 7000, "error");
+			}
+		});
+	};// @lock
+
+	leadCancelActivityButton.click = function leadCancelActivityButton_click (event)// @startlock
+	{// @endlock
+		//Activity Grid.
+		$$(leadsActivityDetailContainer).hide();
+		$$(leadsDetailMainContainer).show();
+	};// @lock
+
+	dataGrid3.onRowDblClick = function dataGrid3_onRowDblClick (event)// @startlock
+	{// @endlock
+			//Activity Grid.
+			$$(leadsDetailMainContainer).hide();
+			$$(leadsActivityDetailContainer).show();
+	};// @lock
 
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
@@ -143,7 +183,8 @@ function constructor (id) {
 		waf.sources.activity.addNewElement();
 		waf.sources.activity.serverRefresh({
 			onSuccess: function(event) {
-				
+				$$(leadsDetailMainContainer).hide();
+				$$(leadsActivityDetailContainer).show();
 			}
 		});
 	};// @lock
@@ -316,6 +357,9 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_leadSaveActivityButton", "click", leadSaveActivityButton.click, "WAF");
+	WAF.addListener(this.id + "_leadCancelActivityButton", "click", leadCancelActivityButton.click, "WAF");
+	WAF.addListener(this.id + "_dataGrid3", "onRowDblClick", dataGrid3.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_newLeadActivityButton", "click", newLeadActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_saveNoteButton", "click", saveNoteButton.click, "WAF");

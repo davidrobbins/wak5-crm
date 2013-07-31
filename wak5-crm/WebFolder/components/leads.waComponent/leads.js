@@ -41,6 +41,8 @@ function constructor (id) {
 		$comp.sourcesVar.leadTypeArr.push({title: 'Open Leads'});
 		$comp.sourcesVar.leadTypeArr.push({title: 'Converted Leads'});
 		$comp.sources.leadTypeArr.sync();
+		
+		//$comp.sources.sendMailObj
 			
 	// @region namespaceDeclaration// @startlock
 	var sendEmail = {};	// @button
@@ -66,9 +68,9 @@ function constructor (id) {
 
 	sendEmail.click = function sendEmail_click (event)// @startlock
 	{// @endlock
-		var sendEmailObj = {};
-		sendEmailObj.subject = $$(emailSubject).getValue();
-		WAK5CRMUTIL.sendMail(sendEmailObj);
+		//var sendEmailObj = {};
+		//sendEmailObj.subject = $$(emailSubject).getValue();
+		WAK5CRMUTIL.sendMail($comp.sourcesVar.sendMailObj);
 		
 		$$(leadsEmailContainer).hide();
 		$$(leadsDetailContainer).show();
@@ -90,6 +92,9 @@ function constructor (id) {
 
 	sendMailButton.click = function sendMailButton_click (event)// @startlock
 	{// @endlock
+		$comp.sourcesVar.sendMailObj.to = waf.sources.lead.emailAccnt;
+		$comp.sources.sendMailObj.sync();
+		
 		$$(leadsDetailContainer).hide();
 		$$(leadsEmailContainer).show();
 	};// @lock

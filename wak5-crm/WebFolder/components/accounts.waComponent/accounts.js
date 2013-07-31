@@ -49,7 +49,7 @@ function constructor (id) {
 		//Bug report: Activity onInit() is not running. Why?
 		waf.sources.activity.serverRefresh({
 			onSuccess: function(event) {
-				waf.sources.activity.contact.set(waf.sources.contact);
+				waf.sources.activity.account.set(waf.sources.account);
 				$$(accountsDetailMainContainer).hide();
 				$$(accountsActivityDetailContainer).show();
 			}
@@ -67,7 +67,7 @@ function constructor (id) {
 	{// @endlock
 		waf.sources.activity.save({
 			onSuccess: function(event) {
-				WAK5CRMUTIL.setMessage("Activity for account: " + waf.sources.account.name +  " has been saved to the server.", 5000, "normal");
+				WAK5CRMUTIL.setMessage("Activity for " + waf.sources.account.name +  " has been saved to the server.", 5000, "normal");
 		},
 			
 			onError: function(error) {

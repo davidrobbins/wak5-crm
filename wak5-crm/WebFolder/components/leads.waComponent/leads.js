@@ -62,7 +62,7 @@ function constructor (id) {
 	{// @endlock
 		waf.sources.activity.save({
 			onSuccess: function(event) {
-				WAK5CRMUTIL.setMessage("Activity for lead: " + waf.sources.lead.firstName + " " + waf.sources.lead.lastName + " has been saved to the server.", 5000, "normal");
+				WAK5CRMUTIL.setMessage("Activity for " + waf.sources.lead.firstName + " " + waf.sources.lead.lastName + " has been saved to the server.", 5000, "normal");
 		},
 			
 			onError: function(error) {

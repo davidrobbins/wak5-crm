@@ -45,7 +45,7 @@ function constructor (id) {
 	var leadCancelActivityButton = {};	// @button
 	var dataGrid3 = {};	// @dataGrid
 	var dataGrid2 = {};	// @dataGrid
-	var newLeadActivityButton = {};	// @button
+	var newLeadTaskButton = {};	// @button
 	var leadsNoAccessBackButton = {};	// @button
 	var leadTypeArrEvent = {};	// @dataSource
 	var submitConvertLeadButton = {};	// @button
@@ -109,7 +109,7 @@ function constructor (id) {
 		}
 	};// @lock
 
-	newLeadActivityButton.click = function newLeadActivityButton_click (event)// @startlock
+	newLeadTaskButton.click = function newLeadTaskButton_click (event)// @startlock
 	{// @endlock
 		waf.sources.activity.addNewElement();
 		waf.sources.activity.type = "task";
@@ -238,7 +238,7 @@ function constructor (id) {
 	WAF.addListener(this.id + "_leadCancelActivityButton", "click", leadCancelActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid3", "onRowDblClick", dataGrid3.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
-	WAF.addListener(this.id + "_newLeadActivityButton", "click", newLeadActivityButton.click, "WAF");
+	WAF.addListener(this.id + "_newLeadTaskButton", "click", newLeadTaskButton.click, "WAF");
 	WAF.addListener(this.id + "_leadsNoAccessBackButton", "click", leadsNoAccessBackButton.click, "WAF");
 	WAF.addListener(this.id + "_leadTypeArr", "onCurrentElementChange", leadTypeArrEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_submitConvertLeadButton", "click", submitConvertLeadButton.click, "WAF");

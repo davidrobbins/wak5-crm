@@ -65,6 +65,17 @@ function constructor (id) {
 
 	accountSaveActivityButton.click = function accountSaveActivityButton_click (event)// @startlock
 	{// @endlock
+		waf.sources.activity.save({
+			onSuccess: function(event) {
+				WAK5CRMUTIL.setMessage("Activity for account: " + waf.sources.account.name +  " has been saved to the server.", 5000, "normal");
+		},
+			
+			onError: function(error) {
+				//error['error'][0].message + " (" + error['error'][0].errCode + ")"
+				//WAK5CRMUTIL.setMessage(error['error'][0].message + " (" + error['error'][0].errCode + ")", 7000, "error");
+			}
+		});
+		
 		$$(accountsActivityDetailContainer).hide();
 		$$(accountsDetailMainContainer).show();
 	};// @lock

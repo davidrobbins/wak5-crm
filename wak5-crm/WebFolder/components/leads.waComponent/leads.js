@@ -3,9 +3,6 @@
 
 // Add the code that needs to be shared between components here
 
-//noteComponent 850x270  top: 173  left:20 right:20 bottom:5
-
-//Notes: activitySmallComponent : /components/smallActivity.waComponent 912 x 470  top: 10 bottom: 10 right: 10 left: 10
 function constructor (id) {
 	var leadsListContainer = getHtmlId('leadsListContainer'),
 		leadsDetailContainer = getHtmlId('leadsDetailContainer'),
@@ -13,6 +10,7 @@ function constructor (id) {
 		leadsNoAccessContainer = getHtmlId('leadsNoAccessContainer'),
 		leadsDetailMainContainer = getHtmlId('leadsDetailMainContainer'),
 		leadsActivityDetailContainer = getHtmlId('leadsActivityDetailContainer'),
+		changeOwnerContainer = getHtmlId('changeOwnerContainer'),
 		leadsEmailContainer = getHtmlId('leadsEmailContainer'),
 		firstNameInputfield = getHtmlId('firstNameInputfield'),
 		emailSubject = getHtmlId('emailSubject');
@@ -45,6 +43,11 @@ function constructor (id) {
 		//$comp.sources.sendMailObj
 			
 	// @region namespaceDeclaration// @startlock
+	var cancelLeadOwnerButton = {};	// @button
+	var deleteButton = {};	// @button
+	var changeOwnerButton = {};	// @button
+	var massUpdateButton = {};	// @button
+	var newLeadEventButton = {};	// @button
 	var sendEmail = {};	// @button
 	var cancelEmail = {};	// @button
 	var cloneButton = {};	// @button
@@ -65,6 +68,58 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	cancelLeadOwnerButton.click = function cancelLeadOwnerButton_click (event)// @startlock
+	{// @endlock
+		$$(changeOwnerContainer).hide();
+		$$(leadsListContainer).show();
+	};// @lock
+
+	deleteButton.click = function deleteButton_click (event)// @startlock
+	{// @endlock
+		WAK5CRMUTIL.setMessage("The Delete function is not yet implemented.", 5000, "error");
+	};// @lock
+
+	changeOwnerButton.click = function changeOwnerButton_click (event)// @startlock
+	{// @endlock
+		/**/
+		waf.ds.User.getOtherUsers({
+			onSuccess: function(event) {
+				//console.log(event.result);
+				//var bar = foo.slice(0);
+				
+				/**/
+				$comp.sourcesVar.otherGuysArr = event.result.slice(0);
+				$comp.sources.otherGuysArr.sync();
+				
+				
+				$$(leadsListContainer).hide();
+				$$(changeOwnerContainer).show();
+			} //end - onSuccess
+		});
+	};// @lock
+
+	massUpdateButton.click = function massUpdateButton_click (event)// @startlock
+	{// @endlock
+		WAK5CRMUTIL.setMessage("The Mass Update function is not yet implemented.", 5000, "error");
+	};// @lock
+
+	newLeadEventButton.click = function newLeadEventButton_click (event)// @startlock
+	{// @endlock
+		//Note: Refactor!
+		waf.sources.activity.addNewElement();
+		waf.sources.activity.type = "event";
+		waf.sources.activity.status = "Started";
+		waf.sources.activity.priority = "Normal";
+		//Bug report: Activity onInit() is not running. Why?
+		waf.sources.activity.serverRefresh({
+			onSuccess: function(event) {
+				waf.sources.activity.lead.set(waf.sources.lead);
+				$$(leadsDetailMainContainer).hide();
+				$$(leadsActivityDetailContainer).show();
+			}
+		});
+	};// @lock
 
 	sendEmail.click = function sendEmail_click (event)// @startlock
 	{// @endlock
@@ -275,6 +330,11 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_cancelLeadOwnerButton", "click", cancelLeadOwnerButton.click, "WAF");
+	WAF.addListener(this.id + "_deleteButton", "click", deleteButton.click, "WAF");
+	WAF.addListener(this.id + "_changeOwnerButton", "click", changeOwnerButton.click, "WAF");
+	WAF.addListener(this.id + "_massUpdateButton", "click", massUpdateButton.click, "WAF");
+	WAF.addListener(this.id + "_newLeadEventButton", "click", newLeadEventButton.click, "WAF");
 	WAF.addListener(this.id + "_sendEmail", "click", sendEmail.click, "WAF");
 	WAF.addListener(this.id + "_cancelEmail", "click", cancelEmail.click, "WAF");
 	WAF.addListener(this.id + "_cloneButton", "click", cloneButton.click, "WAF");

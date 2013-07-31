@@ -13,7 +13,9 @@ function constructor (id) {
 		leadsNoAccessContainer = getHtmlId('leadsNoAccessContainer'),
 		leadsDetailMainContainer = getHtmlId('leadsDetailMainContainer'),
 		leadsActivityDetailContainer = getHtmlId('leadsActivityDetailContainer'),
-		firstNameInputfield = getHtmlId('firstNameInputfield');
+		leadsEmailContainer = getHtmlId('leadsEmailContainer'),
+		firstNameInputfield = getHtmlId('firstNameInputfield'),
+		emailSubject = getHtmlId('emailSubject');
 		
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -41,6 +43,10 @@ function constructor (id) {
 		$comp.sources.leadTypeArr.sync();
 			
 	// @region namespaceDeclaration// @startlock
+	var sendEmail = {};	// @button
+	var cancelEmail = {};	// @button
+	var cloneButton = {};	// @button
+	var sendMailButton = {};	// @button
 	var leadSaveActivityButton = {};	// @button
 	var leadCancelActivityButton = {};	// @button
 	var dataGrid3 = {};	// @dataGrid
@@ -57,6 +63,36 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	sendEmail.click = function sendEmail_click (event)// @startlock
+	{// @endlock
+		var sendEmailObj = {};
+		sendEmailObj.subject = $$(emailSubject).getValue();
+		WAK5CRMUTIL.sendMail(sendEmailObj);
+		
+		$$(leadsEmailContainer).hide();
+		$$(leadsDetailContainer).show();
+	};// @lock
+
+	cancelEmail.click = function cancelEmail_click (event)// @startlock
+	{// @endlock
+		$$(leadsEmailContainer).hide();
+		$$(leadsDetailContainer).show();
+	};// @lock
+
+	cloneButton.click = function cloneButton_click (event)// @startlock
+	{// @endlock
+		//$$(leadsDetailContainer).hide();
+		//$$(leadsConvertContainer).show();
+		WAK5CRMUTIL.setMessage("The Clone function is not yet implemented.", 5000, "error");
+
+	};// @lock
+
+	sendMailButton.click = function sendMailButton_click (event)// @startlock
+	{// @endlock
+		$$(leadsDetailContainer).hide();
+		$$(leadsEmailContainer).show();
+	};// @lock
 
 	leadSaveActivityButton.click = function leadSaveActivityButton_click (event)// @startlock
 	{// @endlock
@@ -234,6 +270,10 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_sendEmail", "click", sendEmail.click, "WAF");
+	WAF.addListener(this.id + "_cancelEmail", "click", cancelEmail.click, "WAF");
+	WAF.addListener(this.id + "_cloneButton", "click", cloneButton.click, "WAF");
+	WAF.addListener(this.id + "_sendMailButton", "click", sendMailButton.click, "WAF");
 	WAF.addListener(this.id + "_leadSaveActivityButton", "click", leadSaveActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_leadCancelActivityButton", "click", leadCancelActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid3", "onRowDblClick", dataGrid3.onRowDblClick, "WAF");

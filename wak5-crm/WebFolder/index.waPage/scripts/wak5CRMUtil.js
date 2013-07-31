@@ -129,6 +129,8 @@ var WAK5CRMUTIL = (function() {
 		});
 	}; //end - newRecentItem.
 	
+	
+	
 	//Load Recent Items - Try Again!
 	//N O T E :   R E F A C T O R   U S I N G   T E M P L A T E S. (July 11, 2013).
 	wak5CRMUtilObj.loadRecentItems = function(targetContainer, recentItemsArr) {
@@ -184,6 +186,8 @@ var WAK5CRMUTIL = (function() {
 		}
 	}; //end - crmUtilObj.loadRecentItems
 	
+	
+	
 	//R E C E N T   I T E M S   E V E N T   H A N D L E R.
 	//Call this once at Startup.
 	wak5CRMUtilObj.setRecentItemsEventHandler = function() {
@@ -216,6 +220,20 @@ var WAK5CRMUTIL = (function() {
 		}); // end - event handlers for recent items link.
 	} //end - setRecentItemsEventHandler().
 	//R E C E N T   I T E M S   (E N D)
+	
+	
+	
+	//Y O U ' V E   G O T   M A I L!
+	wak5CRMUtilObj.sendMail = function(sendMailObj) {
+		waf.ds.User.sendMail({
+			onSuccess: function(event) {
+				WAK5CRMUTIL.setMessage(event.result.errorMessage);
+				
+			} //end - onSuccess
+		}, sendMailObj);	//end - waf.ds.User.addUser
+	}; //end  - sendMail()
+	
+	
 	
 	//S I G N U P
 	wak5CRMUtilObj.signUp = function(signUpObj) {

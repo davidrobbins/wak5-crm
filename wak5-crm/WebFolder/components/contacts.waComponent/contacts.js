@@ -32,7 +32,7 @@ function constructor (id) {
 	// @region namespaceDeclaration// @startlock
 	var contactSaveActivityButton = {};	// @button
 	var dataGrid2 = {};	// @dataGrid
-	var newContactActivityButton = {};	// @button
+	var newContactTaskButton = {};	// @button
 	var newContactButton = {};	// @button
 	var contactsSaveButton = {};	// @button
 	var contactsCancelButton = {};	// @button
@@ -43,7 +43,6 @@ function constructor (id) {
 
 	contactSaveActivityButton.click = function contactSaveActivityButton_click (event)// @startlock
 	{// @endlock
-		
 		$$(contactsActivityDetailContainer).hide();
 		$$(contactsDetailMainContainer).show();
 	};// @lock
@@ -55,7 +54,7 @@ function constructor (id) {
 		$$(contactsActivityDetailContainer).show();
 	};// @lock
 
-	newContactActivityButton.click = function newContactActivityButton_click (event)// @startlock
+	newContactTaskButton.click = function newContactTaskButton_click (event)// @startlock
 	{// @endlock
 		waf.sources.activity.addNewElement();
 		waf.sources.activity.type = "task";
@@ -85,14 +84,17 @@ function constructor (id) {
 
 	contactsSaveButton.click = function contactsSaveButton_click (event)// @startlock
 	{// @endlock
+		
+		$$(contactsDetailContainer).hide();
+		$$(contactsListContainer).show();
+	
 		waf.sources.contact.save({
 			onSuccess: function(event) {
-				$$(contactsDetailContainer).hide();
-				$$(contactsListContainer).show();
-				
+				WAK5CRMUTIL.setMessage("Contact: " + event.dataSource.firstName + " " + event.dataSource.lastName + " has been saved to the server.", 5000, "normal");
 				WAK5CRMUTIL.newRecentItem("contacts", "Contact: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer'); 
 			}
 		});
+		
 		//$$(tabView1).selectTab(1);
 		//Bug report: isNewElement(). The following line is only work-around.
 		//waf.sources.contact.collectionRefresh(); BAD BAD
@@ -107,23 +109,14 @@ function constructor (id) {
 		
 		$$(contactsDetailContainer).hide();
 		$$(contactsListContainer).show();
-		
-		
-
 		//$$(tabView1).selectTab(1);
 	};// @lock
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
-		waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());
-		
+		waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());	
 		$$(contactsListContainer).hide();
 		$$(contactsDetailContainer).show();
-		
-	
-	
-		
-		//$$(contactTitle).setValue("Contact Information: " + waf.sources.contact.fullName);
 		//$$(accordion1).expand(1);
 		//$$(tabView1).selectTab(2);
 		//Add to recent items.
@@ -134,7 +127,7 @@ function constructor (id) {
 	// @region eventManager// @startlock
 	WAF.addListener(this.id + "_contactSaveActivityButton", "click", contactSaveActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
-	WAF.addListener(this.id + "_newContactActivityButton", "click", newContactActivityButton.click, "WAF");
+	WAF.addListener(this.id + "_newContactTaskButton", "click", newContactTaskButton.click, "WAF");
 	WAF.addListener(this.id + "_newContactButton", "click", newContactButton.click, "WAF");
 	WAF.addListener(this.id + "_contactsSaveButton", "click", contactsSaveButton.click, "WAF");
 	WAF.addListener(this.id + "_contactsCancelButton", "click", contactsCancelButton.click, "WAF");

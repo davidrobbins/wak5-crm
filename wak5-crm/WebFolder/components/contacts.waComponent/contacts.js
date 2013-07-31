@@ -6,12 +6,9 @@
 function constructor (id) {
 	var	firstNameInputfield = getHtmlId('firstNameInputfield'),
 		contactsListContainer = getHtmlId('contactsListContainer'),
-		contactsDetailContainer = getHtmlId('contactsDetailContainer');
-		
-		 //tabView1 = getHtmlId('tabView1'),
-		//accordion1 = getHtmlId('accordion1'),
-		//activitySmallComponent = getHtmlId('activitySmallComponent'),
-		//contactTitle = getHtmlId('contactTitle');
+		contactsDetailContainer = getHtmlId('contactsDetailContainer'),
+		contactsDetailMainContainer = getHtmlId('contactsDetailMainContainer'),
+		contactsActivityDetailContainer = getHtmlId('contactsActivityDetailContainer');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -23,20 +20,19 @@ function constructor (id) {
 		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				//$$(tabView1).selectTab(2);
+				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());
+				$$(contactsListContainer).hide();
+				$$(contactsDetailContainer).show();
 			} else {
-				//$$(tabView1).selectTab(1);
+				$$(contactsDetailContainer).hide();
+				$$(contactsListContainer).show();
 			}
 		}, 80);
-		
-		setTimeout(function() {
-			if (data.userData.view == "detail") {
-				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());
-				//$$(contactTitle).setValue("Contact Information: " + waf.sources.contact.fullName);
-			} 
-		}, 400);
 
 	// @region namespaceDeclaration// @startlock
+	var contactSaveActivityButton = {};	// @button
+	var dataGrid2 = {};	// @dataGrid
+	var newContactActivityButton = {};	// @button
 	var newContactButton = {};	// @button
 	var contactsSaveButton = {};	// @button
 	var contactsCancelButton = {};	// @button
@@ -45,17 +41,44 @@ function constructor (id) {
 
 	// eventHandlers// @lock
 
+	contactSaveActivityButton.click = function contactSaveActivityButton_click (event)// @startlock
+	{// @endlock
+		
+		$$(contactsActivityDetailContainer).hide();
+		$$(contactsDetailMainContainer).show();
+	};// @lock
+
+	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
+	{// @endlock
+		//Activity Grid.
+		$$(contactsDetailMainContainer).hide();
+		$$(contactsActivityDetailContainer).show();
+	};// @lock
+
+	newContactActivityButton.click = function newContactActivityButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.activity.addNewElement();
+		waf.sources.activity.type = "task";
+		waf.sources.activity.status = "Started";
+		waf.sources.activity.priority = "Normal";
+		//Bug report: Activity onInit() is not running. Why?
+		waf.sources.activity.serverRefresh({
+			onSuccess: function(event) {
+				waf.sources.activity.contact.set(waf.sources.contact);
+				$$(contactsDetailMainContainer).hide();
+				$$(contactsActivityDetailContainer).show();
+			}
+		});
+	};// @lock
+
 	newContactButton.click = function newContactButton_click (event)// @startlock
 	{// @endlock
 		waf.sources.contact.addNewElement();
 		waf.sources.contact.serverRefresh({
 			onSuccess: function(event) {
-				//$$(tabView1).selectTab(2);
-				
 				$$(contactsListContainer).hide();
 				$$(contactsDetailContainer).show();
 				$$(firstNameInputfield).focus();
-				//$$(contactTitle).setValue("New Contact");
 			}
 		});
 	};// @lock
@@ -109,6 +132,9 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_contactSaveActivityButton", "click", contactSaveActivityButton.click, "WAF");
+	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
+	WAF.addListener(this.id + "_newContactActivityButton", "click", newContactActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_newContactButton", "click", newContactButton.click, "WAF");
 	WAF.addListener(this.id + "_contactsSaveButton", "click", contactsSaveButton.click, "WAF");
 	WAF.addListener(this.id + "_contactsCancelButton", "click", contactsCancelButton.click, "WAF");

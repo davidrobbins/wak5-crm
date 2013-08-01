@@ -13,15 +13,40 @@ function constructor (id) {
 		changeOwnerContainer = getHtmlId('changeOwnerContainer'),
 		leadsEmailContainer = getHtmlId('leadsEmailContainer'),
 		firstNameInputfield = getHtmlId('firstNameInputfield'),
-		emailSubject = getHtmlId('emailSubject');
+		emailSubject = getHtmlId('emailSubject'),
 		
+		selectedLeadsUL$ = $('#selectedLeadsUL'), //Get jQuery reference to our <ul> for listing the Selected Leads collection.
+		selectedLeadsListTemplateSource = $('#selected-leads-list-template').html(),
+		selectedLeadsListTemplateFn = Handlebars.compile(selectedLeadsListTemplateSource),
+		leadData = {};
+		
+		function buildSelectedLeadsList() {
+			console.log(selectedLeadsUL$);
+			selectedLeadsUL$.children().remove(); 
+			
+			ds.Lead.all({
+				onSuccess: function(ev1) {
+					ev1.entityCollection.forEach({
+						onSuccess: function(ev2) {	
+							leadData = 	{
+								fullName:  	ev2.entity.fullName.getValue(),
+								company: 	ev2.entity.company.getValue(),
+								dataId: 	ev2.entity.ID.getValue()
+							};
+							//console.log(selectedLeadsListTemplateFn(leadData));
+							selectedLeadsUL$.append(selectedLeadsListTemplateFn(leadData));
+						}
+					}); //ev1.entityCollection.forEach
+				}
+			});
+		} //end - buildSelectedLeadsList.
+			
+			
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
 	this.name = 'leads';
 	// @endregion// @endlock
 	
-	
-		
 	this.load = function (data) {// @lock
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
@@ -40,9 +65,15 @@ function constructor (id) {
 		$comp.sourcesVar.leadTypeArr.push({title: 'Converted Leads'});
 		$comp.sources.leadTypeArr.sync();
 		
-		//$comp.sources.sendMailObj
+		$comp.sourcesVar.moreActionsArr = [];
+		$comp.sourcesVar.moreActionsArr.push({title: 'More Actions'});
+		$comp.sourcesVar.moreActionsArr.push({title: 'Mass Update'});
+		$comp.sourcesVar.moreActionsArr.push({title: 'Change Owner'});
+		$comp.sourcesVar.moreActionsArr.push({title: 'Mail Merge'});
+		$comp.sources.moreActionsArr.sync();
 			
 	// @region namespaceDeclaration// @startlock
+	var moreActionsArrEvent = {};	// @dataSource
 	var cancelLeadOwnerButton = {};	// @button
 	var deleteButton = {};	// @button
 	var changeOwnerButton = {};	// @button
@@ -69,6 +100,26 @@ function constructor (id) {
 
 	// eventHandlers// @lock
 
+	moreActionsArrEvent.onCurrentElementChange = function moreActionsArrEvent_onCurrentElementChange (event)// @startlock
+	{// @endlock
+		switch(event.dataSource.title) {
+			case "More Actions":
+			break;
+			
+			case "Change Owner":
+			waf.ds.User.getOtherUsers({
+				onSuccess: function(event) {
+					$comp.sourcesVar.otherGuysArr = event.result.slice(0);
+					$comp.sources.otherGuysArr.sync();
+					buildSelectedLeadsList();
+					$$(leadsListContainer).hide();
+					$$(changeOwnerContainer).show();
+				} //end - onSuccess
+			});
+			break;
+		}
+	};// @lock
+
 	cancelLeadOwnerButton.click = function cancelLeadOwnerButton_click (event)// @startlock
 	{// @endlock
 		$$(changeOwnerContainer).hide();
@@ -82,17 +133,10 @@ function constructor (id) {
 
 	changeOwnerButton.click = function changeOwnerButton_click (event)// @startlock
 	{// @endlock
-		/**/
 		waf.ds.User.getOtherUsers({
 			onSuccess: function(event) {
-				//console.log(event.result);
-				//var bar = foo.slice(0);
-				
-				/**/
 				$comp.sourcesVar.otherGuysArr = event.result.slice(0);
 				$comp.sources.otherGuysArr.sync();
-				
-				
 				$$(leadsListContainer).hide();
 				$$(changeOwnerContainer).show();
 			} //end - onSuccess
@@ -238,7 +282,6 @@ function constructor (id) {
 			waf.sources.lead.query("converted == false");
 			break;
 		}
-
 	};// @lock
 
 	submitConvertLeadButton.click = function submitConvertLeadButton_click (event)// @startlock
@@ -330,6 +373,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_moreActionsArr", "onCurrentElementChange", moreActionsArrEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_cancelLeadOwnerButton", "click", cancelLeadOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_deleteButton", "click", deleteButton.click, "WAF");
 	WAF.addListener(this.id + "_changeOwnerButton", "click", changeOwnerButton.click, "WAF");

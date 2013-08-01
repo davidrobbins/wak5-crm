@@ -33,7 +33,12 @@
 
 	<script type="text/x-handlebars-template" id="selected-leads-list-template">
 		<li class="selectedLeads">
-			<div data-id="{{dataId}}"><span class="strongName">{{fullName}}</span> {{company}}</div>
+			<div class="selectedLeadRow" data-id="{{dataId}}"> 
+				<div class="selectedLeadColumn"><span class="strongName">{{fullName}}</span></div> 
+				<div class="selectedLeadColumn">{{company}}</div>
+				<div class="selectedLeadColumn">{{email}}</div>
+				<div class="selectedLeadColumn">{{owner}}</div>
+			</div>
 		</li>
 	</script>
 </head>

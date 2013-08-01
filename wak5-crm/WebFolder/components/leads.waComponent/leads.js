@@ -117,7 +117,8 @@ function constructor (id) {
 	{// @endlock
 		waf.sources.lead.changeOwner({ownerID: $$(combobox2).getValue(), leadsSelectionArr: $$(dataGridLeadsList).getSelectedRows()}, {
 			onSuccess: function(event) {
-				WAK5CRMUTIL.setMessage(event.result.toString(), 4000);
+				WAK5CRMUTIL.setMessage(event.result, 4000);
+				waf.sources.lead.collectionRefresh();
 			}
 		});
 		

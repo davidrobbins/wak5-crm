@@ -14,7 +14,8 @@ function constructor (id) {
 		leadsEmailContainer = getHtmlId('leadsEmailContainer'),
 		firstNameInputfield = getHtmlId('firstNameInputfield'),
 		emailSubject = getHtmlId('emailSubject'),
-		
+		combobox2 = getHtmlId('combobox2'), 
+		dataGridLeadsList = getHtmlId('dataGrid2'),
 		
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
 		//selectedLeadsUL$ = $('#selectedLeadsUL'), //Get jQuery reference to our <ul> for listing the Selected Leads collection.
@@ -31,7 +32,7 @@ function constructor (id) {
 					leadData = 	{
 						fullName:  	ev2.entity.fullName.getValue(),
 						company: 	ev2.entity.company.getValue(),
-						email: 	ev2.entity.emailAccnt.getValue(),
+						email: 		ev2.entity.emailAccnt.getValue(),
 						dataId: 	ev2.entity.ID.getValue(),
 						owner: 		ev2.entity.owner.value.fullName
 					};
@@ -87,6 +88,7 @@ function constructor (id) {
 		});
 			
 	// @region namespaceDeclaration// @startlock
+	var changeLeadOwnerButton = {};	// @button
 	var moreActionsArrEvent = {};	// @dataSource
 	var cancelLeadOwnerButton = {};	// @button
 	var newLeadEventButton = {};	// @button
@@ -110,6 +112,25 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	changeLeadOwnerButton.click = function changeLeadOwnerButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.lead.changeOwner({ownerID: $$(combobox2).getValue(), leadsSelectionArr: $$(dataGridLeadsList).getSelectedRows()}, {
+			onSuccess: function(event) {
+				WAK5CRMUTIL.setMessage(event.result.toString(), 4000);
+			}
+		});
+		
+		//WAK5CRMUTIL.setMessage($$(combobox2).getValue(), 5000, "error");
+		/*
+		waf.sources.person.deleteSelection($$('dataGrid1').getSelectedRows(), {
+			onSuccess: function(event) {
+				$$('messageText').setValue('The selected rows were removed on the server.');
+				waf.sources.person.setEntityCollection(event.result);
+			}
+		});
+		*/
+	};// @lock
 
 	moreActionsArrEvent.onCurrentElementChange = function moreActionsArrEvent_onCurrentElementChange (event)// @startlock
 	{// @endlock
@@ -370,6 +391,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_changeLeadOwnerButton", "click", changeLeadOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_moreActionsArr", "onCurrentElementChange", moreActionsArrEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_cancelLeadOwnerButton", "click", cancelLeadOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_newLeadEventButton", "click", newLeadEventButton.click, "WAF");

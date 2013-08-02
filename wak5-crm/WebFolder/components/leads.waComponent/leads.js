@@ -44,19 +44,20 @@ function constructor (id) {
 				ev1.entityCollection.forEach({
 					onSuccess: function(ev2) {	
 						noteData = 	{
-							firstName:  ev2.entity.firstName.getValue(),
-							lastName: 	ev2.entity.lastName.getValue(),
-							city:    	ev2.entity.city.getValue(),
-							dataId: 	ev2.entity.ID.getValue(),
-							phone: 	ev2.entity.phone.getValue()
+							title:  	ev2.entity.title.getValue(),
+							createDate: ev2.entity.createDate.getValue(),
+							body:    	ev2.entity.body.getValue(),
+							dataId: 	ev2.entity.ID.getValue()
 						};
 						noteUL$.append(noteListTemplateFn(noteData));
 						
+						/*
 						if (updateDetail) {
 							updateDetail = false;
 							updatePersonDetail(ev2.entity.fullName.getValue(), ev2.entity.city.getValue(), ev2.entity.phone.getValue());
 		   					personUL$.children(':first-child').addClass('personPermSelected');
 						}
+						*/
 					}
 				}); //ev1.entityCollection.forEach
 			}

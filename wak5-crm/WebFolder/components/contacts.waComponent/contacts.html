@@ -1,8 +1,13 @@
 ﻿<!DOCTYPE html><section data-group="[['accordion1','richText1','container2','container3','container1','richText2','container5','container6','container4','richText3','container8','container9','container7']]">
     <meta name="generator" content="Wakanda GUIDesigner"/>
-    <meta name="WAF.catalog" content="Contact,Activity"/>
+    <meta name="WAF.catalog" content="Contact,Activity,Account"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Contact" data-scope="global" data-lib="WAF" data-id="contact" data-dataType="string" data-autoLoad="false" content="contact"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Activity" data-scope="global" data-lib="WAF" data-id="activity" data-dataType="string" data-autoLoad="false" content="activity"/>
+    <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Account" data-scope="local" data-lib="WAF" data-id="{id}account" data-dataType="string" data-autoLoad="true" content="account"/>
+    
+    
+    
+    
     
     
     
@@ -28,7 +33,7 @@
      
     <div id="{id}contactsContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-container waf-container-level-0 waf-level-0">
 	 				<div id="{id}contactsListContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-1 waf-level-1">
- 	 	 		<div id="{id}dataGrid1" data-type="dataGrid" data-selection-mode="single" data-readOnly="true" data-lib="WAF" data-label-position="top" data-label="" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-column="[{'sourceAttID':'ID','colID':'ID','width':'70','title':'ID'},{'sourceAttID':'fullName','colID':'fullName','width':'280','title':'Name'},{'sourceAttID':'phone','colID':'phone','width':'260','title':'Phone'},{'sourceAttID':'emailAccnt','colID':'emailAccnt','width':'260','title':'Email'}]" data-binding="contact" class="waf-widget waf-dataGrid "></div>
+ 	 	 		<div id="{id}dataGrid1" data-type="dataGrid" data-selection-mode="single" data-readOnly="true" data-lib="WAF" data-label-position="top" data-label="" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-column="[{'sourceAttID':'ID','colID':'ID','width':'70','title':'ID'},{'sourceAttID':'fullName','colID':'fullName','width':'200','title':'Name'},{'sourceAttID':'account.name','colID':'account_name','width':'200','title':'Account'},{'sourceAttID':'phone','colID':'phone','width':'200','title':'Phone'},{'sourceAttID':'owner.fullName','colID':'owner_fullName','width':'200','title':'Owner'}]" data-binding="contact" class="waf-widget waf-dataGrid "></div>
  	 		<button id="{id}newContactButton" data-type="button" data-text="New Contact" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
  	 	</div>
  		<div id="{id}contactsDetailContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-hideonload="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-1 waf-level-1">
@@ -53,7 +58,16 @@
 	 	 	 	 	 	 	<div id="{id}container2" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-5 waf-level-5 accordion-header waf-accordion-header waf-state-expanded">
 	 	 	 	 	 	 	 	<div id="{id}richText1" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="true" class="waf-widget waf-richText waf-accordion-title waf-state-expanded">Contact Details</div>
  	 	 	 	 	 	 	</div>
- 	 	 	 	 	 		<div id="{id}container3" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowDrop']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container waf-container-level-5 waf-level-5 accordion-content waf-accordion-content waf-state-expanded"></div>
+ 	 	 	 	 	 		<div id="{id}container3" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowDrop']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container waf-container-level-5 waf-level-5 accordion-content waf-accordion-content waf-state-expanded">
+	 	 	 	 	 	 	 	<div id="{id}richText5" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText ">Address</div>
+ 	 	 	 	 	 	 		<div id="{id}richText6" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText ">Shipping Address</div>
+ 	 	 	 	 	 	 		<input type="text" tabindex="10" id="{id}textField13" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Street" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="contact.street" class="waf-widget waf-textField "/>
+ 	 	 	 	 	 	 		<label id="{id}label14" for="{id}textField13" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" class="waf-widget waf-label waf-label-textField">Street</label>
+ 	 	 	 	 	 	 		<input type="text" tabindex="15" id="{id}textField14" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Street" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="contact.shippingStreet" class="waf-widget waf-textField "/>
+ 	 	 	 	 	 	 		<label id="{id}label15" for="{id}textField14" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" class="waf-widget waf-label waf-label-textField">Street</label>
+ 	 	 	 	 	 	 		<input type="text" tabindex="11" id="{id}textField15" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="City" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="contact.city" class="waf-widget waf-textField "/>
+ 	 	 	 	 	 	 		<label id="{id}label16" data-type="label" data-lib="WAF" for="{id}textField15" data-valign="middle" data-margin="5" class="waf-widget waf-label waf-label-textField">City</label>
+ 	 	 	 	 	 	 	</div>
  	 	 	 	 	 	</div>
  	 	 	 	 		<div id="{id}container4" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowRemove']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-4 waf-level-4 accordion-section waf-state-collapsed">
 	 	 	 	 	 	 	<div id="{id}container5" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-5 waf-level-5 accordion-header waf-accordion-header waf-state-collapsed">
@@ -90,6 +104,8 @@
  	 	 	 	 		<label id="{id}label12" for="{id}textField11" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-right="true" class="waf-widget waf-label waf-label-textField">Type</label>
  	 	 	 	 	</div>
  	 	 	 	</div>
+ 	 	 		<input type="text" tabindex="5" id="{id}textField12" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Account" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="{id}account.name" class="waf-widget waf-textField "/>
+ 	 	 		<label id="{id}label13" for="{id}textField12" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" class="waf-widget waf-label waf-label-textField">Account</label>
  	 	 	</div>
  	 	</div>
  	</div>

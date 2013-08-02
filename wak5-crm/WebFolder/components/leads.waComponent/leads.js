@@ -19,11 +19,50 @@ function constructor (id) {
 		dataGridLeadsList = getHtmlId('dataGrid2'),
 		
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
-		//selectedLeadsUL$ = $('#selectedLeadsUL'), //Get jQuery reference to our <ul> for listing the Selected Leads collection.
 		selectedLeadsListTemplateSource = $('#selected-leads-list-template').html(),
 		selectedLeadsListTemplateFn = Handlebars.compile(selectedLeadsListTemplateSource),
-		leadData = {};
+		leadData = {},
 		
+		noteUL$ = getHtmlObj('noteUL'),
+		noteListTemplateSource = $('#note-list-template').html(),
+		noteListTemplateFn = Handlebars.compile(noteListTemplateSource),
+		noteData = {};
+		
+		function updateNoteDetail(title, createDate, body) {
+		noteObj.title = title;
+		noteObj.createDate = createDate;
+		noteObj.body = body;
+		waf.sources.noteObj.sync();
+	}
+
+		function buildNoteGrid() {
+		noteUL$.children().remove(); 
+	
+		ds.Note.all({
+			onSuccess: function(ev1) {
+				var updateDetail = true;
+				ev1.entityCollection.forEach({
+					onSuccess: function(ev2) {	
+						noteData = 	{
+							firstName:  ev2.entity.firstName.getValue(),
+							lastName: 	ev2.entity.lastName.getValue(),
+							city:    	ev2.entity.city.getValue(),
+							dataId: 	ev2.entity.ID.getValue(),
+							phone: 	ev2.entity.phone.getValue()
+						};
+						noteUL$.append(noteListTemplateFn(noteData));
+						
+						if (updateDetail) {
+							updateDetail = false;
+							updatePersonDetail(ev2.entity.fullName.getValue(), ev2.entity.city.getValue(), ev2.entity.phone.getValue());
+		   					personUL$.children(':first-child').addClass('personPermSelected');
+						}
+					}
+				}); //ev1.entityCollection.forEach
+			}
+		});
+	}
+	
 		function buildSelectedLeadsList(selectedLeadsCollection) {
 			selectedLeadsUL$.children().remove(); 
 			
@@ -87,6 +126,32 @@ function constructor (id) {
 		selectedLeadsUL$.on('mouseleave', '.selectedLeads', function (event) {
 	   		$(this).removeClass('hoverLead');
 		});
+		
+		//Notes.
+		//event handlers
+		noteUL$.on('mouseenter', '.notePreview', function (event) {
+	   		$(this).addClass('noteSelected');
+		});
+		
+		noteUL$.on('mouseleave', '.notePreview', function (event) {
+	   		$(this).removeClass('noteSelected');
+		});
+		
+		noteUL$.on('click', '.notePreview', function (event) {
+			var this$ = $(this);
+	   		this$.addClass('notePermSelected');
+	   		this$.siblings().removeClass('notePermSelected');
+	   		
+	   		var personId = this$.children('div.noteIdent').attr('data-id');
+	   		ds.Note.find("ID = :1", noteId, {
+	   			onSuccess: function(event) {
+	   				//updatePersonDetail(event.entity.fullName.getValue(), event.entity.city.getValue(), event.entity.phone.getValue());
+	   			}
+	   		});
+	   		
+		});
+		
+		buildNoteGrid();
 			
 	// @region namespaceDeclaration// @startlock
 	var leadChangeOwnerButton = {};	// @button

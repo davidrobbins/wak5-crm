@@ -20,6 +20,34 @@ var WAK5CRMUTIL = (function() {
 		}
 	};
 	
+	wak5CRMUtilObj.setLoggedInContext = function() {
+		$$('container1').hide();
+        $('#headerContainer').css("backgroundColor", "#7f7f7f");
+        $('#headerTitle').css("color", "#ffffff");
+        
+        waf.sources.lead.query("converted == false");
+		waf.sources.contact.all();
+		waf.sources.account.all();
+		
+		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
+	};
+	
+	
+	
+	wak5CRMUtilObj.setLoggedOutContext = function() {
+		waf.sources.lead.setEntityCollection();
+		waf.sources.contact.setEntityCollection();
+		waf.sources.account.setEntityCollection();
+		waf.sources.activity.setEntityCollection();
+		waf.sources.note.setEntityCollection();
+		
+		$$('container1').show();
+        $('#headerContainer').css("backgroundColor", "#e5e5e5");
+        $('#headerTitle').css("color", "#7f7f7f");
+        
+		$$('mainComponent').loadComponent({path: '/components/splashScreen.waComponent'});
+	};
+	
 	//N O T E   L I S T   T E M P L A T E
 	wak5CRMUtilObj.noteListTemplateFn = function() {};
 	

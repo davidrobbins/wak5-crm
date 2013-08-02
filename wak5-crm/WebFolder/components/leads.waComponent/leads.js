@@ -119,24 +119,28 @@ function constructor (id) {
 
 	leadChangeOwnerButton.click = function leadChangeOwnerButton_click (event)// @startlock
 	{// @endlock
-		waf.sources.lead.getEntityCollection().buildFromSelection(waf.sources.lead.getSelection(), {
-			onSuccess: function(event) {
-				buildSelectedLeadsList(event.entityCollection);
-			}
-		});
-			
-		$$(leadsListContainer).hide();
-		$$(changeOwnerContainer).show();
+		if (waf.directory.currentUserBelongsTo("Manager")) {
+			waf.sources.lead.getEntityCollection().buildFromSelection(waf.sources.lead.getSelection(), {
+				onSuccess: function(event) {
+					buildSelectedLeadsList(event.entityCollection);
+				}
+			});
+				
+			$$(leadsListContainer).hide();
+			$$(changeOwnerContainer).show();
+		} else {
+			WAK5CRMUTIL.setMessage("You do not have permission to transfer leads.", 4000, "error");
+		}
 	};// @lock
 
 	leadMassUpdateButton.click = function leadMassUpdateButton_click (event)// @startlock
 	{// @endlock
-		WAK5CRMUTIL.setMessage("The Mass Update option is not yet implemented.", 5000, "error");
+		WAK5CRMUTIL.setMessage("The Mass Update option is not yet implemented.", 4000, "error");
 	};// @lock
 
 	leadDeleteButton.click = function leadDeleteButton_click (event)// @startlock
 	{// @endlock
-		WAK5CRMUTIL.setMessage("The Delete option is not yet implemented.", 5000, "error");
+		WAK5CRMUTIL.setMessage("The Delete option is not yet implemented.", 4000, "error");
 	};// @lock
 
 	changeLeadOwnerButton.click = function changeLeadOwnerButton_click (event)// @startlock

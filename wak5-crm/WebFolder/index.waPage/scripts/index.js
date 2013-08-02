@@ -19,57 +19,23 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		waf.sources.account.declareDependencies('owner');
 		waf.sources.activity.declareDependencies('owner');
 		
+		
+		
 		if (WAF.directory.currentUser() === null) {
-			/*
-		 	$$('blackContainer').show();
-			$('#headerContainer').animate({
-	            backgroundColor: "#7f7f7f"
-	        }, 600);
-	        $('#headerTitle').css("color", "#4c4c4c");
-	        
-			$$('mainComponent').loadComponent({path: '/components/splashScreen.waComponent'});
-			*/
+			WAK5CRMUTIL.setLoggedOutContext();
 		} else {
-			/*
-			$$('blackContainer').hide();
-			$('#headerContainer').animate({
-	            backgroundColor: "#7f7f7f"
-	        }, 600);
-	        $('#headerTitle').css("color", "#ffffff");
-	        
-			$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
-			waf.sources.lead.all();
-			*/
+			WAK5CRMUTIL.setLoggedInContext();
 		}
 	};// @lock
 
 	login2.logout = function login2_logout (event)// @startlock
 	{// @endlock
-		waf.sources.lead.setEntityCollection();
-		waf.sources.contact.setEntityCollection();
-		waf.sources.account.setEntityCollection();
-		waf.sources.activity.setEntityCollection();
-		waf.sources.note.setEntityCollection();
-		
-		$$('container1').show();
-        $('#headerContainer').css("backgroundColor", "#e5e5e5");
-        $('#headerTitle').css("color", "#7f7f7f");
-        
-		$$('mainComponent').loadComponent({path: '/components/splashScreen.waComponent'});
+		WAK5CRMUTIL.setLoggedOutContext();
 	};// @lock
 
 	login2.login = function login2_login (event)// @startlock
 	{// @endlock
-		$$('container1').hide();
-        $('#headerContainer').css("backgroundColor", "#7f7f7f");
-        $('#headerTitle').css("color", "#ffffff");
-        
-        waf.sources.lead.query("converted == false");
-		waf.sources.contact.all();
-		waf.sources.account.all();
-		
-		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
-		
+		WAK5CRMUTIL.setLoggedInContext();
 	};// @lock
 
 // @region eventManager// @startlock

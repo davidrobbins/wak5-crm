@@ -38,7 +38,7 @@ function constructor (id) {
 		function buildNoteGrid() {
 		noteUL$.children().remove(); 
 	
-		ds.Note.all({
+		ds.Note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue(), {
 			onSuccess: function(ev1) {
 				var updateDetail = true;
 				ev1.entityCollection.forEach({
@@ -46,7 +46,7 @@ function constructor (id) {
 						noteData = 	{
 							title:  	ev2.entity.title.getValue(),
 							createDate: ev2.entity.createDate.getValue(),
-							body:    	ev2.entity.body.getValue(),
+							body:    	ev2.entity.body.getValue().substr(0, 55),
 							dataId: 	ev2.entity.ID.getValue()
 						};
 						noteUL$.append(noteListTemplateFn(noteData));
@@ -151,8 +151,6 @@ function constructor (id) {
 	   		});
 	   		
 		});
-		
-		buildNoteGrid();
 			
 	// @region namespaceDeclaration// @startlock
 	var leadChangeOwnerButton = {};	// @button
@@ -343,7 +341,8 @@ function constructor (id) {
 	{// @endlock
 		
 		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
-		waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		buildNoteGrid();
+		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 		
 		if (waf.sources.lead.converted) {
 			$$(leadsListContainer).hide();

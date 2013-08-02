@@ -24,13 +24,6 @@
 	<meta name="WAF.config.loadJS" content="/index.waPage/scripts/wak5CRMUtil.js"/>
 	<meta name="WAF.config.loadJS" content="/index.waPage/scripts/handlebars.js"/>
 
-	<script type="text/x-handlebars-template" id="note-list-template">
-		<li class="noteListItem">
-			<div data-id="{{dataId}}"><span class="noteIdent">{{title}}</span> {{date}}</div>
-			<div>{{body}}</div>
-		</li>
-	</script>
-
 	<script type="text/x-handlebars-template" id="selected-leads-list-template">
 		<li class="selectedLeads">
 			<div data-id="{{dataId}}" class="selectedLeadRow"> 
@@ -44,7 +37,7 @@
 
 	<script type="text/x-handlebars-template" id="note-list-template">
 		<li class="notePreview">
-			<div data-id="{{dataId}}" class="noteIdent">{{title}} {{createDate}}</div>
+			<div data-id="{{dataId}}" class="noteIdent">{{title}} </div> 
 			<div>{{body}}</div>
 		</li>
 	</script>

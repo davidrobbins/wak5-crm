@@ -143,7 +143,7 @@ function constructor (id) {
 	   		this$.addClass('notePermSelected');
 	   		this$.siblings().removeClass('notePermSelected');
 	   		
-	   		var personId = this$.children('div.noteIdent').attr('data-id');
+	   		var noteId = this$.children('div.noteIdent').attr('data-id');
 	   		ds.Note.find("ID = :1", noteId, {
 	   			onSuccess: function(event) {
 	   				//updatePersonDetail(event.entity.fullName.getValue(), event.entity.city.getValue(), event.entity.phone.getValue());
@@ -213,7 +213,6 @@ function constructor (id) {
 			onSuccess: function(event) {
 				WAK5CRMUTIL.setMessage(event.result, 4000);
 				waf.sources.lead.collectionRefresh();
-				$$(combobox1).setValue("More Actions");
 				$$(changeOwnerContainer).hide();
 				$$(leadsListContainer).show();
 				

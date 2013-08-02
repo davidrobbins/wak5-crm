@@ -15,6 +15,7 @@ function constructor (id) {
 		firstNameInputfield = getHtmlId('firstNameInputfield'),
 		emailSubject = getHtmlId('emailSubject'),
 		combobox2 = getHtmlId('combobox2'), 
+		combobox1 = getHtmlId('combobox1'), 
 		dataGridLeadsList = getHtmlId('dataGrid2'),
 		
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
@@ -88,6 +89,9 @@ function constructor (id) {
 		});
 			
 	// @region namespaceDeclaration// @startlock
+	var leadChangeOwnerButton = {};	// @button
+	var leadMassUpdateButton = {};	// @button
+	var leadDeleteButton = {};	// @button
 	var changeLeadOwnerButton = {};	// @button
 	var moreActionsArrEvent = {};	// @dataSource
 	var cancelLeadOwnerButton = {};	// @button
@@ -113,24 +117,40 @@ function constructor (id) {
 
 	// eventHandlers// @lock
 
+	leadChangeOwnerButton.click = function leadChangeOwnerButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.lead.getEntityCollection().buildFromSelection(waf.sources.lead.getSelection(), {
+			onSuccess: function(event) {
+				buildSelectedLeadsList(event.entityCollection);
+			}
+		});
+			
+		$$(leadsListContainer).hide();
+		$$(changeOwnerContainer).show();
+	};// @lock
+
+	leadMassUpdateButton.click = function leadMassUpdateButton_click (event)// @startlock
+	{// @endlock
+		WAK5CRMUTIL.setMessage("The Mass Update option is not yet implemented.", 5000, "error");
+	};// @lock
+
+	leadDeleteButton.click = function leadDeleteButton_click (event)// @startlock
+	{// @endlock
+		WAK5CRMUTIL.setMessage("The Delete option is not yet implemented.", 5000, "error");
+	};// @lock
+
 	changeLeadOwnerButton.click = function changeLeadOwnerButton_click (event)// @startlock
 	{// @endlock
 		waf.sources.lead.changeOwner({ownerID: $$(combobox2).getValue(), leadsSelectionArr: $$(dataGridLeadsList).getSelectedRows()}, {
 			onSuccess: function(event) {
 				WAK5CRMUTIL.setMessage(event.result, 4000);
 				waf.sources.lead.collectionRefresh();
+				$$(combobox1).setValue("More Actions");
+				$$(changeOwnerContainer).hide();
+				$$(leadsListContainer).show();
+				
 			}
 		});
-		
-		//WAK5CRMUTIL.setMessage($$(combobox2).getValue(), 5000, "error");
-		/*
-		waf.sources.person.deleteSelection($$('dataGrid1').getSelectedRows(), {
-			onSuccess: function(event) {
-				$$('messageText').setValue('The selected rows were removed on the server.');
-				waf.sources.person.setEntityCollection(event.result);
-			}
-		});
-		*/
 	};// @lock
 
 	moreActionsArrEvent.onCurrentElementChange = function moreActionsArrEvent_onCurrentElementChange (event)// @startlock
@@ -392,6 +412,9 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_leadChangeOwnerButton", "click", leadChangeOwnerButton.click, "WAF");
+	WAF.addListener(this.id + "_leadMassUpdateButton", "click", leadMassUpdateButton.click, "WAF");
+	WAF.addListener(this.id + "_leadDeleteButton", "click", leadDeleteButton.click, "WAF");
 	WAF.addListener(this.id + "_changeLeadOwnerButton", "click", changeLeadOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_moreActionsArr", "onCurrentElementChange", moreActionsArrEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_cancelLeadOwnerButton", "click", cancelLeadOwnerButton.click, "WAF");

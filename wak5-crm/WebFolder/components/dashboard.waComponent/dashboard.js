@@ -7,6 +7,9 @@ function constructor (id) {
 	var leadsButton = getHtmlId('leadsButton'),
 		contactsButton = getHtmlId('contactsButton'),
 		accountsButton = getHtmlId('accountsButton'),
+		activityButton = getHtmlId('activityButton'),
+		homeButton = getHtmlId('homeButton'),
+		dealsButton = getHtmlId('dealsButton'),
 		signedInComponent = getHtmlId('signedInComponent'),
 		recentItemsBodyContainer = getHtmlId('recentItemsBodyContainer'),
 		mainMenubarContainer = getHtmlId('mainMenubarContainer');
@@ -35,7 +38,16 @@ function constructor (id) {
 				
 				case accountsButton :
 				$$(signedInComponent).loadComponent({path: '/components/accounts.waComponent', userData: {view: ev.options.view}});
-				break;	
+				break;
+				
+				case activityButton :
+				$$(signedInComponent).loadComponent({path: '/components/activity.waComponent'});
+				break;
+
+				
+				default:
+				WAK5CRMUTIL.setMessage("This option is not yet implemented", 4000, "error");
+					
 	   		} //end - switch
 		} //end - function handleMainMenuBarSelect
 		

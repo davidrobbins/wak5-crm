@@ -128,8 +128,6 @@ function constructor (id) {
 		waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());	
 		$$(contactsListContainer).hide();
 		$$(contactsDetailContainer).show();
-		//$$(accordion1).expand(1);
-		//$$(tabView1).selectTab(2);
 		//Add to recent items.
 		WAK5CRMUTIL.newRecentItem("contacts", "Contact: ", waf.sources.contact.firstName + " " + waf.sources.contact.lastName, waf.sources.contact.ID, 'mainComponent_recentItemsBodyContainer'); 
 		// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).

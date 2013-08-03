@@ -56,7 +56,7 @@ var WAK5CRMUTIL = (function() {
 	
 	//M E S S A G E   O B J E C T
 	wak5CRMUtilObj.setMessage = function(text, displayTime, messageType) {
-		var displayTime = displayTime || 5000,
+		var displayTime = displayTime || 4000,
 			messageType = messageType || "normal";
 			
 		//$$('messageText').setTextColor('#cc0000'); //e60000 4c4c4c
@@ -72,8 +72,8 @@ var WAK5CRMUTIL = (function() {
 
 		
 		$$('messageText').setValue(text);
-		$('#messageContainer').fadeIn(400); //show
-		setTimeout(function() {$('#messageContainer').fadeOut(400);}, displayTime); //.hide
+		$('#messageContainer').fadeIn(700); //show
+		setTimeout(function() {$('#messageContainer').fadeOut(900);}, displayTime); //.hide
 	};
 	
 	

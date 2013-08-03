@@ -192,6 +192,7 @@ function constructor (id) {
 				
 			$$(leadsListContainer).hide();
 			$$(changeOwnerContainer).show();
+		
 		} else {
 			WAK5CRMUTIL.setMessage("You do not have permission to transfer leads.", 4000, "error");
 		}
@@ -417,6 +418,10 @@ function constructor (id) {
 
 	convertLeadButton.click = function convertLeadButton_click (event)// @startlock
 	{// @endlock
+		if (waf.sources.lead.company == null) {
+			WAK5CRMUTIL.setMessage("You have not entered a company.", 4000, "error");
+		}
+		
 		$$(leadsDetailContainer).hide();
 		$$(leadsConvertContainer).show();
 	};// @lock

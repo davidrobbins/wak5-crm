@@ -28,12 +28,12 @@ function constructor (id) {
 		noteListTemplateFn = Handlebars.compile(noteListTemplateSource),
 		noteData = {};
 		
-		function updateNoteDetail(title, createDate, body) {
-		noteObj.title = title;
-		noteObj.createDate = createDate;
-		noteObj.body = body;
-		waf.sources.noteObj.sync();
-	}
+		function updateNoteDetail(title, body, createDate) {
+			$comp.sourcesVar.noteObj.title = title;
+			$comp.sourcesVar.noteObj.createDate = createDate;
+			$comp.sourcesVar.noteObj.body = body;
+			$comp.sources.noteObj.sync();
+		}
 
 		function buildNoteGrid() {
 		noteUL$.children().remove(); 
@@ -51,13 +51,13 @@ function constructor (id) {
 						};
 						noteUL$.append(noteListTemplateFn(noteData));
 						
-						/*
+						/**/
 						if (updateDetail) {
 							updateDetail = false;
-							updatePersonDetail(ev2.entity.fullName.getValue(), ev2.entity.city.getValue(), ev2.entity.phone.getValue());
-		   					personUL$.children(':first-child').addClass('personPermSelected');
+							updateNoteDetail(ev2.entity.title.getValue(), ev2.entity.body.getValue(), ev2.entity.createDate.getValue());
+		   					noteUL$.children(':first-child').addClass('notePermSelected');
 						}
-						*/
+						
 					}
 				}); //ev1.entityCollection.forEach
 			}
@@ -146,7 +146,7 @@ function constructor (id) {
 	   		var noteId = this$.children('div.noteIdent').attr('data-id');
 	   		ds.Note.find("ID = :1", noteId, {
 	   			onSuccess: function(event) {
-	   				//updatePersonDetail(event.entity.fullName.getValue(), event.entity.city.getValue(), event.entity.phone.getValue());
+	   				updateNoteDetail(event.entity.title.getValue(), event.entity.body.getValue(), event.entity.createDate.getValue());
 	   			}
 	   		});
 	   		

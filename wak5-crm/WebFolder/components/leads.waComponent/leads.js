@@ -213,6 +213,8 @@ function constructor (id) {
 			onSuccess: function(event) {
 				WAK5CRMUTIL.setMessage(event.result, 4000);
 				waf.sources.lead.collectionRefresh();
+				//Update Recent Items because some of them may have been removed as a result of lead change owner.
+				WAK5CRMUTIL.loadRecentItems('mainComponent_recentItemsBodyContainer'); // Note: Refactor so "mainComponent_recentItemsComponent
 				$$(changeOwnerContainer).hide();
 				$$(leadsListContainer).show();
 				

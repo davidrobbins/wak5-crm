@@ -36,33 +36,34 @@ function constructor (id) {
 		}
 
 		function buildNoteGrid() {
-		noteUL$.children().remove(); 
-	
-		ds.Note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue(), {
-			onSuccess: function(ev1) {
-				var updateDetail = true;
-				ev1.entityCollection.forEach({
-					onSuccess: function(ev2) {	
-						noteData = 	{
-							title:  	ev2.entity.title.getValue(),
-							createDate: ev2.entity.createDate.getValue(),
-							body:    	ev2.entity.body.getValue().substr(0, 55),
-							dataId: 	ev2.entity.ID.getValue()
-						};
-						noteUL$.append(noteListTemplateFn(noteData));
-						
-						/**/
-						if (updateDetail) {
-							updateDetail = false;
-							updateNoteDetail(ev2.entity.title.getValue(), ev2.entity.body.getValue(), ev2.entity.createDate.getValue());
-		   					noteUL$.children(':first-child').addClass('notePermSelected');
+			waf.sources.note.setEntityCollection();
+			noteUL$.children().remove(); 
+		
+			ds.Note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue(), {
+				onSuccess: function(ev1) {
+					var updateDetail = true;
+					ev1.entityCollection.forEach({
+						onSuccess: function(ev2) {	
+							noteData = 	{
+								title:  	ev2.entity.title.getValue(),
+								createDate: ev2.entity.createDate.getValue(),
+								body:    	ev2.entity.body.getValue().substr(0, 55),
+								dataId: 	ev2.entity.ID.getValue()
+							};
+							noteUL$.append(noteListTemplateFn(noteData));
+							
+							/**/
+							if (updateDetail) {
+								updateDetail = false;
+								updateNoteDetail(ev2.entity.title.getValue(), ev2.entity.body.getValue(), ev2.entity.createDate.getValue());
+			   					noteUL$.children(':first-child').addClass('notePermSelected');
+							}
+							
 						}
-						
-					}
-				}); //ev1.entityCollection.forEach
-			}
-		});
-	}
+					}); //ev1.entityCollection.forEach
+				}
+			});
+		}
 	
 		function buildSelectedLeadsList(selectedLeadsCollection) {
 			selectedLeadsUL$.children().remove(); 
@@ -343,8 +344,17 @@ function constructor (id) {
 	{// @endlock
 		
 		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
-		buildNoteGrid();
 		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		
+		if (waf.sources.lead.isNewElement()) {
+			$comp.sourcesVar.noteObj.title = null;
+			$comp.sourcesVar.noteObj.createDate = null;
+			$comp.sourcesVar.noteObj.body = null;
+			$comp.sources.noteObj.sync();
+		} else {
+			buildNoteGrid();
+		}
+		
 		
 		if (waf.sources.lead.converted) {
 			$$(leadsListContainer).hide();

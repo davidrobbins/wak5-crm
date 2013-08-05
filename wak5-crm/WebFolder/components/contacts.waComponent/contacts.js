@@ -30,6 +30,7 @@ function constructor (id) {
 		}, 80);
 
 	// @region namespaceDeclaration// @startlock
+	var contactsCopyAddrButton = {};	// @button
 	var contactSaveActivityButton = {};	// @button
 	var dataGrid2 = {};	// @dataGrid
 	var newContactTaskButton = {};	// @button
@@ -40,6 +41,17 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	contactsCopyAddrButton.click = function contactsCopyAddrButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.contact.shippingStreet = waf.sources.contact.street;
+		waf.sources.contact.shippingCity = waf.sources.contact.city;
+		waf.sources.contact.shippingState = waf.sources.contact.state;
+		waf.sources.contact.shippingZip = waf.sources.contact.zip;
+		waf.sources.contact.shippingCountry = waf.sources.contact.country;
+		waf.sources.contact.autoDispatch();
+		WAK5CRMUTIL.setMessage("Billing Address copied to Shipping Address.", 5000, "normal");
+	};// @lock
 
 	contactSaveActivityButton.click = function contactSaveActivityButton_click (event)// @startlock
 	{// @endlock
@@ -134,6 +146,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_contactsCopyAddrButton", "click", contactsCopyAddrButton.click, "WAF");
 	WAF.addListener(this.id + "_contactSaveActivityButton", "click", contactSaveActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_newContactTaskButton", "click", newContactTaskButton.click, "WAF");

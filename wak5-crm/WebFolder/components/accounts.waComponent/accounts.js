@@ -29,6 +29,7 @@ function constructor (id) {
 		
 	
 	// @region namespaceDeclaration// @startlock
+	var accountsCopyAddrButton = {};	// @button
 	var newAccountTaskButton = {};	// @button
 	var dataGrid2 = {};	// @dataGrid
 	var accountSaveActivityButton = {};	// @button
@@ -39,6 +40,18 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	accountsCopyAddrButton.click = function accountsCopyAddrButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.account.shippingStreet = waf.sources.account.billingStreet;
+		waf.sources.account.shippingCity = waf.sources.account.billingCity;
+		waf.sources.account.shippingState = waf.sources.account.billingState;
+		waf.sources.account.shippingZip = waf.sources.account.billingZip;
+		waf.sources.account.shippingCountry = waf.sources.account.billingCountry;
+		waf.sources.account.autoDispatch();
+		WAK5CRMUTIL.setMessage("Billing Address copied to Shipping Address.", 5000, "normal");
+
+	};// @lock
 
 	newAccountTaskButton.click = function newAccountTaskButton_click (event)// @startlock
 	{// @endlock
@@ -137,6 +150,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_accountsCopyAddrButton", "click", accountsCopyAddrButton.click, "WAF");
 	WAF.addListener(this.id + "_newAccountTaskButton", "click", newAccountTaskButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_accountSaveActivityButton", "click", accountSaveActivityButton.click, "WAF");

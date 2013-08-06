@@ -76,6 +76,26 @@ function constructor (id) {
 
 	saveNoteButton.click = function saveNoteButton_click (event)// @startlock
 	{// @endlock
+		
+		var newNote = ds.Note.newEntity(); // create an entity with attributes set to null
+		
+        newNote.body.setValue(inputNoteBody$.val()); 
+        newNote.title.setValue(inputNoteTitle$.val()); 
+     	newNote.createDate.setValue(new Date()); 
+     	newNote.lead.setValue(waf.sources.lead.getCurrentElement()); 
+        newNote.save({
+        	onSuccess: function(event) {
+        		$$(inputNoteBodyRef).setValue();
+				$$(inputNoteTitleRef).setValue();
+				inputNoteBody$.css('height', 22);
+				addNoteContainer$.css('height', 42);
+				buildNoteGrid(data.userData.leadId);
+        	}
+        });
+        
+		
+				
+		/*
 		waf.sources.note.body = inputNoteBody$.val();
 		waf.sources.note.title = inputNoteTitle$.val();
 		waf.sources.note.createDate = new Date();
@@ -92,13 +112,17 @@ function constructor (id) {
 				buildNoteGrid(data.userData.leadId);
 			}
 		});
-		
+		*/
 		
 	};// @lock
 
 	inputNoteBody.focus = function inputNoteBody_focus (event)// @startlock
 	{// @endlock
 	
+		inputNoteBody$.css('height', 120);
+		addNoteContainer$.css('height', 255);
+				
+		/*
 		waf.sources.note.addNewElement();
 		waf.sources.note.serverRefresh({
 			onSuccess: function(event) {
@@ -106,7 +130,7 @@ function constructor (id) {
 				addNoteContainer$.css('height', 255);
 			}
 		});
-		
+		*/
 		
 	};// @lock
 

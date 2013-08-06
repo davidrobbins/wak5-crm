@@ -45,7 +45,6 @@ var WAK5CRMUTIL = (function() {
 		waf.sources.contact.setEntityCollection();
 		waf.sources.account.setEntityCollection();
 		waf.sources.activity.setEntityCollection();
-		waf.sources.note.setEntityCollection();
 		
 		$$('container1').show();
         $('#headerContainer').css("backgroundColor", "#e5e5e5");

@@ -93,11 +93,12 @@ function constructor (id) {
 
 	inputNoteBody.focus = function inputNoteBody_focus (event)// @startlock
 	{// @endlock
+	
 		waf.sources.note.addNewElement();
 		waf.sources.note.serverRefresh({
 			onSuccess: function(event) {
 				inputNoteBody$.css('height', 120);
-				addNoteContainer$.css('height', 182);
+				addNoteContainer$.css('height', 255);
 			}
 		});
 		

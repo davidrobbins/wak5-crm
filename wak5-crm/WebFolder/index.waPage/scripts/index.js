@@ -10,8 +10,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
-		//var noteListTemplateSource = $("#note-list-template").html();
-		//WAK5CRMUTIL.noteListTemplateFn = Handlebars.compile(noteListTemplateSource);
+		var noteListTemplateSource = $("#note-list-template2").html();
+		WAK5CRMUTIL.noteListTemplateFn = Handlebars.compile(noteListTemplateSource);
 	
 		WAK5CRMUTIL.setRecentItemsEventHandler();
 		waf.sources.lead.declareDependencies('owner');

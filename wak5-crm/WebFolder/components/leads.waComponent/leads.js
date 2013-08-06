@@ -21,8 +21,9 @@ function constructor (id) {
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
 		selectedLeadsListTemplateSource = $('#selected-leads-list-template').html(),
 		selectedLeadsListTemplateFn = Handlebars.compile(selectedLeadsListTemplateSource),
-		leadData = {},
+		leadData = {};
 		
+		/*
 		noteUL$ = getHtmlObj('noteUL'),
 		noteListTemplateSource = $('#note-list-template').html(),
 		noteListTemplateFn = Handlebars.compile(noteListTemplateSource),
@@ -34,7 +35,10 @@ function constructor (id) {
 			$comp.sourcesVar.noteObj.body = body;
 			$comp.sources.noteObj.sync();
 		}
-
+		*/
+		
+		
+		/*
 		function buildNoteGrid() {
 			waf.sources.note.setEntityCollection();
 			noteUL$.children().remove(); 
@@ -52,7 +56,7 @@ function constructor (id) {
 							};
 							noteUL$.append(noteListTemplateFn(noteData));
 							
-							/**/
+							
 							if (updateDetail) {
 								updateDetail = false;
 								updateNoteDetail(ev2.entity.title.getValue(), ev2.entity.body.getValue(), ev2.entity.createDate.getValue());
@@ -63,7 +67,10 @@ function constructor (id) {
 					}); //ev1.entityCollection.forEach
 				}
 			});
-		}
+		} 
+		*/
+		
+		
 	
 		function buildSelectedLeadsList(selectedLeadsCollection) {
 			selectedLeadsUL$.children().remove(); 
@@ -132,6 +139,7 @@ function constructor (id) {
 		
 		//Notes.
 		//event handlers
+		/*
 		noteUL$.on('mouseenter', '.notePreview', function (event) {
 	   		$(this).addClass('noteSelected');
 		});
@@ -153,6 +161,7 @@ function constructor (id) {
 	   		});
 	   		
 		});
+		*/
 			
 	// @region namespaceDeclaration// @startlock
 	var leadChangeOwnerButton = {};	// @button
@@ -347,6 +356,7 @@ function constructor (id) {
 		//waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 		
+		/*
 		if (waf.sources.lead.isNewElement()) {
 			$comp.sourcesVar.noteObj.title = null;
 			$comp.sourcesVar.noteObj.createDate = null;
@@ -355,7 +365,7 @@ function constructor (id) {
 		} else {
 			buildNoteGrid();
 		}
-		
+		*/
 		
 		if (waf.sources.lead.converted) {
 			$$(leadsListContainer).hide();
@@ -448,7 +458,7 @@ function constructor (id) {
 						$$(leadsDetailContainer).show();
 						$$(firstNameInputfield).focus();
 						waf.sources.activity.setEntityCollection();
-						waf.sources.note.setEntityCollection();
+						//waf.sources.note.setEntityCollection();
 					}
 				});
 			}

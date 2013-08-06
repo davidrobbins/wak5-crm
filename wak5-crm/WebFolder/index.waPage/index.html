@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta name="generator" content="Wakanda GUIDesigner"/>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
-	<meta name="wakanda-version" content="5 build 5.137042"/>
-	<meta name="wakanda-build" content="5.137042"/>
+	<meta name="wakanda-version" content="5 build 5.138247"/>
+	<meta name="wakanda-build" content="5.138247"/>
 	
 	
 
@@ -38,6 +38,13 @@
 	<script type="text/x-handlebars-template" id="note-list-template">
 		<li class="notePreview">
 			<div data-id="{{dataId}}" class="noteIdent">{{title}} </div> 
+			<div>{{body}}</div>
+		</li>
+	</script>
+
+	<script type="text/x-handlebars-template" id="note-list-template2">
+		<li class="noteListItem">
+			<div data-id="{{dataId}}"><span class="noteIdent">{{title}}</span> {{date}}</div>
 			<div>{{body}}</div>
 		</li>
 	</script>

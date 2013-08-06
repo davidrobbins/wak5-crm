@@ -11,11 +11,11 @@ function constructor (id) {
 		inputNoteTitleRef = getHtmlId('inputNoteTitle'),
 		addNoteContainer$ = getHtmlObj('addNoteContainer');
 		
-	
-	function buildNoteGrid() {
+	function buildNoteGrid(leadID) {
 		notesListContainer$.children().remove(); 
-		
-		ds.Note.all({
+		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		//ds.Note.all({
+		ds.Note.query("lead.ID = :1", leadID, {
 			orderBy: "createDate desc",
 			onSuccess: function(ev1) {
 				ev1.entityCollection.forEach({
@@ -38,7 +38,9 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		buildNoteGrid();
+		//console.log(data.userData.leadId)
+		
+		buildNoteGrid(data.userData.leadId);
 		addNoteContainer$.css('height', 42);
 	
 		notesListContainer$.on('mouseenter', '.noteListItem', function (event) {
@@ -76,6 +78,9 @@ function constructor (id) {
 	{// @endlock
 		waf.sources.note.body = inputNoteBody$.val();
 		waf.sources.note.title = inputNoteTitle$.val();
+		waf.sources.note.createDate = new Date();
+		waf.sources.note.lead.set(waf.sources.lead.getCurrentElement());
+		
 		waf.sources.note.save({
 			onSuccess: function(event) {
 				//inputNoteBody$.val();
@@ -84,7 +89,7 @@ function constructor (id) {
 				$$(inputNoteTitleRef).setValue();
 				inputNoteBody$.css('height', 22);
 				addNoteContainer$.css('height', 42);
-				buildNoteGrid();
+				buildNoteGrid(data.userData.leadId);
 			}
 		});
 		

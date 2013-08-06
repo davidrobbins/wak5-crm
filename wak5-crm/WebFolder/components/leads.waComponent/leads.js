@@ -17,6 +17,7 @@ function constructor (id) {
 		combobox2 = getHtmlId('combobox2'), 
 		combobox1 = getHtmlId('combobox1'), 
 		dataGridLeadsList = getHtmlId('dataGrid2'),
+		notesComponent = getHtmlId('notesComponent'),
 		
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
 		selectedLeadsListTemplateSource = $('#selected-leads-list-template').html(),
@@ -100,6 +101,7 @@ function constructor (id) {
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				//waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+				
 				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
 				$$(leadsListContainer).hide();
 				$$(leadsDetailContainer).show();
@@ -355,6 +357,11 @@ function constructor (id) {
 		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
 		//waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		
+		
+		//Load Note Component
+		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {leadId: waf.sources.lead.ID}});
+		
 		
 		/*
 		if (waf.sources.lead.isNewElement()) {

@@ -11,7 +11,7 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		waf.sources.activity.all();
+		
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock
 

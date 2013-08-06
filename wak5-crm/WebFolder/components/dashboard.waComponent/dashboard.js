@@ -22,7 +22,7 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
-		function handleMainMenuBarSelect(ev) {
+		function handleMainMenuBarSelect(ev) {	
 			if (!ev.options) {
 				ev.options = {view: "list"};
 			}
@@ -44,7 +44,20 @@ function constructor (id) {
 				break;
 				
 				case activityButton :
-				waf.sources.activity.collectionRefresh();
+				//Note: Refactor. Bug. onRestrictingQuery for Activity won't fire.
+				ds.User.find("email = :1", waf.directory.currentUser().userName, {
+					onSuccess: function(event) {
+							
+						waf.sources.activity.query("owner.ID = :1", event.entity.ID.value);
+						/*
+						if (waf.directory.currentUserBelongsTo('Manager') || waf.directory.currentUserBelongsTo('Administrator')) {
+							waf.sources.activity.all();
+						} else {
+							waf.sources.activity.query("owner.ID = :1", event.entity.ID.value);
+						}
+						*/
+					}
+				});
 				$$(signedInComponent).loadComponent({path: '/components/activity.waComponent'});
 				break;
 

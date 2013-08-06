@@ -15,10 +15,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	
 		WAK5CRMUTIL.setRecentItemsEventHandler();
 		waf.sources.lead.declareDependencies('owner');
-		waf.sources.contact.declareDependencies('owner');
-		waf.sources.contact.declareDependencies('account');
-		waf.sources.account.declareDependencies('owner');
-		waf.sources.activity.declareDependencies('owner');
+		
 		
 		if (WAF.directory.currentUser() === null) {
 			WAK5CRMUTIL.setLoggedOutContext();

@@ -21,6 +21,12 @@ var WAK5CRMUTIL = (function() {
 	};
 	
 	wak5CRMUtilObj.setLoggedInContext = function() {
+		waf.sources.lead.declareDependencies('owner');
+		waf.sources.contact.declareDependencies('owner');
+		waf.sources.contact.declareDependencies('account');
+		waf.sources.account.declareDependencies('owner');
+		waf.sources.activity.declareDependencies('owner');
+		
 		$$('container1').hide();
         $('#headerContainer').css("backgroundColor", "#7f7f7f");
         $('#headerTitle').css("color", "#ffffff");

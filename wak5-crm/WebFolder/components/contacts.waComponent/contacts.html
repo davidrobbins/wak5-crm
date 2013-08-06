@@ -40,6 +40,15 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
      
     <div id="{id}contactsContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-container waf-container-level-0 waf-level-0">
 	 				<div id="{id}contactsListContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-1 waf-level-1">
@@ -85,7 +94,7 @@
  	 	 	 	 	 	 		<label id="{id}label18" for="{id}textField17" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-right="false" data-constraint-left="true" class="waf-widget waf-label waf-label-textField">State</label>
  	 	 	 	 	 	 		<input type="text" tabindex="13" id="{id}textField19" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Zip" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-binding="contact.zip" class="waf-widget waf-textField "/>
  	 	 	 	 	 	 		<label id="{id}label20" for="{id}textField19" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-right="true" data-constraint-left="false" class="waf-widget waf-label waf-label-textField">Zip</label>
- 	 	 	 	 	 	 		<button id="{id}contactsCopyAddrButton" data-type="button" data-lib="WAF" class="waf-widget waf-button " data-action="simple" data-target="_blank" data-constraint-left="true" data-constraint-top="true" data-constraint-bottom="false" data-constraint-right="false" data-text="Copy"></button>
+ 	 	 	 	 	 	 		<button id="{id}contactsCopyAddrButton" data-type="button" data-text="Copy" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
  	 	 	 	 	 	 	</div>
  	 	 	 	 	 	</div>
  	 	 	 	 		<div id="{id}container4" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowRemove']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-4 waf-level-4 accordion-section waf-state-collapsed">
@@ -101,6 +110,7 @@
  	 	 	 	 	 		<div id="{id}container9" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowDrop']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="true" class="waf-widget waf-container waf-container-level-5 waf-level-5 accordion-content waf-accordion-content waf-state-collapsed">
 	 	 	 	 	 	 	 	<div id="{id}dataGrid2" data-type="dataGrid" data-selection-mode="single" data-readOnly="true" data-lib="WAF" data-label-position="top" data-label="" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-column="[{'sourceAttID':'ID','colID':'ID','width':'70','title':'ID'},{'sourceAttID':'subject','colID':'subject','width':'254','title':'Subject'},{'sourceAttID':'due','colID':'due','width':'120','title':'Due'},{'sourceAttID':'status','colID':'status','width':'120','title':'Status'},{'sourceAttID':'priority','colID':'priority','width':'120','title':'Priority'},{'sourceAttID':'type','colID':'type','width':'120','title':'Type'}]" data-binding="activity" class="waf-widget waf-dataGrid "></div>
  	 	 	 	 	 	 		<button id="{id}newContactTaskButton" data-type="button" data-text="New Task" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
+ 	 	 	 	 	 	 		<button id="{id}newContactEventButton" data-type="button" data-text="New Event" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
  	 	 	 	 	 	 	</div>
  	 	 	 	 	 	</div>
  	 	 	 	 	</div>
@@ -121,6 +131,7 @@
  	 	 	 	 		<label id="{id}label11" for="{id}textField10" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-right="true" class="waf-widget waf-label waf-label-textField">Owner</label>
  	 	 	 	 		<input type="text" id="{id}textField11" data-type="textField" data-readOnly="true" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Type" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-binding="activity.type" class="waf-widget waf-textField "/>
  	 	 	 	 		<label id="{id}label12" for="{id}textField11" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-right="true" class="waf-widget waf-label waf-label-textField">Type</label>
+ 	 	 	 	 		<button id="{id}contactCancelActivityButton" data-type="button" data-text="Cancel" data-target="_blank" data-lib="WAF" data-constraint-top="false" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="true" data-action="simple" class="waf-widget waf-button "></button>
  	 	 	 	 	</div>
  	 	 	 	</div>
  	 	 		<input type="text" tabindex="5" id="{id}textField12" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Account" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="contact.account.name" class="waf-widget waf-textField "/>

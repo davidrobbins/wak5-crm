@@ -92,7 +92,8 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+				//waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
 				$$(leadsListContainer).hide();
 				$$(leadsDetailContainer).show();
 				
@@ -342,8 +343,8 @@ function constructor (id) {
 
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
-		
-		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
+		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
+		//waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 		
 		if (waf.sources.lead.isNewElement()) {

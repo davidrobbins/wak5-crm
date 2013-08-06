@@ -20,7 +20,7 @@ function constructor (id) {
 		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());
+				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.ID);
 				$$(contactsListContainer).hide();
 				$$(contactsDetailContainer).show();
 			} else {
@@ -30,6 +30,8 @@ function constructor (id) {
 		}, 80);
 
 	// @region namespaceDeclaration// @startlock
+	var contactCancelActivityButton = {};	// @button
+	var newContactEventButton = {};	// @button
 	var contactsCopyAddrButton = {};	// @button
 	var contactSaveActivityButton = {};	// @button
 	var dataGrid2 = {};	// @dataGrid
@@ -42,6 +44,28 @@ function constructor (id) {
 
 	// eventHandlers// @lock
 
+	contactCancelActivityButton.click = function contactCancelActivityButton_click (event)// @startlock
+	{// @endlock
+		$$(contactsActivityDetailContainer).hide();
+		$$(contactsDetailMainContainer).show();
+	};// @lock
+
+	newContactEventButton.click = function newContactEventButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.activity.addNewElement();
+		waf.sources.activity.type = "event";
+		waf.sources.activity.status = "Started";
+		waf.sources.activity.priority = "Normal";
+		//Bug report: Activity onInit() is not running. Why?
+		waf.sources.activity.serverRefresh({
+			onSuccess: function(event) {
+				waf.sources.activity.contact.set(waf.sources.contact);
+				$$(contactsDetailMainContainer).hide();
+				$$(contactsActivityDetailContainer).show();
+			}
+		});
+	};// @lock
+
 	contactsCopyAddrButton.click = function contactsCopyAddrButton_click (event)// @startlock
 	{// @endlock
 		waf.sources.contact.shippingStreet = waf.sources.contact.street;
@@ -50,7 +74,7 @@ function constructor (id) {
 		waf.sources.contact.shippingZip = waf.sources.contact.zip;
 		waf.sources.contact.shippingCountry = waf.sources.contact.country;
 		waf.sources.contact.autoDispatch();
-		WAK5CRMUTIL.setMessage("Billing Address copied to Shipping Address.", 5000, "normal");
+		WAK5CRMUTIL.setMessage("Address copied to Shipping Address.", 5000, "normal");
 	};// @lock
 
 	contactSaveActivityButton.click = function contactSaveActivityButton_click (event)// @startlock
@@ -137,7 +161,7 @@ function constructor (id) {
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
-		waf.sources.activity.query("contact.ID = :1", waf.sources.contact.getCurrentElement().ID.getValue());	
+		waf.sources.activity.query("contact.ID = :1", waf.sources.contact.ID);	
 		$$(contactsListContainer).hide();
 		$$(contactsDetailContainer).show();
 		//Add to recent items.
@@ -146,6 +170,8 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_contactCancelActivityButton", "click", contactCancelActivityButton.click, "WAF");
+	WAF.addListener(this.id + "_newContactEventButton", "click", newContactEventButton.click, "WAF");
 	WAF.addListener(this.id + "_contactsCopyAddrButton", "click", contactsCopyAddrButton.click, "WAF");
 	WAF.addListener(this.id + "_contactSaveActivityButton", "click", contactSaveActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");

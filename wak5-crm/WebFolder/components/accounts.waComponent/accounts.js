@@ -18,7 +18,7 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				waf.sources.activity.query("account.ID = :1", waf.sources.account.getCurrentElement().ID.getValue());
+				waf.sources.activity.query("account.ID = :1", waf.sources.account.ID);
 				$$(accountsListContainer).hide();
 				$$(accountsDetailContainer).show();
 			} else {
@@ -29,6 +29,8 @@ function constructor (id) {
 		
 	
 	// @region namespaceDeclaration// @startlock
+	var accountCancelActivityButton = {};	// @button
+	var newAccountEventButton = {};	// @button
 	var accountsCopyAddrButton = {};	// @button
 	var newAccountTaskButton = {};	// @button
 	var dataGrid2 = {};	// @dataGrid
@@ -40,6 +42,28 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	accountCancelActivityButton.click = function accountCancelActivityButton_click (event)// @startlock
+	{// @endlock
+		$$(accountsActivityDetailContainer).hide();
+		$$(accountsDetailMainContainer).show();
+	};// @lock
+
+	newAccountEventButton.click = function newAccountEventButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.activity.addNewElement();
+		waf.sources.activity.type = "event";
+		waf.sources.activity.status = "Started";
+		waf.sources.activity.priority = "Normal";
+		//Bug report: Activity onInit() is not running. Why?
+		waf.sources.activity.serverRefresh({
+			onSuccess: function(event) {
+				waf.sources.activity.account.set(waf.sources.account);
+				$$(accountsDetailMainContainer).hide();
+				$$(accountsActivityDetailContainer).show();
+			}
+		});
+	};// @lock
 
 	accountsCopyAddrButton.click = function accountsCopyAddrButton_click (event)// @startlock
 	{// @endlock
@@ -150,6 +174,8 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_accountCancelActivityButton", "click", accountCancelActivityButton.click, "WAF");
+	WAF.addListener(this.id + "_newAccountEventButton", "click", newAccountEventButton.click, "WAF");
 	WAF.addListener(this.id + "_accountsCopyAddrButton", "click", accountsCopyAddrButton.click, "WAF");
 	WAF.addListener(this.id + "_newAccountTaskButton", "click", newAccountTaskButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");

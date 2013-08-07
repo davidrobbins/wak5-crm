@@ -1,7 +1,6 @@
 ﻿
 (function Component (id) {// @lock
 
-// Add the code that needs to be shared between components here
 
 function constructor (id) {
 	var notesListContainer$ = getHtmlObj('notesListContainer'),
@@ -81,8 +80,6 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		//console.log(data.userData.leadId)
-		
 		buildNoteGrid(data.userData);
 		addNoteContainer$.css('height', 42);
 	
@@ -105,12 +102,6 @@ function constructor (id) {
 
 	cancelNoteButton.click = function cancelNoteButton_click (event)// @startlock
 	{// @endlock
-		
-		//inputNote$.val("");
-		//inputNoteTitle$.val("");
-		//console.log(inputNoteBodyRef);
-		//console.log(inputNoteTitleRef);
-		
 		$$(inputNoteBodyRef).setValue();
 		$$(inputNoteTitleRef).setValue();
 		inputNoteBody$.css('height', 22);
@@ -151,46 +142,12 @@ function constructor (id) {
 				buildNoteGrid(data.userData);
         	}
         });
-        
-		
-				
-		/*
-		waf.sources.note.body = inputNoteBody$.val();
-		waf.sources.note.title = inputNoteTitle$.val();
-		waf.sources.note.createDate = new Date();
-		waf.sources.note.lead.set(waf.sources.lead.getCurrentElement());
-		
-		waf.sources.note.save({
-			onSuccess: function(event) {
-				//inputNoteBody$.val();
-				//inputNoteTitle$.val();
-				$$(inputNoteBodyRef).setValue();
-				$$(inputNoteTitleRef).setValue();
-				inputNoteBody$.css('height', 22);
-				addNoteContainer$.css('height', 42);
-				buildNoteGrid(data.userData.leadId);
-			}
-		});
-		*/
-		
 	};// @lock
 
 	inputNoteBody.focus = function inputNoteBody_focus (event)// @startlock
 	{// @endlock
-	
 		inputNoteBody$.css('height', 190);
 		addNoteContainer$.css('height', 255);
-				
-		/*
-		waf.sources.note.addNewElement();
-		waf.sources.note.serverRefresh({
-			onSuccess: function(event) {
-				inputNoteBody$.css('height', 120);
-				addNoteContainer$.css('height', 255);
-			}
-		});
-		*/
-		
 	};// @lock
 
 	// @region eventManager// @startlock

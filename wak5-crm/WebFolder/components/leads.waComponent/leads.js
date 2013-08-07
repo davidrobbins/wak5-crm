@@ -18,61 +18,13 @@ function constructor (id) {
 		combobox1 = getHtmlId('combobox1'), 
 		dataGridLeadsList = getHtmlId('dataGrid2'),
 		notesComponent = getHtmlId('notesComponent'),
+		activityDetailComponent = getHtmlId('activityDetailComponent')
 		
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
 		selectedLeadsListTemplateSource = $('#selected-leads-list-template').html(),
 		selectedLeadsListTemplateFn = Handlebars.compile(selectedLeadsListTemplateSource),
 		leadData = {};
 		
-		/*
-		noteUL$ = getHtmlObj('noteUL'),
-		noteListTemplateSource = $('#note-list-template').html(),
-		noteListTemplateFn = Handlebars.compile(noteListTemplateSource),
-		noteData = {};
-		
-		function updateNoteDetail(title, body, createDate) {
-			$comp.sourcesVar.noteObj.title = title;
-			$comp.sourcesVar.noteObj.createDate = createDate;
-			$comp.sourcesVar.noteObj.body = body;
-			$comp.sources.noteObj.sync();
-		}
-		*/
-		
-		
-		/*
-		function buildNoteGrid() {
-			waf.sources.note.setEntityCollection();
-			noteUL$.children().remove(); 
-		
-			ds.Note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue(), {
-				onSuccess: function(ev1) {
-					var updateDetail = true;
-					ev1.entityCollection.forEach({
-						onSuccess: function(ev2) {	
-							noteData = 	{
-								title:  	ev2.entity.title.getValue(),
-								createDate: ev2.entity.createDate.getValue(),
-								body:    	ev2.entity.body.getValue().substr(0, 55),
-								dataId: 	ev2.entity.ID.getValue()
-							};
-							noteUL$.append(noteListTemplateFn(noteData));
-							
-							
-							if (updateDetail) {
-								updateDetail = false;
-								updateNoteDetail(ev2.entity.title.getValue(), ev2.entity.body.getValue(), ev2.entity.createDate.getValue());
-			   					noteUL$.children(':first-child').addClass('notePermSelected');
-							}
-							
-						}
-					}); //ev1.entityCollection.forEach
-				}
-			});
-		} 
-		*/
-		
-		
-	
 		function buildSelectedLeadsList(selectedLeadsCollection) {
 			selectedLeadsUL$.children().remove(); 
 			
@@ -139,31 +91,9 @@ function constructor (id) {
 	   		$(this).removeClass('hoverLead');
 		});
 		
-		//Notes.
-		//event handlers
-		/*
-		noteUL$.on('mouseenter', '.notePreview', function (event) {
-	   		$(this).addClass('noteSelected');
-		});
-		
-		noteUL$.on('mouseleave', '.notePreview', function (event) {
-	   		$(this).removeClass('noteSelected');
-		});
-		
-		noteUL$.on('click', '.notePreview', function (event) {
-			var this$ = $(this);
-	   		this$.addClass('notePermSelected');
-	   		this$.siblings().removeClass('notePermSelected');
-	   		
-	   		var noteId = this$.children('div.noteIdent').attr('data-id');
-	   		ds.Note.find("ID = :1", noteId, {
-	   			onSuccess: function(event) {
-	   				updateNoteDetail(event.entity.title.getValue(), event.entity.body.getValue(), event.entity.createDate.getValue());
-	   			}
-	   		});
-	   		
-		});
-		*/
+		//Load activity detail component.
+		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
+
 			
 	// @region namespaceDeclaration// @startlock
 	var leadChangeOwnerButton = {};	// @button
@@ -177,8 +107,6 @@ function constructor (id) {
 	var cancelEmail = {};	// @button
 	var cloneButton = {};	// @button
 	var sendMailButton = {};	// @button
-	var leadSaveActivityButton = {};	// @button
-	var leadCancelActivityButton = {};	// @button
 	var dataGrid3 = {};	// @dataGrid
 	var dataGrid2 = {};	// @dataGrid
 	var newLeadTaskButton = {};	// @button
@@ -320,40 +248,17 @@ function constructor (id) {
 		$$(leadsEmailContainer).show();
 	};// @lock
 
-	leadSaveActivityButton.click = function leadSaveActivityButton_click (event)// @startlock
-	{// @endlock
-		waf.sources.activity.save({
-			onSuccess: function(event) {
-				WAK5CRMUTIL.setMessage("Activity for " + waf.sources.lead.firstName + " " + waf.sources.lead.lastName + " has been saved to the server.", 5000, "normal");
-		},
-			
-			onError: function(error) {
-				//error['error'][0].message + " (" + error['error'][0].errCode + ")"
-				//WAK5CRMUTIL.setMessage(error['error'][0].message + " (" + error['error'][0].errCode + ")", 7000, "error");
-			}
-		});
-		
-		$$(leadsActivityDetailContainer).hide();
-		$$(leadsDetailMainContainer).show();
-		
-	};// @lock
-
-	leadCancelActivityButton.click = function leadCancelActivityButton_click (event)// @startlock
-	{// @endlock
-		//Activity Grid.
-		$$(leadsActivityDetailContainer).hide();
-		$$(leadsDetailMainContainer).show();
-	};// @lock
-
 	dataGrid3.onRowDblClick = function dataGrid3_onRowDblClick (event)// @startlock
 	{// @endlock
 			//Activity Grid.
 			$$(leadsDetailMainContainer).hide();
+			//$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {leadsDetailMainContainer: leadsDetailMainContainer, leadsActivityDetailContainer: leadsActivityDetailContainer}});
 			$$(leadsActivityDetailContainer).show();
 	};// @lock
 
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
+		//Leads List Grid
 		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
 		//waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
 		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
@@ -526,8 +431,6 @@ function constructor (id) {
 	WAF.addListener(this.id + "_cancelEmail", "click", cancelEmail.click, "WAF");
 	WAF.addListener(this.id + "_cloneButton", "click", cloneButton.click, "WAF");
 	WAF.addListener(this.id + "_sendMailButton", "click", sendMailButton.click, "WAF");
-	WAF.addListener(this.id + "_leadSaveActivityButton", "click", leadSaveActivityButton.click, "WAF");
-	WAF.addListener(this.id + "_leadCancelActivityButton", "click", leadCancelActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid3", "onRowDblClick", dataGrid3.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_newLeadTaskButton", "click", newLeadTaskButton.click, "WAF");

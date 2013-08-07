@@ -1,7 +1,6 @@
 ﻿
 (function Component (id) {// @lock
 
-// Add the code that needs to be shared between components here
 
 function constructor (id) {
 	var	firstNameInputfield = getHtmlId('firstNameInputfield'),
@@ -9,7 +8,8 @@ function constructor (id) {
 		contactsDetailContainer = getHtmlId('contactsDetailContainer'),
 		contactsDetailMainContainer = getHtmlId('contactsDetailMainContainer'),
 		contactsActivityDetailContainer = getHtmlId('contactsActivityDetailContainer'),
-		notesComponent = getHtmlId('notesComponent');
+		notesComponent = getHtmlId('notesComponent'),
+		activityDetailComponent = getHtmlId('activityDetailComponent');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -30,11 +30,13 @@ function constructor (id) {
 			}
 		}, 80);
 
+
+		//Load activity detail component.
+		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: contactsDetailMainContainer, activityDetailContainer: contactsActivityDetailContainer}});
+
 	// @region namespaceDeclaration// @startlock
-	var contactCancelActivityButton = {};	// @button
 	var newContactEventButton = {};	// @button
 	var contactsCopyAddrButton = {};	// @button
-	var contactSaveActivityButton = {};	// @button
 	var dataGrid2 = {};	// @dataGrid
 	var newContactTaskButton = {};	// @button
 	var newContactButton = {};	// @button
@@ -44,12 +46,6 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
-
-	contactCancelActivityButton.click = function contactCancelActivityButton_click (event)// @startlock
-	{// @endlock
-		$$(contactsActivityDetailContainer).hide();
-		$$(contactsDetailMainContainer).show();
-	};// @lock
 
 	newContactEventButton.click = function newContactEventButton_click (event)// @startlock
 	{// @endlock
@@ -76,23 +72,6 @@ function constructor (id) {
 		waf.sources.contact.shippingCountry = waf.sources.contact.country;
 		waf.sources.contact.autoDispatch();
 		WAK5CRMUTIL.setMessage("Address copied to Shipping Address.", 5000, "normal");
-	};// @lock
-
-	contactSaveActivityButton.click = function contactSaveActivityButton_click (event)// @startlock
-	{// @endlock
-		waf.sources.activity.save({
-			onSuccess: function(event) {
-				WAK5CRMUTIL.setMessage("Activity for contact: " + waf.sources.contact.firstName + " " + waf.sources.contact.lastName + " has been saved to the server.", 5000, "normal");
-		},
-			
-			onError: function(error) {
-				//error['error'][0].message + " (" + error['error'][0].errCode + ")"
-				//WAK5CRMUTIL.setMessage(error['error'][0].message + " (" + error['error'][0].errCode + ")", 7000, "error");
-			}
-		});
-		
-		$$(contactsActivityDetailContainer).hide();
-		$$(contactsDetailMainContainer).show();
 	};// @lock
 
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
@@ -177,10 +156,8 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_contactCancelActivityButton", "click", contactCancelActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_newContactEventButton", "click", newContactEventButton.click, "WAF");
 	WAF.addListener(this.id + "_contactsCopyAddrButton", "click", contactsCopyAddrButton.click, "WAF");
-	WAF.addListener(this.id + "_contactSaveActivityButton", "click", contactSaveActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_newContactTaskButton", "click", newContactTaskButton.click, "WAF");
 	WAF.addListener(this.id + "_newContactButton", "click", newContactButton.click, "WAF");

@@ -9,7 +9,8 @@ function constructor (id) {
 		accountsDetailContainer = getHtmlId('accountsDetailContainer'),
 		accountsDetailMainContainer = getHtmlId('accountsDetailMainContainer'),
 		accountsActivityDetailContainer = getHtmlId('accountsActivityDetailContainer'),
-		notesComponent = getHtmlId('notesComponent');
+		notesComponent = getHtmlId('notesComponent'),
+		activityDetailComponent = getHtmlId('activityDetailComponent');
 		
 		
 	// @region beginComponentDeclaration// @startlock
@@ -30,13 +31,14 @@ function constructor (id) {
 		}, 80);
 		
 	
+		//Load activity detail component.
+		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: accountsDetailMainContainer, activityDetailContainer: accountsActivityDetailContainer}});
+
 	// @region namespaceDeclaration// @startlock
-	var accountCancelActivityButton = {};	// @button
 	var newAccountEventButton = {};	// @button
 	var accountsCopyAddrButton = {};	// @button
 	var newAccountTaskButton = {};	// @button
 	var dataGrid2 = {};	// @dataGrid
-	var accountSaveActivityButton = {};	// @button
 	var newAccountButton = {};	// @button
 	var accountsCancelButton = {};	// @button
 	var accountsSaveButton = {};	// @button
@@ -44,12 +46,6 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
-
-	accountCancelActivityButton.click = function accountCancelActivityButton_click (event)// @startlock
-	{// @endlock
-		$$(accountsActivityDetailContainer).hide();
-		$$(accountsDetailMainContainer).show();
-	};// @lock
 
 	newAccountEventButton.click = function newAccountEventButton_click (event)// @startlock
 	{// @endlock
@@ -100,23 +96,6 @@ function constructor (id) {
 		//Activity Grid.
 		$$(accountsDetailMainContainer).hide();
 		$$(accountsActivityDetailContainer).show();
-	};// @lock
-
-	accountSaveActivityButton.click = function accountSaveActivityButton_click (event)// @startlock
-	{// @endlock
-		waf.sources.activity.save({
-			onSuccess: function(event) {
-				WAK5CRMUTIL.setMessage("Activity for " + waf.sources.account.name +  " has been saved to the server.", 5000, "normal");
-		},
-			
-			onError: function(error) {
-				//error['error'][0].message + " (" + error['error'][0].errCode + ")"
-				//WAK5CRMUTIL.setMessage(error['error'][0].message + " (" + error['error'][0].errCode + ")", 7000, "error");
-			}
-		});
-		
-		$$(accountsActivityDetailContainer).hide();
-		$$(accountsDetailMainContainer).show();
 	};// @lock
 
 	newAccountButton.click = function newAccountButton_click (event)// @startlock
@@ -178,12 +157,10 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
-	WAF.addListener(this.id + "_accountCancelActivityButton", "click", accountCancelActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_newAccountEventButton", "click", newAccountEventButton.click, "WAF");
 	WAF.addListener(this.id + "_accountsCopyAddrButton", "click", accountsCopyAddrButton.click, "WAF");
 	WAF.addListener(this.id + "_newAccountTaskButton", "click", newAccountTaskButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");
-	WAF.addListener(this.id + "_accountSaveActivityButton", "click", accountSaveActivityButton.click, "WAF");
 	WAF.addListener(this.id + "_newAccountButton", "click", newAccountButton.click, "WAF");
 	WAF.addListener(this.id + "_accountsCancelButton", "click", accountsCancelButton.click, "WAF");
 	WAF.addListener(this.id + "_accountsSaveButton", "click", accountsSaveButton.click, "WAF");

@@ -8,7 +8,8 @@ function constructor (id) {
 		contactsListContainer = getHtmlId('contactsListContainer'),
 		contactsDetailContainer = getHtmlId('contactsDetailContainer'),
 		contactsDetailMainContainer = getHtmlId('contactsDetailMainContainer'),
-		contactsActivityDetailContainer = getHtmlId('contactsActivityDetailContainer');
+		contactsActivityDetailContainer = getHtmlId('contactsActivityDetailContainer'),
+		notesComponent = getHtmlId('notesComponent');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -164,6 +165,12 @@ function constructor (id) {
 		waf.sources.activity.query("contact.ID = :1", waf.sources.contact.ID);	
 		$$(contactsListContainer).hide();
 		$$(contactsDetailContainer).show();
+		
+		//Load Note Component
+		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "contacts", entityID: waf.sources.contact.ID}});
+
+		
+		
 		//Add to recent items.
 		WAK5CRMUTIL.newRecentItem("contacts", "Contact: ", waf.sources.contact.firstName + " " + waf.sources.contact.lastName, waf.sources.contact.ID, 'mainComponent_recentItemsBodyContainer'); 
 		// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).

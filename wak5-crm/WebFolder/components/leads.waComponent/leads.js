@@ -360,7 +360,7 @@ function constructor (id) {
 		
 		
 		//Load Note Component
-		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {leadId: waf.sources.lead.ID}});
+		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "leads", entityID: waf.sources.lead.ID}});
 		
 		
 		/*

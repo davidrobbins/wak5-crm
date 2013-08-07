@@ -178,7 +178,7 @@ function constructor (id) {
 	inputNoteBody.focus = function inputNoteBody_focus (event)// @startlock
 	{// @endlock
 	
-		inputNoteBody$.css('height', 120);
+		inputNoteBody$.css('height', 190);
 		addNoteContainer$.css('height', 255);
 				
 		/*

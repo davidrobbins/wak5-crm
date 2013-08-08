@@ -10,7 +10,10 @@ function constructor (id) {
 		accountsDetailMainContainer = getHtmlId('accountsDetailMainContainer'),
 		accountsActivityDetailContainer = getHtmlId('accountsActivityDetailContainer'),
 		notesComponent = getHtmlId('notesComponent'),
-		activityDetailComponent = getHtmlId('activityDetailComponent');
+		activityDetailComponent = getHtmlId('activityDetailComponent'),
+		combobox1$ = getHtmlObj('combobox1'),
+		combobox2$ = getHtmlObj('combobox2');
+		
 		
 		
 	// @region beginComponentDeclaration// @startlock
@@ -105,6 +108,10 @@ function constructor (id) {
 			onSuccess: function(event) {
 				waf.sources.account.save({
 					onSuccess: function(ev2) {
+						//Note: Bug - Refactor - Super hack fix later.
+						combobox1$.find('input').val('-none-');
+						combobox2$.find('input').val('-none-');
+		
 						$$(accountsListContainer).hide();
 						$$(accountsDetailContainer).show();
 						$$(nameInputField).focus();

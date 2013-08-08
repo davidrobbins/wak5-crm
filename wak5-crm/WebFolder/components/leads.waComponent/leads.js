@@ -18,7 +18,9 @@ function constructor (id) {
 		combobox1 = getHtmlId('combobox1'), 
 		dataGridLeadsList = getHtmlId('dataGrid2'),
 		notesComponent = getHtmlId('notesComponent'),
-		activityDetailComponent = getHtmlId('activityDetailComponent')
+		activityDetailComponent = getHtmlId('activityDetailComponent'),
+		combobox3$ = getHtmlObj('combobox3'),
+		combobox4$ = getHtmlObj('combobox4'),
 		
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
 		selectedLeadsListTemplateSource = $('#selected-leads-list-template').html(),
@@ -200,6 +202,7 @@ function constructor (id) {
 
 	newLeadEventButton.click = function newLeadEventButton_click (event)// @startlock
 	{// @endlock
+		
 		//Note: Refactor!
 		waf.sources.activity.addNewElement();
 		waf.sources.activity.type = "event";
@@ -366,6 +369,10 @@ function constructor (id) {
 			onSuccess: function(event) {
 				waf.sources.lead.save({
 					onSuccess: function(ev2) {
+						//Note: Bug - Refactor - Super hack fix later.
+						combobox3$.find('input').val('-none-');
+						combobox4$.find('input').val('-none-');
+			
 						$$(leadsListContainer).hide();
 						$$(leadsDetailContainer).show();
 						$$(firstNameInputfield).focus();

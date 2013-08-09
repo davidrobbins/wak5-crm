@@ -29,17 +29,18 @@ function constructor (id) {
 			
 		  	switch(ev.buttonElemId) {
 	   			case leadsButton :
-	   			waf.sources.lead.collectionRefresh();
+	   			//waf.sources.lead.collectionRefresh();
+	   			waf.sources.lead.query("converted == false");
 				$$(signedInComponent).loadComponent({path: '/components/leads.waComponent', userData: {view: ev.options.view}});
 				break;
 				
 				case contactsButton :
-				waf.sources.contact.collectionRefresh();
+				waf.sources.contact.all(); //.collectionRefresh();
 				$$(signedInComponent).loadComponent({path: '/components/contacts.waComponent', userData: {view: ev.options.view}});
 				break;
 				
 				case accountsButton :
-				waf.sources.account.collectionRefresh();
+				waf.sources.account.all(); //.collectionRefresh();
 				$$(signedInComponent).loadComponent({path: '/components/accounts.waComponent', userData: {view: ev.options.view}});
 				break;
 				

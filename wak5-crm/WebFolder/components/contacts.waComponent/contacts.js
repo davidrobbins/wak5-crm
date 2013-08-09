@@ -9,7 +9,8 @@ function constructor (id) {
 		contactsDetailMainContainer = getHtmlId('contactsDetailMainContainer'),
 		contactsActivityDetailContainer = getHtmlId('contactsActivityDetailContainer'),
 		notesComponent = getHtmlId('notesComponent'),
-		activityDetailComponent = getHtmlId('activityDetailComponent');
+		activityDetailComponent = getHtmlId('activityDetailComponent'),
+		combobox3$ = getHtmlObj('combobox1');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -17,8 +18,6 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		//$$(activitySmallComponent).loadComponent({path: '/components/smallActivity.waComponent', userData: {view: "contact"}});
-		
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.ID);
@@ -102,6 +101,8 @@ function constructor (id) {
 		waf.sources.contact.addNewElement();
 		waf.sources.contact.serverRefresh({
 			onSuccess: function(event) {
+				//Note: Bug - Refactor - Super hack fix later.
+				combobox1$.find('input').val('-none-');
 				$$(contactsListContainer).hide();
 				$$(contactsDetailContainer).show();
 				$$(firstNameInputfield).focus();

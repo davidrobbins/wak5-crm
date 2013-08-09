@@ -31,9 +31,11 @@ var WAK5CRMUTIL = (function() {
         $('#headerContainer').css("backgroundColor", "#7f7f7f");
         $('#headerTitle').css("color", "#ffffff");
         
+        /*
         waf.sources.lead.query("converted == false");
 		waf.sources.contact.all();
 		waf.sources.account.all();
+		*/
 		
 		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
 	};

@@ -7,7 +7,12 @@
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Activity" data-scope="global" data-lib="WAF" data-id="activity" data-dataType="string" data-autoLoad="false" content="activity"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="object" data-source="{id}sendMailObj" data-scope="local" data-lib="WAF" data-id="{id}sendMailObj" data-dataType="string" data-autoLoad="true" data-attributes="subject:string,to:string,body:string" content="sendMailObj"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="array" data-source="{id}otherGuysArr" data-scope="local" data-lib="WAF" data-id="{id}otherGuysArr" data-dataType="string" data-autoLoad="true" data-attributes="fullName:string,ID:string" content="otherGuysArr"/>
+    <meta data-type="dataSource" data-lib="WAF" data-source="{id}leadSourceArr" data-source-type="scalar" data-dataType="string" data-autoLoad="true" name="WAF.config.datasources" data-scope="local" data-id="{id}leadSourceArr" content="leadSourceArr"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="array" data-source="{id}moreActionsArr" data-scope="local" data-lib="WAF" data-id="{id}moreActionsArr" data-dataType="string" data-autoLoad="true" data-attributes="title:string" content="moreActionsArr"/>
+    
+    
+    
+    
     
     
     
@@ -165,8 +170,8 @@
  	 	 	 	 	 	 		<div id="{id}combobox4" data-type="combobox" data-limit="20" data-lib="WAF" data-label-position="left" data-label="Industry" data-editable="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding-out="lead.industry" data-autoDispatch="true" class="waf-widget waf-combobox "><select><option value="-none-" selected="selected">-none-</option><option value="ASP">ASP</option><option value="Data/Telecom">Data/Telecom</option><option value="ERP">ERP</option><option value="Government">Government</option><option value="Military">Military</option><option value="Large Enterprise">Large Enterprise</option><option value="Management ISV">Management ISV</option><option value="Network Equipment">Network Equipment</option><option value="Service Provider">Service Provider</option><option value="Small/Medium Enterprise">Small/Medium Enterprise</option><option value="Systems Integrator">Systems Integrator</option><option value="Wireless">Wireless</option></select></div>
  	 	 	 	 	 	 		<label id="{id}label8" for="{id}combobox4" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-label waf-label-combobox">Industry</label>
  	 	 	 	 	 	 		<div id="{id}combobox5" data-type="combobox" data-limit="20" data-lib="WAF" data-label-position="left" data-label="Lead Status" data-editable="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding-out="lead.leadStatus" data-autoDispatch="true" class="waf-widget waf-combobox "><select><option value="-none-" selected="selected">-none-</option><option value="Attempted To Contact">Attempted To Contact</option><option value="Contact in Future">Contact in Future</option><option value="Contacted">Contacted</option><option value="Junk Lead">Junk Lead</option><option value="Lost Lead">Lost Lead</option><option value="Not Contacted">Not Contacted</option><option value="Pre Qualified">Pre Qualified</option></select></div>
- 	 	 	 	 	 	 		<label id="{id}label9" data-type="label" data-lib="WAF" for="{id}combobox5" data-valign="middle" data-margin="5" class="waf-widget waf-label waf-label-combobox">Lead Status</label>
- 	 	 	 	 	 	 	</div>
+ 	 	 	 	 	 	 		<label id="{id}label9" for="{id}combobox5" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" class="waf-widget waf-label waf-label-combobox">Lead Status</label>
+ 	 	 	 	 	 	 					</div>
  	 	 	 	 	 	</div>
  	 	 	 	 		<div id="{id}container19" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected','allowRemove']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-4 waf-level-4 accordion-section waf-state-collapsed">
 	 	 	 	 	 	 	<div id="{id}container20" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-context="['protected']" data-constraint-top="true" data-constraint-right="true" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-5 waf-level-5 accordion-header waf-accordion-header waf-state-collapsed">
@@ -245,4 +250,5 @@
  	 	 	</div>
  	 	</div>
  	</div>
+	
 	</section>

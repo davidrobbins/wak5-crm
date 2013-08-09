@@ -22,6 +22,7 @@ function constructor (id) {
 		combobox3$ = getHtmlObj('combobox3'),
 		combobox4$ = getHtmlObj('combobox4'),
 		combobox5$ = getHtmlObj('combobox5'),
+		accordion2 = getHtmlId('accordion2'),
 		
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
 		selectedLeadsListTemplateSource = $('#selected-leads-list-template').html(),
@@ -65,38 +66,39 @@ function constructor (id) {
 				$$(leadsDetailContainer).hide();
 				$$(leadsListContainer).show();
 			}
+			
+			$comp.sourcesVar.leadTypeArr = [];
+			$comp.sourcesVar.leadTypeArr.push({title: 'Open Leads'});
+			$comp.sourcesVar.leadTypeArr.push({title: 'Converted Leads'});
+			$comp.sources.leadTypeArr.sync();
+			
+			$comp.sourcesVar.moreActionsArr = [];
+			$comp.sourcesVar.moreActionsArr.push({title: 'More Actions'});
+			$comp.sourcesVar.moreActionsArr.push({title: 'Mass Update'});
+			$comp.sourcesVar.moreActionsArr.push({title: 'Change Owner'});
+			$comp.sourcesVar.moreActionsArr.push({title: 'Mail Merge'});
+			$comp.sources.moreActionsArr.sync();
+			
+			waf.ds.User.getOtherUsers({
+				onSuccess: function(event) {
+					$comp.sourcesVar.otherGuysArr = event.result.slice(0);
+					$comp.sources.otherGuysArr.sync();	
+				} //end - onSuccess
+			});
+			
+			selectedLeadsUL$.on('mouseenter', '.selectedLeads', function (event) {
+		   		$(this).addClass('hoverLead');
+			});
+			
+			selectedLeadsUL$.on('mouseleave', '.selectedLeads', function (event) {
+		   		$(this).removeClass('hoverLead');
+			});
+			
+			//Load activity detail component.
+			$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
+
 		}, 80);
 		
-		$comp.sourcesVar.leadTypeArr = [];
-		$comp.sourcesVar.leadTypeArr.push({title: 'Open Leads'});
-		$comp.sourcesVar.leadTypeArr.push({title: 'Converted Leads'});
-		$comp.sources.leadTypeArr.sync();
-		
-		$comp.sourcesVar.moreActionsArr = [];
-		$comp.sourcesVar.moreActionsArr.push({title: 'More Actions'});
-		$comp.sourcesVar.moreActionsArr.push({title: 'Mass Update'});
-		$comp.sourcesVar.moreActionsArr.push({title: 'Change Owner'});
-		$comp.sourcesVar.moreActionsArr.push({title: 'Mail Merge'});
-		$comp.sources.moreActionsArr.sync();
-		
-		waf.ds.User.getOtherUsers({
-			onSuccess: function(event) {
-				$comp.sourcesVar.otherGuysArr = event.result.slice(0);
-				$comp.sources.otherGuysArr.sync();	
-			} //end - onSuccess
-		});
-		
-		selectedLeadsUL$.on('mouseenter', '.selectedLeads', function (event) {
-	   		$(this).addClass('hoverLead');
-		});
-		
-		selectedLeadsUL$.on('mouseleave', '.selectedLeads', function (event) {
-	   		$(this).removeClass('hoverLead');
-		});
-		
-		//Load activity detail component.
-		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
-
 			
 	// @region namespaceDeclaration// @startlock
 	var leadChangeOwnerButton = {};	// @button
@@ -388,6 +390,7 @@ function constructor (id) {
 
 	leadSaveButton.click = function leadSaveButton_click (event)// @startlock
 	{// @endlock
+		$$(accordion2).expand(1);
 		$$(leadsDetailContainer).hide();
 		$$(leadsListContainer).show();
 		
@@ -416,6 +419,7 @@ function constructor (id) {
 			waf.sources.lead.removeCurrentReference();
 		}
 		
+		$$(accordion2).expand(1);
 		$$(leadsDetailContainer).hide();
 		$$(leadsListContainer).show();
 		

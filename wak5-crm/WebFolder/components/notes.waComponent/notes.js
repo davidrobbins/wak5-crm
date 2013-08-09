@@ -80,16 +80,19 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		buildNoteGrid(data.userData);
-		addNoteContainer$.css('height', 42);
-	
-		notesListContainer$.on('mouseenter', '.noteListItem', function (event) {
-	   		$(this).addClass('noteSelected');
-		});
 		
-		notesListContainer$.on('mouseleave', '.noteListItem', function (event) {
-	   		$(this).removeClass('noteSelected');
-		});
+		setTimeout(function() {
+			buildNoteGrid(data.userData);
+			addNoteContainer$.css('height', 42);
+		
+			notesListContainer$.on('mouseenter', '.noteListItem', function (event) {
+		   		$(this).addClass('noteSelected');
+			});
+			
+			notesListContainer$.on('mouseleave', '.noteListItem', function (event) {
+		   		$(this).removeClass('noteSelected');
+			});
+		}, 80);
 		
 		
 	// @region namespaceDeclaration// @startlock

@@ -12,7 +12,8 @@ function constructor (id) {
 		notesComponent = getHtmlId('notesComponent'),
 		activityDetailComponent = getHtmlId('activityDetailComponent'),
 		combobox1$ = getHtmlObj('combobox1'),
-		combobox2$ = getHtmlObj('combobox2');
+		combobox2$ = getHtmlObj('combobox2'),
+		accordion4 = getHtmlId('accordion4');
 		
 		
 		
@@ -31,12 +32,13 @@ function constructor (id) {
 				$$(accountsDetailContainer).hide();
 				$$(accountsListContainer).show();
 			}
+			
+			//Load activity detail component.
+			$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: accountsDetailMainContainer, activityDetailContainer: accountsActivityDetailContainer}});
+
 		}, 80);
 		
 	
-		//Load activity detail component.
-		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: accountsDetailMainContainer, activityDetailContainer: accountsActivityDetailContainer}});
-
 	// @region namespaceDeclaration// @startlock
 	var newAccountEventButton = {};	// @button
 	var accountsCopyAddrButton = {};	// @button
@@ -127,6 +129,7 @@ function constructor (id) {
 			waf.sources.account.removeCurrentReference();
 		}
 		
+		$$(accordion4).expand(1);
 		$$(accountsDetailContainer).hide();
 		$$(accountsListContainer).show();
 	};// @lock
@@ -140,6 +143,7 @@ function constructor (id) {
 			}
 		});
 		
+		$$(accordion4).expand(1);
 		$$(accountsDetailContainer).hide();
 		$$(accountsListContainer).show();
 		

@@ -10,7 +10,8 @@ function constructor (id) {
 		contactsActivityDetailContainer = getHtmlId('contactsActivityDetailContainer'),
 		notesComponent = getHtmlId('notesComponent'),
 		activityDetailComponent = getHtmlId('activityDetailComponent'),
-		combobox3$ = getHtmlObj('combobox1');
+		combobox3$ = getHtmlObj('combobox1'),
+		accordion1 = getHtmlId('accordion1');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -27,11 +28,11 @@ function constructor (id) {
 				$$(contactsDetailContainer).hide();
 				$$(contactsListContainer).show();
 			}
+			
+			
+			//Load activity detail component.
+			$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: contactsDetailMainContainer, activityDetailContainer: contactsActivityDetailContainer}});
 		}, 80);
-
-
-		//Load activity detail component.
-		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: contactsDetailMainContainer, activityDetailContainer: contactsActivityDetailContainer}});
 
 	// @region namespaceDeclaration// @startlock
 	var newContactEventButton = {};	// @button
@@ -112,7 +113,7 @@ function constructor (id) {
 
 	contactsSaveButton.click = function contactsSaveButton_click (event)// @startlock
 	{// @endlock
-		
+		$$(accordion1).expand(1);
 		$$(contactsDetailContainer).hide();
 		$$(contactsListContainer).show();
 	
@@ -123,10 +124,6 @@ function constructor (id) {
 			}
 		});
 		
-		//$$(tabView1).selectTab(1);
-		//Bug report: isNewElement(). The following line is only work-around.
-		//waf.sources.contact.collectionRefresh(); BAD BAD
-
 	};// @lock
 
 	contactsCancelButton.click = function contactsCancelButton_click (event)// @startlock
@@ -135,6 +132,7 @@ function constructor (id) {
 			waf.sources.contact.removeCurrentReference();
 		}
 		
+		$$(accordion1).expand(1);
 		$$(contactsDetailContainer).hide();
 		$$(contactsListContainer).show();
 		//$$(tabView1).selectTab(1);

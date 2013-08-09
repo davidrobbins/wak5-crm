@@ -21,6 +21,7 @@ function constructor (id) {
 		activityDetailComponent = getHtmlId('activityDetailComponent'),
 		combobox3$ = getHtmlObj('combobox3'),
 		combobox4$ = getHtmlObj('combobox4'),
+		combobox5$ = getHtmlObj('combobox5'),
 		
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
 		selectedLeadsListTemplateSource = $('#selected-leads-list-template').html(),
@@ -372,6 +373,7 @@ function constructor (id) {
 						//Note: Bug - Refactor - Super hack fix later.
 						combobox3$.find('input').val('-none-');
 						combobox4$.find('input').val('-none-');
+						combobox5$.find('input').val('-none-');
 			
 						$$(leadsListContainer).hide();
 						$$(leadsDetailContainer).show();

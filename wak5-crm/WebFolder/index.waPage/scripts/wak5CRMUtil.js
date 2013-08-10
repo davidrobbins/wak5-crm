@@ -31,11 +31,10 @@ var WAK5CRMUTIL = (function() {
         $('#headerContainer').css("backgroundColor", "#7f7f7f");
         $('#headerTitle').css("color", "#ffffff");
         
-        /*
         waf.sources.lead.query("converted == false");
 		waf.sources.contact.all();
 		waf.sources.account.all();
-		*/
+		
 		
 		$$('mainComponent').loadComponent({path: '/components/dashboard.waComponent'});
 	};
@@ -235,7 +234,9 @@ var WAK5CRMUTIL = (function() {
 		 	theEntityID = $this.data('entity');
 		 	theNewPath = 'components/' + theDataClass + '.waComponent';
 			theView = "detail";	
-				 	
+			
+			//console.log(theEntityID);
+			 	
 		 	switch(theDataClass) {
 				case "accounts":
 				waf.sources.account.selectByKey(theEntityID);

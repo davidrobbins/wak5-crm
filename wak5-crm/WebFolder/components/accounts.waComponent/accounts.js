@@ -32,12 +32,12 @@ function constructor (id) {
 				$$(accountsDetailContainer).hide();
 				$$(accountsListContainer).show();
 			}
-			
-			//Load activity detail component.
-			$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: accountsDetailMainContainer, activityDetailContainer: accountsActivityDetailContainer}});
-
-		}, 80);
+		}, 200);
 		
+				
+		//Load activity detail component.
+		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: accountsDetailMainContainer, activityDetailContainer: accountsActivityDetailContainer}});
+
 	
 	// @region namespaceDeclaration// @startlock
 	var newAccountEventButton = {};	// @button

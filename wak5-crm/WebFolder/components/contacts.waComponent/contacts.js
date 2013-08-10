@@ -10,8 +10,12 @@ function constructor (id) {
 		contactsActivityDetailContainer = getHtmlId('contactsActivityDetailContainer'),
 		notesComponent = getHtmlId('notesComponent'),
 		activityDetailComponent = getHtmlId('activityDetailComponent'),
-		combobox3$ = getHtmlObj('combobox1'),
-		accordion1 = getHtmlId('accordion1');
+		combobox1$ = getHtmlObj('combobox1'),
+		accordion1 = getHtmlId('accordion1'),
+		dataGridContactsList = getHtmlId('dataGrid1'),
+		changeOwnerComponent = getHtmlId('changeOwnerComponent'),
+		contactsChangeOwnerContainer = getHtmlId('contactsChangeOwnerContainer');
+		
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -24,17 +28,23 @@ function constructor (id) {
 				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.ID);
 				$$(contactsListContainer).hide();
 				$$(contactsDetailContainer).show();
+				//Super Hack
+			combobox1$.find('input').val(waf.sources.contact.leadSource);
+			
 			} else {
 				$$(contactsDetailContainer).hide();
 				$$(contactsListContainer).show();
-			}
+			}		
+		}, 200);
+	
 			
-			
-			//Load activity detail component.
-			$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: contactsDetailMainContainer, activityDetailContainer: contactsActivityDetailContainer}});
-		}, 80);
+		//Load activity detail component.
+		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: contactsDetailMainContainer, activityDetailContainer: contactsActivityDetailContainer}});
+		
+
 
 	// @region namespaceDeclaration// @startlock
+	var contactChangeOwnerButton = {};	// @button
 	var newContactEventButton = {};	// @button
 	var contactsCopyAddrButton = {};	// @button
 	var dataGrid2 = {};	// @dataGrid
@@ -46,6 +56,27 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	contactChangeOwnerButton.click = function contactChangeOwnerButton_click (event)// @startlock
+	{// @endlock
+		if (waf.directory.currentUserBelongsTo("Manager")) {
+			waf.sources.contact.getEntityCollection().buildFromSelection(waf.sources.contact.getSelection(), {
+				onSuccess: function(event) {
+					//buildSelectedLeadsList(event.entityCollection);
+					//Load Change Owner component.
+					$$(changeOwnerComponent).loadComponent({path: '/components/changeOwner.waComponent', userData: {section: "contacts", selectionArr: $$(dataGridContactsList).getSelectedRows(), listContainer: contactsListContainer, changeOwnerContainer: contactsChangeOwnerContainer, theEntityCollection: event.entityCollection}});
+
+				}
+			});
+			
+					
+			$$(contactsListContainer).hide();
+			$$(contactsChangeOwnerContainer).show();
+		
+		} else {
+			WAK5CRMUTIL.setMessage("You do not have permission to transfer leads.", 4000, "error");
+		}
+	};// @lock
 
 	newContactEventButton.click = function newContactEventButton_click (event)// @startlock
 	{// @endlock
@@ -147,7 +178,8 @@ function constructor (id) {
 		//Load Note Component
 		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "contacts", entityID: waf.sources.contact.ID}});
 
-		
+		//Super Hack
+		combobox1$.find('input').val(waf.sources.contact.leadSource);
 		
 		//Add to recent items.
 		WAK5CRMUTIL.newRecentItem("contacts", "Contact: ", waf.sources.contact.firstName + " " + waf.sources.contact.lastName, waf.sources.contact.ID, 'mainComponent_recentItemsBodyContainer'); 
@@ -155,6 +187,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_contactChangeOwnerButton", "click", contactChangeOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_newContactEventButton", "click", newContactEventButton.click, "WAF");
 	WAF.addListener(this.id + "_contactsCopyAddrButton", "click", contactsCopyAddrButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");

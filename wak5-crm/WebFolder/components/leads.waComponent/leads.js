@@ -56,56 +56,48 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				//waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
-				
 				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
 				$$(leadsListContainer).hide();
 				$$(leadsDetailContainer).show();
+				//Super Hack
+				combobox3$.find('input').val(waf.sources.lead.leadSource);
+				combobox4$.find('input').val(waf.sources.lead.industry);
+				combobox5$.find('input').val(waf.sources.lead.leadStatus);
 				
 			} else {
 				$$(leadsDetailContainer).hide();
 				$$(leadsListContainer).show();
 			}
-			
-			$comp.sourcesVar.leadTypeArr = [];
-			$comp.sourcesVar.leadTypeArr.push({title: 'Open Leads'});
-			$comp.sourcesVar.leadTypeArr.push({title: 'Converted Leads'});
-			$comp.sources.leadTypeArr.sync();
-			
-			$comp.sourcesVar.moreActionsArr = [];
-			$comp.sourcesVar.moreActionsArr.push({title: 'More Actions'});
-			$comp.sourcesVar.moreActionsArr.push({title: 'Mass Update'});
-			$comp.sourcesVar.moreActionsArr.push({title: 'Change Owner'});
-			$comp.sourcesVar.moreActionsArr.push({title: 'Mail Merge'});
-			$comp.sources.moreActionsArr.sync();
-			
-			waf.ds.User.getOtherUsers({
-				onSuccess: function(event) {
-					$comp.sourcesVar.otherGuysArr = event.result.slice(0);
-					$comp.sources.otherGuysArr.sync();	
-				} //end - onSuccess
-			});
-			
-			selectedLeadsUL$.on('mouseenter', '.selectedLeads', function (event) {
-		   		$(this).addClass('hoverLead');
-			});
-			
-			selectedLeadsUL$.on('mouseleave', '.selectedLeads', function (event) {
-		   		$(this).removeClass('hoverLead');
-			});
-			
-			//Load activity detail component.
-			$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
-
-		}, 80);
+		}, 200);
 		
-			
+		$comp.sourcesVar.leadTypeArr = [];
+		$comp.sourcesVar.leadTypeArr.push({title: 'Open Leads'});
+		$comp.sourcesVar.leadTypeArr.push({title: 'Converted Leads'});
+		$comp.sources.leadTypeArr.sync();
+				
+		waf.ds.User.getOtherUsers({
+			onSuccess: function(event) {
+				$comp.sourcesVar.otherGuysArr = event.result.slice(0);
+				$comp.sources.otherGuysArr.sync();	
+			} //end - onSuccess
+		});
+		
+		selectedLeadsUL$.on('mouseenter', '.selectedLeads', function (event) {
+	   		$(this).addClass('hoverLead');
+		});
+		
+		selectedLeadsUL$.on('mouseleave', '.selectedLeads', function (event) {
+	   		$(this).removeClass('hoverLead');
+		});
+		
+		//Load activity detail component.
+		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
+	
 	// @region namespaceDeclaration// @startlock
 	var leadChangeOwnerButton = {};	// @button
 	var leadMassUpdateButton = {};	// @button
 	var leadDeleteButton = {};	// @button
 	var changeLeadOwnerButton = {};	// @button
-	var moreActionsArrEvent = {};	// @dataSource
 	var cancelLeadOwnerButton = {};	// @button
 	var newLeadEventButton = {};	// @button
 	var sendEmail = {};	// @button
@@ -167,34 +159,6 @@ function constructor (id) {
 				
 			}
 		});
-	};// @lock
-
-	moreActionsArrEvent.onCurrentElementChange = function moreActionsArrEvent_onCurrentElementChange (event)// @startlock
-	{// @endlock
-		switch(event.dataSource.title) {
-			case "More Actions":
-			WAK5CRMUTIL.setMessage("Please select an action.", 5000, "error");
-			break;
-			
-			case "Mail Merge":
-			WAK5CRMUTIL.setMessage("The Mail Merge option is not yet implemented.", 5000, "error");
-			break;
-			
-			case "Mass Update":
-			WAK5CRMUTIL.setMessage("The Mass Update option is not yet implemented.", 5000, "error");
-			break;
-			
-			case "Change Owner":
-			waf.sources.lead.getEntityCollection().buildFromSelection(waf.sources.lead.getSelection(), {
-				onSuccess: function(event) {
-					buildSelectedLeadsList(event.entityCollection);
-				}
-			});
-				
-			$$(leadsListContainer).hide();
-			$$(changeOwnerContainer).show();
-			break;
-		}
 	};// @lock
 
 	cancelLeadOwnerButton.click = function cancelLeadOwnerButton_click (event)// @startlock
@@ -273,17 +237,10 @@ function constructor (id) {
 		//Load Note Component
 		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "leads", entityID: waf.sources.lead.ID}});
 		
-		
-		/*
-		if (waf.sources.lead.isNewElement()) {
-			$comp.sourcesVar.noteObj.title = null;
-			$comp.sourcesVar.noteObj.createDate = null;
-			$comp.sourcesVar.noteObj.body = null;
-			$comp.sources.noteObj.sync();
-		} else {
-			buildNoteGrid();
-		}
-		*/
+		//Super Hack
+		combobox3$.find('input').val(waf.sources.lead.leadSource);
+		combobox4$.find('input').val(waf.sources.lead.industry);
+		combobox5$.find('input').val(waf.sources.lead.leadStatus);
 		
 		if (waf.sources.lead.converted) {
 			$$(leadsListContainer).hide();
@@ -437,7 +394,6 @@ function constructor (id) {
 	WAF.addListener(this.id + "_leadMassUpdateButton", "click", leadMassUpdateButton.click, "WAF");
 	WAF.addListener(this.id + "_leadDeleteButton", "click", leadDeleteButton.click, "WAF");
 	WAF.addListener(this.id + "_changeLeadOwnerButton", "click", changeLeadOwnerButton.click, "WAF");
-	WAF.addListener(this.id + "_moreActionsArr", "onCurrentElementChange", moreActionsArrEvent.onCurrentElementChange, "WAF");
 	WAF.addListener(this.id + "_cancelLeadOwnerButton", "click", cancelLeadOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_newLeadEventButton", "click", newLeadEventButton.click, "WAF");
 	WAF.addListener(this.id + "_sendEmail", "click", sendEmail.click, "WAF");

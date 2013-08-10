@@ -24,6 +24,17 @@
 	<meta name="WAF.config.loadJS" content="/index.waPage/scripts/wak5CRMUtil.js"/>
 	<meta name="WAF.config.loadJS" content="/index.waPage/scripts/handlebars.js"/>
 
+	<script type="text/x-handlebars-template" id="selected-people-list-template">
+		<li class="selectedPeople">
+			<div data-id="{{dataId}}" class="selectedPeopleRow"> 
+				<div class="selectedPeopleColumn"><span class="strongName">{{fullName}}</span></div> 
+				<div class="selectedPeopleColumn">{{company}}</div>
+				<div class="selectedPeopleColumn">{{email}}</div>
+				<div class="selectedPeopleColumn">{{owner}}</div>
+			</div>
+		</li>
+	</script>
+
 	<script type="text/x-handlebars-template" id="selected-leads-list-template">
 		<li class="selectedLeads">
 			<div data-id="{{dataId}}" class="selectedLeadRow"> 

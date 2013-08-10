@@ -59,11 +59,22 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
      
     <div id="{id}contactsContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-container waf-container-level-0 waf-level-0">
 	 				<div id="{id}contactsListContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-1 waf-level-1">
- 	 	 		<div id="{id}dataGrid1" data-type="dataGrid" data-selection-mode="single" data-readOnly="true" data-lib="WAF" data-label-position="top" data-label="" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-column="[{'sourceAttID':'ID','colID':'ID','width':'70','title':'ID'},{'sourceAttID':'fullName','colID':'fullName','width':'200','title':'Name'},{'sourceAttID':'account.name','colID':'account_name','width':'200','title':'Account'},{'sourceAttID':'phone','colID':'phone','width':'200','title':'Phone'},{'sourceAttID':'owner.fullName','colID':'owner_fullName','width':'200','title':'Owner'}]" data-binding="contact" class="waf-widget waf-dataGrid "></div>
+ 	 	 		<div id="{id}dataGrid1" data-type="dataGrid" data-selection-mode="multiple" data-readOnly="true" data-lib="WAF" data-label-position="top" data-label="" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-column="[{'sourceAttID':'ID','colID':'ID','width':'70','title':'ID'},{'sourceAttID':'fullName','colID':'fullName','width':'200','title':'Name'},{'sourceAttID':'account.name','colID':'account_name','width':'200','title':'Account'},{'sourceAttID':'phone','colID':'phone','width':'200','title':'Phone'},{'sourceAttID':'owner.fullName','colID':'owner_fullName','width':'200','title':'Owner'}]" data-binding="contact" class="waf-widget waf-dataGrid "></div>
  	 		<button id="{id}newContactButton" data-type="button" data-text="New Contact" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
+ 	 		<button id="{id}contactDeleteButton" data-type="button" data-text="Delete" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
+ 	 		<button id="{id}contactMassUpdateButton" data-type="button" data-text="Update" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
+ 	 		<button id="{id}contactChangeOwnerButton" data-type="button" data-text="Chg Owner" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
  	 	</div>
  		<div id="{id}contactsDetailContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-hideonload="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-1 waf-level-1">
 	 	 	<div id="{id}contactsDetailWrapContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-2 waf-level-2">
@@ -117,7 +128,7 @@
  	 	 	 	 	 	 		<label id="{id}label26" for="{id}textField25" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" class="waf-widget waf-label waf-label-textField">Assistant</label>
  	 	 	 	 	 	 		<input type="text" tabindex="11" id="{id}textField26" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Reports To" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="contact.reportsTo" class="waf-widget waf-textField "/>
  	 	 	 	 	 	 		<label id="{id}label27" for="{id}textField26" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" class="waf-widget waf-label waf-label-textField">Reports To</label>
- 	 	 	 	 	 	 		<div id="{id}combobox1" data-type="combobox" data-limit="20" data-lib="WAF" data-label-position="left" data-label="Lead Source" data-editable="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding-out="contact.leadSource" data-autoDispatch="true" class="waf-widget waf-combobox "><select><option value="-none-" selected="selected">-none-</option><option value="Advertisement">Advertisement</option><option value="Cold Call">Cold Call</option><option value="Employee Referral">Employee Referral</option><option value="External Referral">External Referral</option><option value="Online Store">Online Store</option><option value="Partner">Partner</option><option value="Trade Show">Trade Show</option><option value="Web Research">Web Research</option></select></div>
+ 	 	 	 	 	 	 		<div id="{id}combobox1" data-type="combobox" data-limit="20" data-lib="WAF" data-label-position="left" data-label="Lead Source" data-editable="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding-out="contact.leadSource" data-autoDispatch="true" class="waf-widget waf-combobox "><select><option value="-none-">-none-</option><option value="Advertisement">Advertisement</option><option value="Cold Call">Cold Call</option><option value="Employee Referral">Employee Referral</option><option value="External Referral">External Referral</option><option value="Online Store">Online Store</option><option value="Partner">Partner</option><option value="Trade Show">Trade Show</option><option value="Web Research">Web Research</option></select></div>
  	 	 	 	 	 	 		<label id="{id}label7" for="{id}combobox1" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-label waf-label-combobox">Lead Source</label>
  	 	 	 	 	 	 	</div>
  	 	 	 	 	 	</div>
@@ -149,6 +160,9 @@
  	 	 		<input type="text" id="{id}textField27" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Account" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="contact.account.name" class="waf-widget waf-textField "/>
  	 	 		<label id="{id}label28" for="{id}textField27" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" class="waf-widget waf-label waf-label-textField">Account</label>
  	 	 	</div>
+ 	 	</div>
+ 		<div id="{id}contactsChangeOwnerContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-hideonload="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-1 waf-level-1">
+	 	 	<div id="{id}changeOwnerComponent" data-type="component" data-start-load="false" data-path="/components/changeOwner.waComponent" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-component "></div>
  	 	</div>
  	</div>
 	</section>

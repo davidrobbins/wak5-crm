@@ -15,7 +15,6 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		
 		selectedPeopleUL$.on('mouseenter', '.selectedPeople', function (event) {
 	   		$(this).addClass('hoverPeople');
 		});
@@ -49,7 +48,7 @@ function constructor (id) {
 			});
 		} //end - buildSelectedLeadsList.
 		
-		console.log(data.userData.theEntityCollection);
+		
 		buildSelectedPeopleList(data.userData.theEntityCollection);
 		
 	// @region namespaceDeclaration// @startlock
@@ -67,11 +66,11 @@ function constructor (id) {
 			 
 			break;
 			
-			case "contacts":
+			case "contacts":      
 			waf.sources.contact.changeOwner({ownerID: $$(combobox1).getValue(), contactsSelectionArr: data.userData.selectionArr}, {
 				onSuccess: function(event) {
 					WAK5CRMUTIL.setMessage(event.result, 4000);
-					waf.sources.lead.collectionRefresh();
+					waf.sources.contact.collectionRefresh();
 					//Update Recent Items because some of them may have been removed as a result of lead change owner.
 					WAK5CRMUTIL.loadRecentItems('mainComponent_recentItemsBodyContainer'); // Note: Refactor so "mainComponent_recentItemsComponent
 					

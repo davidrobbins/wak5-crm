@@ -36,13 +36,30 @@ function constructor (id) {
 			
 			selectedPeopleCollection.forEach({
 				onSuccess: function(ev2) {	
+					
+					switch(data.userData.section) {
+					case "leads":
+					case "contacts":
 					peopleData = 	{
 						fullName:  	ev2.entity.fullName.getValue(),
 						company: 	ev2.entity.company.getValue(),
 						email: 		ev2.entity.emailAccnt.getValue(),
 						dataId: 	ev2.entity.ID.getValue(),
 						owner: 		ev2.entity.owner.value.fullName
-					};
+					}; 
+					break;
+					
+					case "accounts":
+					peopleData = 	{
+						fullName:  	ev2.entity.name.getValue(),
+						company: 	ev2.entity.website.getValue(),
+						email: 		ev2.entity.billingCity.getValue(),
+						dataId: 	ev2.entity.ID.getValue(),
+						owner: 		ev2.entity.owner.value.fullName
+					}; 
+					break;
+					} //end - switch
+					
 					selectedPeopleUL$.append(selectedPeopleListTemplateFn(peopleData));
 				}
 			});
@@ -65,7 +82,6 @@ function constructor (id) {
 			case "leads":
 			 
 			break;
-			
 			case "contacts":      
 			waf.sources.contact.changeOwner({ownerID: $$(combobox1).getValue(), contactsSelectionArr: data.userData.selectionArr}, {
 				onSuccess: function(event) {
@@ -81,7 +97,17 @@ function constructor (id) {
 			break;
 			
 			case "accounts":
-			
+			waf.sources.account.changeOwner({ownerID: $$(combobox1).getValue(), accountsSelectionArr: data.userData.selectionArr}, {
+				onSuccess: function(event) {
+					WAK5CRMUTIL.setMessage(event.result, 4000);
+					waf.sources.account.collectionRefresh();
+					//Update Recent Items because some of them may have been removed as a result of lead change owner.
+					WAK5CRMUTIL.loadRecentItems('mainComponent_recentItemsBodyContainer'); // Note: Refactor so "mainComponent_recentItemsComponent
+					
+					$$(data.userData.changeOwnerContainer).hide();
+					$$(data.userData.listContainer).show(); 
+				}
+			});
 			break;
 		} //end - switch
 		

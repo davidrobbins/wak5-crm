@@ -13,8 +13,10 @@ function constructor (id) {
 		activityDetailComponent = getHtmlId('activityDetailComponent'),
 		combobox1$ = getHtmlObj('combobox1'),
 		combobox2$ = getHtmlObj('combobox2'),
-		accordion4 = getHtmlId('accordion4');
-		
+		accordion4 = getHtmlId('accordion4'),
+		dataGridAccountsList = getHtmlId('dataGrid1'),
+		changeOwnerComponent = getHtmlId('changeOwnerComponent'),
+		accountsChangeOwnerContainer = getHtmlId('accountsChangeOwnerContainer');
 		
 		
 	// @region beginComponentDeclaration// @startlock
@@ -40,6 +42,7 @@ function constructor (id) {
 
 	
 	// @region namespaceDeclaration// @startlock
+	var accountChangeOwnerButton = {};	// @button
 	var newAccountEventButton = {};	// @button
 	var accountsCopyAddrButton = {};	// @button
 	var newAccountTaskButton = {};	// @button
@@ -51,6 +54,24 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	accountChangeOwnerButton.click = function accountChangeOwnerButton_click (event)// @startlock
+	{// @endlock
+		if (waf.directory.currentUserBelongsTo("Manager")) {
+			waf.sources.account.getEntityCollection().buildFromSelection(waf.sources.account.getSelection(), {
+				onSuccess: function(event) {
+					$$(changeOwnerComponent).loadComponent({path: '/components/changeOwner.waComponent', userData: {section: "accounts", selectionArr: $$(dataGridAccountsList).getSelectedRows(), listContainer: accountsListContainer, changeOwnerContainer: accountsChangeOwnerContainer, theEntityCollection: event.entityCollection}});
+				}
+			});
+			
+					
+			$$(accountsListContainer).hide();
+			$$(accountsChangeOwnerContainer).show();
+		
+		} else {
+			WAK5CRMUTIL.setMessage("You do not have permission to transfer leads.", 4000, "error");
+		}
+	};// @lock
 
 	newAccountEventButton.click = function newAccountEventButton_click (event)// @startlock
 	{// @endlock
@@ -168,6 +189,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_accountChangeOwnerButton", "click", accountChangeOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_newAccountEventButton", "click", newAccountEventButton.click, "WAF");
 	WAF.addListener(this.id + "_accountsCopyAddrButton", "click", accountsCopyAddrButton.click, "WAF");
 	WAF.addListener(this.id + "_newAccountTaskButton", "click", newAccountTaskButton.click, "WAF");

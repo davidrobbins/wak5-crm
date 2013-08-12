@@ -16,9 +16,38 @@ function constructor (id) {
 		accordion4 = getHtmlId('accordion4'),
 		dataGridAccountsList = getHtmlId('dataGrid1'),
 		changeOwnerComponent = getHtmlId('changeOwnerComponent'),
-		accountsChangeOwnerContainer = getHtmlId('accountsChangeOwnerContainer');
+		accountsChangeOwnerContainer = getHtmlId('accountsChangeOwnerContainer'),
+		accountPrvButton = getHtmlId('accountPrevButton'),
+		accountNxtButton = getHtmlId('accountNextButton');
 		
+	function loadNewAccount() {
+		waf.sources.activity.query("account.ID = :1", waf.sources.account.ID);
+		//Load Note Component
+		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "accounts", entityID: waf.sources.account.ID}});
+		//Super Hack
+		combobox1$.find('input').val(waf.sources.account.type);
+		combobox2$.find('input').val(waf.sources.account.industry);
+		resetPrevNextButtons();
+	} //end - loadNewAccount.
+	
+	
+	function resetPrevNextButtons() {
+		//Next button
+		if (waf.sources.account.getPosition() === waf.sources.account.length - 1) {
+			$$(accountNxtButton).disable();
+		} else {
+			$$(accountNxtButton).enable();
+		}
 		
+		//Prev Button
+		if (waf.sources.account.getPosition() === 0) {
+			$$(accountPrvButton).disable();
+		} else {
+			$$(accountPrvButton).enable();
+		}
+	} //end - resetPrevNextButtons.
+	
+	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
 	this.name = 'accounts';
@@ -27,12 +56,7 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				waf.sources.activity.query("account.ID = :1", waf.sources.account.ID);
-				//Load Note Component
-				$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "accounts", entityID: waf.sources.account.ID}});
-				//Super Hack
-				combobox1$.find('input').val(waf.sources.account.type);
-				combobox2$.find('input').val(waf.sources.account.industry);
+				loadNewAccount();
 				//switch view.
 				$$(accountsListContainer).hide();
 				$$(accountsDetailContainer).show();
@@ -48,6 +72,8 @@ function constructor (id) {
 
 	
 	// @region namespaceDeclaration// @startlock
+	var accountNextButton = {};	// @button
+	var accountPrevButton = {};	// @button
 	var accountChangeOwnerButton = {};	// @button
 	var newAccountEventButton = {};	// @button
 	var accountsCopyAddrButton = {};	// @button
@@ -60,6 +86,24 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	accountNextButton.click = function accountNextButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.account.selectNext({
+			onSuccess: function(event) {
+				loadNewAccount();
+			}
+		});
+	};// @lock
+
+	accountPrevButton.click = function accountPrevButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.account.selectPrevious({
+			onSuccess: function(event) {
+				loadNewAccount();
+			}
+		});
+	};// @lock
 
 	accountChangeOwnerButton.click = function accountChangeOwnerButton_click (event)// @startlock
 	{// @endlock
@@ -181,17 +225,11 @@ function constructor (id) {
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
-		waf.sources.activity.query("account.ID = :1", waf.sources.account.getCurrentElement().ID.getValue());
+		loadNewAccount();
+		
 		$$(accountsListContainer).hide();
 		$$(accountsDetailContainer).show();
 		
-		//Super Hack
-		combobox1$.find('input').val(waf.sources.account.type);
-		combobox2$.find('input').val(waf.sources.account.industry);
-		
-		//Load Note Component
-		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "accounts", entityID: waf.sources.account.ID}});
-
 		//Add to recent items.
 		WAK5CRMUTIL.newRecentItem("accounts", "Account: ", waf.sources.account.name, waf.sources.account.ID, 'mainComponent_recentItemsBodyContainer'); 
 		// Note: Refactor so "mainComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
@@ -199,6 +237,8 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_accountNextButton", "click", accountNextButton.click, "WAF");
+	WAF.addListener(this.id + "_accountPrevButton", "click", accountPrevButton.click, "WAF");
 	WAF.addListener(this.id + "_accountChangeOwnerButton", "click", accountChangeOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_newAccountEventButton", "click", newAccountEventButton.click, "WAF");
 	WAF.addListener(this.id + "_accountsCopyAddrButton", "click", accountsCopyAddrButton.click, "WAF");

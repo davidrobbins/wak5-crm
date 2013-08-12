@@ -166,12 +166,13 @@
     
     
     
+    
       
     
     <div id="{id}leadsContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-hideonload="false" data-constraint-top="true" data-constraint-left="true" class="waf-widget waf-container waf-container-level-0 waf-level-0">
  		
 		
-			<div id="{id}leadsListContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-1 waf-level-1" data-hideonload="true">
+			<div id="{id}leadsListContainer" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-hideonload="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-1 waf-level-1">
 	 	 	<div id="{id}dataGrid2" data-type="dataGrid" data-selection-mode="multiple" data-readOnly="true" data-lib="WAF" data-label-position="top" data-label="" data-footer-text="item(s)" data-display-error="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-column="[{'sourceAttID':'ID','colID':'ID','width':'70','title':'ID'},{'sourceAttID':'fullName','colID':'fullName','width':'200','title':'Name'},{'sourceAttID':'company','colID':'company','width':'200','title':'Company'},{'sourceAttID':'phone','colID':'phone','width':'200','title':'Phone'},{'sourceAttID':'owner.fullName','colID':'owner_fullName','width':'200','title':'Owner'}]" data-binding="lead" class="waf-widget waf-dataGrid "></div>
  	 		<button id="{id}leadNewButton" data-type="button" data-text="New Lead" data-target="_blank" data-lib="WAF" data-constraint-top="true" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="false" data-action="simple" class="waf-widget waf-button "></button>
  	 		<div id="{id}combobox1" data-type="combobox" data-limit="20" data-lib="WAF" data-label-position="left" data-label="" data-editable="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding-options="[title]" data-binding-key="title" data-binding="{id}leadTypeArr" data-autoDispatch="true" class="waf-widget waf-combobox "><select><option value="">[title]</option></select></div>
@@ -254,7 +255,10 @@
  	 	 	 	 	</div>
  	 	 	 		<button id="{id}sendMailButton" data-type="button" data-text="Send Mail" data-target="_blank" data-lib="WAF" data-constraint-top="false" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="true" data-action="simple" class="waf-widget waf-button "></button>
  	 	 	 		<button id="{id}cloneButton" data-type="button" data-text="Clone" data-target="_blank" data-lib="WAF" data-constraint-top="false" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="true" data-action="simple" class="waf-widget waf-button "></button>
- 	 	 	 	</div>
+ 	 	 	 		<button id="{id}leadPrevButton" data-type="button" data-text="Prev" data-target="_blank" data-lib="WAF" data-constraint-top="false" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="true" data-action="simple" class="waf-widget waf-button "></button>
+ 	 	 	 		<button id="{id}leadNextButton" data-type="button" data-text="Next" data-target="_blank" data-lib="WAF" data-constraint-top="false" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="true" data-action="simple" class="waf-widget waf-button "></button>
+ 	 	 	 	
+ 	 	 	 		</div>
  	 	 		<input type="text" id="{id}textField6" data-type="textField" data-readOnly="true" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Owner" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="lead.owner.fullName" class="waf-widget waf-textField "/>
  	 	 		<label id="{id}label6" for="{id}textField6" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-label waf-label-textField">Owner</label>
  	 	 		<input type="text" tabindex="5" id="{id}textField2" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="EMail" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="lead.emailAccnt" class="waf-widget waf-textField "/>

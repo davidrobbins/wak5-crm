@@ -24,11 +24,41 @@ function constructor (id) {
 		combobox5$ = getHtmlObj('combobox5'),
 		accordion2 = getHtmlId('accordion2'),
 		
+		leadPrvButton = getHtmlId('leadPrevButton'),
+		leadNxtButton = getHtmlId('leadNextButton');
+		
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
 		selectedLeadsListTemplateSource = $('#selected-leads-list-template').html(),
 		selectedLeadsListTemplateFn = Handlebars.compile(selectedLeadsListTemplateSource),
 		leadData = {};
 		
+		function loadNewLead() {
+			waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
+			//Load Note Component
+			$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "leads", entityID: waf.sources.lead.ID}});
+			//Super Hack
+			combobox3$.find('input').val(waf.sources.lead.leadSource);
+			combobox4$.find('input').val(waf.sources.lead.industry);
+			combobox5$.find('input').val(waf.sources.lead.leadStatus);
+			resetPrevNextButtons();
+		} //end - loadNewContact.
+	
+		function resetPrevNextButtons() {
+			//Next button
+			if (waf.sources.lead.getPosition() === waf.sources.lead.length - 1) {
+				$$(leadNxtButton).disable();
+			} else {
+				$$(leadNxtButton).enable();
+			}
+			
+			//Prev Button
+			if (waf.sources.lead.getPosition() === 0) {
+				$$(leadPrvButton).disable();
+			} else {
+				$$(leadPrvButton).enable();
+			}
+		} //end - resetPrevNextButtons.
+	
 		function buildSelectedLeadsList(selectedLeadsCollection) {
 			selectedLeadsUL$.children().remove(); 
 			
@@ -56,13 +86,7 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
-				//Load Note Component
-				$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "leads", entityID: waf.sources.lead.ID}});
-				//Super Hack
-				combobox3$.find('input').val(waf.sources.lead.leadSource);
-				combobox4$.find('input').val(waf.sources.lead.industry);
-				combobox5$.find('input').val(waf.sources.lead.leadStatus);
+				loadNewLead();
 				//switch view
 				$$(leadsListContainer).hide();
 				$$(leadsDetailContainer).show();
@@ -97,6 +121,8 @@ function constructor (id) {
 		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
 	
 	// @region namespaceDeclaration// @startlock
+	var leadNextButton = {};	// @button
+	var leadPrevButton = {};	// @button
 	var leadChangeOwnerButton = {};	// @button
 	var leadMassUpdateButton = {};	// @button
 	var leadDeleteButton = {};	// @button
@@ -121,6 +147,24 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	leadNextButton.click = function leadNextButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.lead.selectNext({
+			onSuccess: function(event) {
+				loadNewLead();
+			}
+		});
+	};// @lock
+
+	leadPrevButton.click = function leadPrevButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.lead.selectPrevious({
+			onSuccess: function(event) {
+				loadNewLead();
+			}
+		});
+	};// @lock
 
 	leadChangeOwnerButton.click = function leadChangeOwnerButton_click (event)// @startlock
 	{// @endlock
@@ -231,15 +275,7 @@ function constructor (id) {
 
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
-		//Leads List Grid
-		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);		
-		//Load Note Component
-		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "leads", entityID: waf.sources.lead.ID}});
-		
-		//Super Hack
-		combobox3$.find('input').val(waf.sources.lead.leadSource);
-		combobox4$.find('input').val(waf.sources.lead.industry);
-		combobox5$.find('input').val(waf.sources.lead.leadStatus);
+		loadNewLead();
 		
 		if (waf.sources.lead.converted) {
 			$$(leadsListContainer).hide();
@@ -389,6 +425,8 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_leadNextButton", "click", leadNextButton.click, "WAF");
+	WAF.addListener(this.id + "_leadPrevButton", "click", leadPrevButton.click, "WAF");
 	WAF.addListener(this.id + "_leadChangeOwnerButton", "click", leadChangeOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_leadMassUpdateButton", "click", leadMassUpdateButton.click, "WAF");
 	WAF.addListener(this.id + "_leadDeleteButton", "click", leadDeleteButton.click, "WAF");

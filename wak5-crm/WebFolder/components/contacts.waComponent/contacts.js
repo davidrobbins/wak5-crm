@@ -14,8 +14,35 @@ function constructor (id) {
 		accordion1 = getHtmlId('accordion1'),
 		dataGridContactsList = getHtmlId('dataGrid1'),
 		changeOwnerComponent = getHtmlId('changeOwnerComponent'),
-		contactsChangeOwnerContainer = getHtmlId('contactsChangeOwnerContainer');
+		contactsChangeOwnerContainer = getHtmlId('contactsChangeOwnerContainer'),
+		contactPrvButton = getHtmlId('contactPrevButton'),
+		contactNxtButton = getHtmlId('contactNextButton');
 		
+	function loadNewContact() {
+		waf.sources.activity.query("contact.ID = :1", waf.sources.contact.ID);
+		//Load Note Component
+		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "contacts", entityID: waf.sources.contact.ID}});
+		//Super Hack
+		combobox1$.find('input').val(waf.sources.contact.leadSource);
+		resetPrevNextButtons();
+	} //end - loadNewContact.
+	
+	
+	function resetPrevNextButtons() {
+		//Next button
+		if (waf.sources.contact.getPosition() === waf.sources.contact.length - 1) {
+			$$(contactNxtButton).disable();
+		} else {
+			$$(contactNxtButton).enable();
+		}
+		
+		//Prev Button
+		if (waf.sources.contact.getPosition() === 0) {
+			$$(contactPrvButton).disable();
+		} else {
+			$$(contactPrvButton).enable();
+		}
+	} //end - resetPrevNextButtons.
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -25,11 +52,7 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
-				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.ID);
-				//Load Note Component
-				$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "contacts", entityID: waf.sources.contact.ID}});
-				//Super Hack
-				combobox1$.find('input').val(waf.sources.contact.leadSource);
+				loadNewContact();
 				$$(contactsListContainer).hide();
 				$$(contactsDetailContainer).show();
 			
@@ -46,6 +69,8 @@ function constructor (id) {
 
 
 	// @region namespaceDeclaration// @startlock
+	var contactNextButton = {};	// @button
+	var contactPrevButton = {};	// @button
 	var contactChangeOwnerButton = {};	// @button
 	var newContactEventButton = {};	// @button
 	var contactsCopyAddrButton = {};	// @button
@@ -58,6 +83,24 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	contactNextButton.click = function contactNextButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.contact.selectNext({
+			onSuccess: function(event) {
+				loadNewContact();
+			}
+		});
+	};// @lock
+
+	contactPrevButton.click = function contactPrevButton_click (event)// @startlock
+	{// @endlock
+		waf.sources.contact.selectPrevious({
+			onSuccess: function(event) {
+				loadNewContact();
+			}
+		});
+	};// @lock
 
 	contactChangeOwnerButton.click = function contactChangeOwnerButton_click (event)// @startlock
 	{// @endlock
@@ -172,22 +215,19 @@ function constructor (id) {
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock
 	{// @endlock
-		waf.sources.activity.query("contact.ID = :1", waf.sources.contact.ID);	
+		loadNewContact();
+		
 		$$(contactsListContainer).hide();
 		$$(contactsDetailContainer).show();
-		
-		//Load Note Component
-		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "contacts", entityID: waf.sources.contact.ID}});
 
-		//Super Hack
-		combobox1$.find('input').val(waf.sources.contact.leadSource);
-		
 		//Add to recent items.
 		WAK5CRMUTIL.newRecentItem("contacts", "Contact: ", waf.sources.contact.firstName + " " + waf.sources.contact.lastName, waf.sources.contact.ID, 'mainComponent_recentItemsBodyContainer'); 
 		// Note: Refactor so "mainComponent_recentItemsComponent_recentItemsBodyContainer" is not hard-coded. (July 11, 2013).
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_contactNextButton", "click", contactNextButton.click, "WAF");
+	WAF.addListener(this.id + "_contactPrevButton", "click", contactPrevButton.click, "WAF");
 	WAF.addListener(this.id + "_contactChangeOwnerButton", "click", contactChangeOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_newContactEventButton", "click", newContactEventButton.click, "WAF");
 	WAF.addListener(this.id + "_contactsCopyAddrButton", "click", contactsCopyAddrButton.click, "WAF");

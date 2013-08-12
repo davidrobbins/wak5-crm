@@ -57,12 +57,15 @@ function constructor (id) {
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
-				$$(leadsListContainer).hide();
-				$$(leadsDetailContainer).show();
+				//Load Note Component
+				$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "leads", entityID: waf.sources.lead.ID}});
 				//Super Hack
 				combobox3$.find('input').val(waf.sources.lead.leadSource);
 				combobox4$.find('input').val(waf.sources.lead.industry);
 				combobox5$.find('input').val(waf.sources.lead.leadStatus);
+				//switch view
+				$$(leadsListContainer).hide();
+				$$(leadsDetailContainer).show();
 				
 			} else {
 				$$(leadsDetailContainer).hide();
@@ -229,11 +232,7 @@ function constructor (id) {
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
 		//Leads List Grid
-		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
-		//waf.sources.activity.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
-		//waf.sources.note.query("lead.ID = :1", waf.sources.lead.getCurrentElement().ID.getValue());
-		
-		
+		waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);		
 		//Load Note Component
 		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "leads", entityID: waf.sources.lead.ID}});
 		

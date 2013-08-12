@@ -26,10 +26,12 @@ function constructor (id) {
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				waf.sources.activity.query("contact.ID = :1", waf.sources.contact.ID);
+				//Load Note Component
+				$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "contacts", entityID: waf.sources.contact.ID}});
+				//Super Hack
+				combobox1$.find('input').val(waf.sources.contact.leadSource);
 				$$(contactsListContainer).hide();
 				$$(contactsDetailContainer).show();
-				//Super Hack
-			combobox1$.find('input').val(waf.sources.contact.leadSource);
 			
 			} else {
 				$$(contactsDetailContainer).hide();
@@ -166,7 +168,6 @@ function constructor (id) {
 		$$(accordion1).expand(1);
 		$$(contactsDetailContainer).hide();
 		$$(contactsListContainer).show();
-		//$$(tabView1).selectTab(1);
 	};// @lock
 
 	dataGrid1.onRowDblClick = function dataGrid1_onRowDblClick (event)// @startlock

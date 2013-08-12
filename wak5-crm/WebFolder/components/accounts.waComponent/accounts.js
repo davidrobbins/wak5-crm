@@ -28,6 +28,12 @@ function constructor (id) {
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				waf.sources.activity.query("account.ID = :1", waf.sources.account.ID);
+				//Load Note Component
+				$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "accounts", entityID: waf.sources.account.ID}});
+				//Super Hack
+				combobox1$.find('input').val(waf.sources.account.type);
+				combobox2$.find('input').val(waf.sources.account.industry);
+				//switch view.
 				$$(accountsListContainer).hide();
 				$$(accountsDetailContainer).show();
 			} else {
@@ -178,6 +184,10 @@ function constructor (id) {
 		waf.sources.activity.query("account.ID = :1", waf.sources.account.getCurrentElement().ID.getValue());
 		$$(accountsListContainer).hide();
 		$$(accountsDetailContainer).show();
+		
+		//Super Hack
+		combobox1$.find('input').val(waf.sources.account.type);
+		combobox2$.find('input').val(waf.sources.account.industry);
 		
 		//Load Note Component
 		$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "accounts", entityID: waf.sources.account.ID}});

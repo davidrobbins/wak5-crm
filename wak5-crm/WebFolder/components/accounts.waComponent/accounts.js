@@ -69,7 +69,7 @@ function constructor (id) {
 		
 				
 		//Load activity detail component.
-		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: accountsDetailMainContainer, activityDetailContainer: accountsActivityDetailContainer}});
+		//$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: accountsDetailMainContainer, activityDetailContainer: accountsActivityDetailContainer}});
 
 	
 	// @region namespaceDeclaration// @startlock
@@ -134,6 +134,7 @@ function constructor (id) {
 		waf.sources.activity.serverRefresh({
 			onSuccess: function(event) {
 				waf.sources.activity.account.set(waf.sources.account);
+				$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: accountsDetailMainContainer, activityDetailContainer: accountsActivityDetailContainer}});
 				$$(accountsDetailMainContainer).hide();
 				$$(accountsActivityDetailContainer).show();
 			}
@@ -162,6 +163,7 @@ function constructor (id) {
 		waf.sources.activity.serverRefresh({
 			onSuccess: function(event) {
 				waf.sources.activity.account.set(waf.sources.account);
+				$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: accountsDetailMainContainer, activityDetailContainer: accountsActivityDetailContainer}});
 				$$(accountsDetailMainContainer).hide();
 				$$(accountsActivityDetailContainer).show();
 			}
@@ -171,6 +173,7 @@ function constructor (id) {
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
 		//Activity Grid.
+		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: accountsDetailMainContainer, activityDetailContainer: accountsActivityDetailContainer}});
 		$$(accountsDetailMainContainer).hide();
 		$$(accountsActivityDetailContainer).show();
 	};// @lock

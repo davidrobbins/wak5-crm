@@ -118,7 +118,7 @@ function constructor (id) {
 		});
 		
 		//Load activity detail component.
-		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
+		//$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
 	
 	// @region namespaceDeclaration// @startlock
 	var leadNextButton = {};	// @button
@@ -222,10 +222,13 @@ function constructor (id) {
 		waf.sources.activity.type = "event";
 		waf.sources.activity.status = "Started";
 		waf.sources.activity.priority = "Normal";
+		//Bug: date attr.
+		//waf.sources.activity.due = new Date();
 		//Bug report: Activity onInit() is not running. Why?
 		waf.sources.activity.serverRefresh({
 			onSuccess: function(event) {
 				waf.sources.activity.lead.set(waf.sources.lead);
+				$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
 				$$(leadsDetailMainContainer).hide();
 				$$(leadsActivityDetailContainer).show();
 			}
@@ -268,8 +271,8 @@ function constructor (id) {
 	dataGrid3.onRowDblClick = function dataGrid3_onRowDblClick (event)// @startlock
 	{// @endlock
 			//Activity Grid.
+			$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
 			$$(leadsDetailMainContainer).hide();
-			//$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {leadsDetailMainContainer: leadsDetailMainContainer, leadsActivityDetailContainer: leadsActivityDetailContainer}});
 			$$(leadsActivityDetailContainer).show();
 	};// @lock
 
@@ -296,10 +299,13 @@ function constructor (id) {
 		waf.sources.activity.type = "task";
 		waf.sources.activity.status = "Started";
 		waf.sources.activity.priority = "Normal";
+		//console.log(new Date());
+		//waf.sources.activity.due = new Date();
 		//Bug report: Activity onInit() is not running. Why?
 		waf.sources.activity.serverRefresh({
 			onSuccess: function(event) {
 				waf.sources.activity.lead.set(waf.sources.lead);
+				$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
 				$$(leadsDetailMainContainer).hide();
 				$$(leadsActivityDetailContainer).show();
 			}

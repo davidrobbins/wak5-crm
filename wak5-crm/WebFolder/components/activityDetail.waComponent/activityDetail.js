@@ -4,14 +4,30 @@
 // Add the code that needs to be shared between components here
 
 function constructor (id) {
-
+	var combobox1$ = getHtmlObj('combobox1'),
+		combobox2$ = getHtmlObj('combobox2');
+	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
 	this.name = 'activityDetail';
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-
+		setTimeout(function() {
+			if (waf.sources.activity.isNewElement()) {
+				//Super Hack
+				combobox1$.find('input').val("Started");
+				combobox2$.find('input').val("Normal");
+			} else {
+				//Super Hack
+				combobox1$.find('input').val(waf.sources.activity.status);
+				combobox2$.find('input').val(waf.sources.activity.priority);
+			}
+		}, 80);
+		
+		
+		
+		
 	
 	// @region namespaceDeclaration// @startlock
 	var saveActivityButton = {};	// @button

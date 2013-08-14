@@ -64,7 +64,7 @@ function constructor (id) {
 	
 			
 		//Load activity detail component.
-		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: contactsDetailMainContainer, activityDetailContainer: contactsActivityDetailContainer}});
+		//$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: contactsDetailMainContainer, activityDetailContainer: contactsActivityDetailContainer}});
 		
 
 
@@ -133,6 +133,7 @@ function constructor (id) {
 		waf.sources.activity.serverRefresh({
 			onSuccess: function(event) {
 				waf.sources.activity.contact.set(waf.sources.contact);
+				$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: contactsDetailMainContainer, activityDetailContainer: contactsActivityDetailContainer}});
 				$$(contactsDetailMainContainer).hide();
 				$$(contactsActivityDetailContainer).show();
 			}
@@ -153,6 +154,7 @@ function constructor (id) {
 	dataGrid2.onRowDblClick = function dataGrid2_onRowDblClick (event)// @startlock
 	{// @endlock
 		//Activity Grid.
+		$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: contactsDetailMainContainer, activityDetailContainer: contactsActivityDetailContainer}});
 		$$(contactsDetailMainContainer).hide();
 		$$(contactsActivityDetailContainer).show();
 	};// @lock
@@ -167,6 +169,7 @@ function constructor (id) {
 		waf.sources.activity.serverRefresh({
 			onSuccess: function(event) {
 				waf.sources.activity.contact.set(waf.sources.contact);
+				$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: contactsDetailMainContainer, activityDetailContainer: contactsActivityDetailContainer}});
 				$$(contactsDetailMainContainer).hide();
 				$$(contactsActivityDetailContainer).show();
 			}

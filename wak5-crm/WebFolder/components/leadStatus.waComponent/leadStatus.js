@@ -14,8 +14,8 @@ function constructor (id) {
 	this.load = function (data) {// @lock
 		//console.log($.jqplot);
 		 var data = [
-		    ['Heavy Industry', 12],['Retail', 9], ['Light Industry', 14], 
-		    ['Out of home', 16],['Commuting', 7], ['Orientation', 9]
+		    ['Attempted Contact', 12],['Contact In Future', 9], ['Contacted', 14], 
+		    ['Junk Lead', 16],['Lost Lead', 7],['Contacted', 7], ['Pre-Qualified', 9]
 		  ];
 		  var plot1 = jQuery.jqplot (chartContainer, [data], 
 		    { 

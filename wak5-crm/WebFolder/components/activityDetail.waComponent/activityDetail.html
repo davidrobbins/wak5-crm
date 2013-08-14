@@ -2,6 +2,7 @@
     <meta name="generator" content="Wakanda GUIDesigner"/>
     <meta name="WAF.catalog" content="Activity"/>
     <meta name="WAF.config.datasources" data-type="dataSource" data-source-type="dataClass" data-source="Activity" data-scope="global" data-lib="WAF" data-id="activity" data-dataType="string" data-autoLoad="false" content="activity"/>
+    
     <div id="{id}container2" data-type="container" data-lib="WAF" data-label-position="top" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-container waf-container-level-0 waf-level-0">
 	 	 	<button id="{id}cancelActivityButton" data-type="button" data-text="Cancel" data-target="_blank" data-lib="WAF" data-constraint-top="false" data-constraint-right="true" data-constraint-left="false" data-constraint-bottom="true" data-action="simple" class="waf-widget waf-button "></button>
  	 		<div id="{id}richText1" data-type="richText" data-target="_blank" data-plainText="true" data-overflow="Hidden" data-lib="WAF" data-label-position="left" data-label="" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-autoWidth="false" class="waf-widget waf-richText ">Activity Detail:</div>
@@ -16,5 +17,7 @@
  		<label id="{id}label6" for="{id}combobox1" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-label waf-label-combobox">Status</label>
  		<div id="{id}combobox2" data-type="combobox" data-limit="20" data-lib="WAF" data-label-position="left" data-label="Priority" data-editable="true" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding-out="activity.priority" data-autoDispatch="true" class="waf-widget waf-combobox "><select><option value="Normal">Normal</option><option value="High">High</option><option value="Highest">Highest</option><option value="Low">Low</option><option value="Lowest">Lowest</option></select></div>
  		<label id="{id}label7" for="{id}combobox2" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" class="waf-widget waf-label waf-label-combobox">Priority</label>
- 			</div>
+ 				<input type="text" tabindex="70" id="{id}textField2" data-type="textField" data-readOnly="false" data-password="false" data-multiline="false" data-lib="WAF" data-label-position="left" data-label="Due Date" data-datapicker-on="false" data-datapicker-icon-only="false" data-constraint-top="true" data-constraint-right="false" data-constraint-left="true" data-constraint-bottom="false" data-binding="activity.dueDateString" class="waf-widget waf-textField "/>
+ 		<label id="{id}label2" for="{id}textField2" data-valign="middle" data-type="label" data-margin="5" data-lib="WAF" class="waf-widget waf-label waf-label-textField">Due Date</label>
+ 	</div>
 	</section>

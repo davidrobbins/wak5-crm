@@ -5,7 +5,8 @@
 
 function constructor (id) {
 	var combobox1$ = getHtmlObj('combobox1'),
-		combobox2$ = getHtmlObj('combobox2');
+		combobox2$ = getHtmlObj('combobox2'),
+		textField2$ = getHtmlObj('textField2');
 	
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
@@ -14,6 +15,9 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		setTimeout(function() {
+			
+			textField2$.datepicker();
+			
 			if (waf.sources.activity.isNewElement()) {
 				//Super Hack
 				combobox1$.find('input').val("Started");
@@ -38,6 +42,7 @@ function constructor (id) {
 
 	saveActivityButton.click = function saveActivityButton_click (event)// @startlock
 	{// @endlock
+
 		waf.sources.activity.save({
 			onSuccess: function(event) {
 				WAK5CRMUTIL.setMessage("Activity for " + waf.sources.lead.firstName + " " + waf.sources.lead.lastName + " has been saved to the server.", 5000, "normal");

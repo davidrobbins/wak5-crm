@@ -295,21 +295,27 @@ function constructor (id) {
 
 	newLeadTaskButton.click = function newLeadTaskButton_click (event)// @startlock
 	{// @endlock
+		/**/
 		waf.sources.activity.addNewElement();
 		waf.sources.activity.type = "task";
 		waf.sources.activity.status = "Started";
 		waf.sources.activity.priority = "Normal";
-		//console.log(new Date());
-		//waf.sources.activity.due = new Date();
+		
 		//Bug report: Activity onInit() is not running. Why?
+		
+		/**/
 		waf.sources.activity.serverRefresh({
 			onSuccess: function(event) {
 				waf.sources.activity.lead.set(waf.sources.lead);
+				waf.sources.activity.due = new Date();
 				$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
 				$$(leadsDetailMainContainer).hide();
 				$$(leadsActivityDetailContainer).show();
 			}
 		});
+		
+		
+		
 	};// @lock
 
 	leadsNoAccessBackButton.click = function leadsNoAccessBackButton_click (event)// @startlock

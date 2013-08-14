@@ -13,7 +13,7 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		$$(welcomeMessageRichText).setValue("Welcome " + waf.directory.currentUser().fullName);
-		
+		waf.sources.activity.query("status !== :1", "Completed");
 		
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock

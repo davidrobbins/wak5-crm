@@ -12,25 +12,47 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
-		//console.log($.jqplot);
-		 var data = [
-		    ['Attempted Contact', 12],['Contact In Future', 9], ['Contacted', 14], 
+		
+		waf.sources.lead.jqPlotLeadStatus({
+			onSuccess: function(event) {
+				$.jqplot(chartContainer,  event.result, { 
+					seriesDefaults: {
+				    	// Make this a pie chart.
+				  		renderer: jQuery.jqplot.PieRenderer, 
+				    	rendererOptions: {
+					    	// Put data labels on the pie slices.
+					    	// By default, labels show the percentage of the slice.
+					    	showDataLabels: true
+					   	}
+					}, 
+				
+					legend: { show:true, location: 'e' }
+				}); //end - $.jqplot.
+			}
+		}); //end - waf.sources.lead.jqPlotLeadStatus.
+		
+		
+		/*
+		var data = [
+			['Attempted Contact', 12],['Contact In Future', 9], ['Contacted', 14], 
 		    ['Junk Lead', 16],['Lost Lead', 7],['Contacted', 7], ['Pre-Qualified', 9]
-		  ];
-		  var plot1 = jQuery.jqplot (chartContainer, [data], 
-		    { 
-		      seriesDefaults: {
-		        // Make this a pie chart.
-		        renderer: jQuery.jqplot.PieRenderer, 
-		        rendererOptions: {
-		          // Put data labels on the pie slices.
-		          // By default, labels show the percentage of the slice.
-		          showDataLabels: true
-		        }
-		      }, 
-		      legend: { show:true, location: 'e' }
-		    }
-		  );
+		];
+		
+		var plot1 = jQuery.jqplot (chartContainer, [data], { 
+			seriesDefaults: {
+		    	// Make this a pie chart.
+		  		renderer: jQuery.jqplot.PieRenderer, 
+		    	rendererOptions: {
+			    	// Put data labels on the pie slices.
+			    	// By default, labels show the percentage of the slice.
+			    	showDataLabels: true
+			   	}
+			}, 
+		
+			legend: { show:true, location: 'e' }
+		});
+		*/
+		
 		
 	// @region namespaceDeclaration// @startlock
 	// @endregion// @endlock

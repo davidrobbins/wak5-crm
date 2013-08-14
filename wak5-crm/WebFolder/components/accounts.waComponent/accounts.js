@@ -54,6 +54,7 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		/**/
 		setTimeout(function() {
 			if (data.userData.view == "detail") {
 				loadNewAccount();

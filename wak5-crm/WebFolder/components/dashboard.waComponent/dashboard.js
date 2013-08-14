@@ -28,6 +28,10 @@ function constructor (id) {
 			}
 			
 		  	switch(ev.buttonElemId) {
+		  		case homeButton :
+				$$(signedInComponent).loadComponent({path: '/components/home.waComponent'});
+				break;
+				
 	   			case leadsButton :
 	   			//waf.sources.lead.collectionRefresh();
 				$$(signedInComponent).loadComponent({path: '/components/leads.waComponent', userData: {view: ev.options.view}});

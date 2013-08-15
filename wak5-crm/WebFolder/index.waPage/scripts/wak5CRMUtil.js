@@ -239,17 +239,29 @@ var WAK5CRMUTIL = (function() {
 			 	
 		 	switch(theDataClass) {
 				case "accounts":
-				waf.sources.account.selectByKey(theEntityID);
+				waf.sources.account.all({
+					onSuccess: function(ev) {
+						waf.sources.account.selectByKey(theEntityID);
+					}
+				});
 				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(3, {view: theView});
 				break;
 					
 				case "contacts":
-				waf.sources.contact.selectByKey(theEntityID);
+				waf.sources.contact.all({
+					onSuccess: function(ev) {
+						waf.sources.contact.selectByKey(theEntityID);	
+					}
+				});
 				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(2, {view: theView});
 				break;
 					
 				case "leads":
-				waf.sources.lead.selectByKey(theEntityID);
+				waf.sources.lead.query("converted == false", {
+					onSuccess: function(ev) {
+						waf.sources.lead.selectByKey(theEntityID);
+					}
+				});
 				WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1, {view: theView}); //Note: Refactor setSelectedMenuItem();
 				break;
 			}

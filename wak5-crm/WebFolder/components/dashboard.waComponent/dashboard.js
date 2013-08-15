@@ -22,6 +22,11 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
+		/* waf.sources.lead.query("converted == false");
+		waf.sources.contact.all();
+		waf.sources.account.all();
+		 */
+		 
 		function handleMainMenuBarSelect(ev) {	
 			if (!ev.options) {
 				ev.options = {view: "list"};
@@ -33,17 +38,20 @@ function constructor (id) {
 				break;
 				
 	   			case leadsButton :
-	   			waf.sources.lead.collectionRefresh();
+	   			//waf.sources.lead.collectionRefresh();
+	 			// waf.sources.lead.query("converted == false");
 				$$(signedInComponent).loadComponent({path: '/components/leads.waComponent', userData: {view: ev.options.view}});
 				break;
 				
 				case contactsButton :
-				waf.sources.contact.collectionRefresh();
+				//waf.sources.contact.collectionRefresh();
+				//waf.sources.contact.all();
 				$$(signedInComponent).loadComponent({path: '/components/contacts.waComponent', userData: {view: ev.options.view}});
 				break;
 				
 				case accountsButton :
-				waf.sources.account.collectionRefresh();
+				//waf.sources.account.collectionRefresh();
+				//waf.sources.account.all();
 				$$(signedInComponent).loadComponent({path: '/components/accounts.waComponent', userData: {view: ev.options.view}});
 				break;
 				

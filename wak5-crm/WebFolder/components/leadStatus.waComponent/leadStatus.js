@@ -13,21 +13,25 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
+		
 		waf.sources.lead.jqPlotLeadStatus({
 			onSuccess: function(event) {
-				$.jqplot(chartContainer,  event.result, { 
-					seriesDefaults: {
-				    	// Make this a pie chart.
-				  		renderer: jQuery.jqplot.PieRenderer, 
-				    	rendererOptions: {
-					    	// Put data labels on the pie slices.
-					    	// By default, labels show the percentage of the slice.
-					    	showDataLabels: true
-					   	}
-					}, 
 				
-					legend: { show:true, location: 'e' }
-				}); //end - $.jqplot.
+				if (event.result !== "Do not plot") {
+					$.jqplot(chartContainer,  event.result, { 
+						seriesDefaults: {
+					    	// Make this a pie chart.
+					  		renderer: jQuery.jqplot.PieRenderer, 
+					    	rendererOptions: {
+						    	// Put data labels on the pie slices.
+						    	// By default, labels show the percentage of the slice.
+						    	showDataLabels: true
+						   	}
+						}, 
+					
+						legend: { show:true, location: 'e' }
+					}); //end - $.jqplot.
+				}
 			}
 		}); //end - waf.sources.lead.jqPlotLeadStatus.
 		

@@ -33,17 +33,17 @@ function constructor (id) {
 				break;
 				
 	   			case leadsButton :
-	   			//waf.sources.lead.collectionRefresh();
+	   			waf.sources.lead.collectionRefresh();
 				$$(signedInComponent).loadComponent({path: '/components/leads.waComponent', userData: {view: ev.options.view}});
 				break;
 				
 				case contactsButton :
-				//waf.sources.contact.collectionRefresh();
+				waf.sources.contact.collectionRefresh();
 				$$(signedInComponent).loadComponent({path: '/components/contacts.waComponent', userData: {view: ev.options.view}});
 				break;
 				
 				case accountsButton :
-				//waf.sources.account.collectionRefresh();
+				waf.sources.account.collectionRefresh();
 				$$(signedInComponent).loadComponent({path: '/components/accounts.waComponent', userData: {view: ev.options.view}});
 				break;
 				

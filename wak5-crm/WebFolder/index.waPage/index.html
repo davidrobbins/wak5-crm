@@ -24,6 +24,16 @@
 	
 	
 
+	<script type="text/x-handlebars-template" id="selected-transferred-list-template">
+		<li class="selectedTransferred">
+			<div data-id="{{dataId}}" class="selectedTransferredRow"> 
+				<div class="selectedTransferredColumn"><span class="strongName">{{fullName}}</span></div> 
+				<div class="selectedTransferredColumn">{{company}}</div>
+				<div class="selectedTransferredColumn">{{email}}</div>
+			</div>
+		</li>
+	</script>
+
 	<script type="text/x-handlebars-template" id="selected-people-list-template">
 		<li class="selectedPeople">
 			<div data-id="{{dataId}}" class="selectedPeopleRow"> 
@@ -69,15 +79,28 @@
 		
 		
 		
+		
+		
+		
+		
+		
+		<meta name="WAF.config.loadCSS" id="waf-interface-css" content="styles/index.css"/>
+		<meta name="WAF.config.loadCSS" id="waf-project-css" content="/application.css"/>
+		<meta name="WAF.config.loadCSS" content="/index.waPage/styles/custom.css"/>
+		<meta name="WAF.config.loadCSS" content="/jqPlot/jquery.jqplot.min.css"/>
+		
+		
+		
+		
+		
+		
 		<meta name="WAF.config.loadJS" id="waf-script" content="scripts/index.js"/>
 		<meta name="WAF.config.loadJS" content="/index.waPage/scripts/wak5CRMUtil.js"/>
 		<meta name="WAF.config.loadJS" content="/index.waPage/scripts/handlebars.js"/>
 		<meta name="WAF.config.loadJS" content="/jqPlot/jquery.jqplot.min.js"/>
 		<meta name="WAF.config.loadJS" content="/jqPlot/plugins/jqplot.pieRenderer.min.js"/>
-		<meta name="WAF.config.loadCSS" content="styles/index.css" id="waf-interface-css"/>
-		<meta name="WAF.config.loadCSS" content="/application.css" id="waf-project-css"/>
-		<meta name="WAF.config.loadCSS" content="/index.waPage/styles/custom.css"/>
-		<meta name="WAF.config.loadCSS" content="/jqPlot/jquery.jqplot.min.css"/>
+		<meta name="WAF.config.loadJS" content="/jqPlot/plugins/jqplot.barRenderer.min.js"/>
+		<meta name="WAF.config.loadJS" content="/jqPlot/plugins/jqplot.categoryAxisRenderer.min.js"/>
 </head>
 
 <body id="waf-body" data-workspace-width="0" data-workspace-orientation="portrait" data-workspace-height="0" data-viewport-width="device-width" data-viewport-minimum-scale="1.0" data-viewport-maximum-scale="1.0" data-viewport-initial-scale="1.0" data-type="document" data-theme="default" data-rpc-validation="false" data-rpc-namespace="rpc" data-rpc-activate="false" data-platform="desktop" data-lib="WAF" data-group="[]" data-entire-model="true" data-apple-meta-tags-status-bar="default" style="visibility:hidden;bottom:;right:;">

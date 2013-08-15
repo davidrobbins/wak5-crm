@@ -80,8 +80,19 @@ function constructor (id) {
 		
 		switch(data.userData.section) {
 			case "leads":
-			 
+			waf.sources.lead.changeOwner({ownerID: $$(combobox1).getValue(), leadsSelectionArr: data.userData.selectionArr}, {
+				onSuccess: function(event) {
+					WAK5CRMUTIL.setMessage(event.result, 4000);
+					waf.sources.lead.collectionRefresh();
+					//Update Recent Items because some of them may have been removed as a result of lead change owner.
+					WAK5CRMUTIL.loadRecentItems('mainComponent_recentItemsBodyContainer'); // Note: Refactor so "mainComponent_recentItemsComponent
+					
+					$$(data.userData.changeOwnerContainer).hide();
+					$$(data.userData.listContainer).show(); 
+				}
+			});
 			break;
+			 
 			case "contacts":      
 			waf.sources.contact.changeOwner({ownerID: $$(combobox1).getValue(), contactsSelectionArr: data.userData.selectionArr}, {
 				onSuccess: function(event) {

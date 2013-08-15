@@ -6,14 +6,53 @@
 function constructor (id) {
 	var welcomeMessageRichText = getHtmlId('welcomeMessageRichText'),
 		chartContainerPlaceHolder = getHtmlId('chartContainerPlaceHolder'),
-		component1 = getHtmlId('component1');
+		component1 = getHtmlId('component1'),
+		messageChangeOwnerContainer = getHtmlId('messageChangeOwnerContainer'),
+		//Transferred Leads, Contacts, Accounts Messages.
+		selectedTransferredUL$ = getHtmlObj('selectedTransferredUL'), //selectedTransferredUL
+		selectedTransferredListTemplateSource = $('#selected-transferred-list-template').html(), //selected-transferred-list-template
+		selectedTransferredListTemplateFn = Handlebars.compile(selectedTransferredListTemplateSource),
+		transferredData = {};
 	
+	
+	function buildSelectedTransferredList(selectedTransferredCollection) {
+		selectedTransferredUL$.children().remove(); 
+		
+		selectedTransferredCollection.forEach({
+			onSuccess: function(ev2) {	
+			
+				transferredData = 	{
+					fullName:  	ev2.entity.fullName.getValue(),
+					company: 	ev2.entity.company.getValue(),
+					email: 		ev2.entity.emailAccnt.getValue(),
+					dataId: 	ev2.entity.ID.getValue()
+				}; 
+				
+				selectedTransferredUL$.append(selectedTransferredListTemplateFn(transferredData));
+			}
+		});
+	} //end - buildSelectedLeadsList.
+		
 	// @region beginComponentDeclaration// @startlock
 	var $comp = this;
 	this.name = 'home';
 	// @endregion// @endlock
 
 	this.load = function (data) {// @lock
+		selectedTransferredUL$.on('mouseenter', '.selectedTransferred', function (event) {
+	   		$(this).addClass('hoverTransferred');
+		});
+		
+		selectedTransferredUL$.on('mouseleave', '.selectedTransferred', function (event) {
+	   		$(this).removeClass('hoverTransferred');
+		});
+		
+		ds.Lead.all({
+			onSuccess: function(ev) {
+				buildSelectedTransferredList(ev.entityCollection);
+			}
+		});
+		
 		$$(component1).loadComponent({path: '/components/leadStatus.waComponent'});
 		
 		$$(welcomeMessageRichText).setValue("Welcome " + waf.directory.currentUser().fullName);
@@ -34,6 +73,8 @@ function constructor (id) {
 			}
 		});
 		
+		
+		/*
 		var s1 = [200, 600, 700, 1000];
 	    var s2 = [460, -210, 690, 820];
 	    var s3 = [-260, -440, 320, 200];
@@ -78,13 +119,22 @@ function constructor (id) {
 	            }
 	        }
 	    });
+		*/
+		
 		
 	// @region namespaceDeclaration// @startlock
+	var messageDismissButton = {};	// @button
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
 
+	messageDismissButton.click = function messageDismissButton_click (event)// @startlock
+	{// @endlock
+		$$(messageChangeOwnerContainer).hide();
+	};// @lock
+
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_messageDismissButton", "click", messageDismissButton.click, "WAF");
 	// @endregion// @endlock
 
 	};// @lock

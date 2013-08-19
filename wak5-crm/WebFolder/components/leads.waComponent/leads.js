@@ -23,6 +23,7 @@ function constructor (id) {
 		combobox4$ = getHtmlObj('combobox4'),
 		combobox5$ = getHtmlObj('combobox5'),
 		accordion2 = getHtmlId('accordion2'),
+		changeOwnerComponent = getHtmlId('changeOwnerComponent'),
 		
 		leadPrvButton = getHtmlId('leadPrevButton'),
 		leadNxtButton = getHtmlId('leadNextButton');
@@ -126,8 +127,6 @@ function constructor (id) {
 	var leadChangeOwnerButton = {};	// @button
 	var leadMassUpdateButton = {};	// @button
 	var leadDeleteButton = {};	// @button
-	var changeLeadOwnerButton = {};	// @button
-	var cancelLeadOwnerButton = {};	// @button
 	var newLeadEventButton = {};	// @button
 	var sendEmail = {};	// @button
 	var cancelEmail = {};	// @button
@@ -168,6 +167,24 @@ function constructor (id) {
 
 	leadChangeOwnerButton.click = function leadChangeOwnerButton_click (event)// @startlock
 	{// @endlock
+		
+		if (waf.directory.currentUserBelongsTo("Manager")) {
+			waf.sources.lead.getEntityCollection().buildFromSelection(waf.sources.lead.getSelection(), {
+				onSuccess: function(event) {
+					$$(changeOwnerComponent).loadComponent({path: '/components/changeOwner.waComponent', userData: {section: "leads", selectionArr: $$(dataGridLeadsList).getSelectedRows(), listContainer: leadsListContainer, changeOwnerContainer: changeOwnerContainer, theEntityCollection: event.entityCollection}});
+				}
+			});
+			
+					
+			$$(leadsListContainer).hide();
+			$$(changeOwnerContainer).show();
+		
+		} else {
+			WAK5CRMUTIL.setMessage("You do not have permission to transfer leads.", 4000, "error");
+		}
+		
+		
+		/*
 		if (waf.directory.currentUserBelongsTo("Manager")) {
 			waf.sources.lead.getEntityCollection().buildFromSelection(waf.sources.lead.getSelection(), {
 				onSuccess: function(event) {
@@ -181,6 +198,7 @@ function constructor (id) {
 		} else {
 			WAK5CRMUTIL.setMessage("You do not have permission to transfer leads.", 4000, "error");
 		}
+		*/
 	};// @lock
 
 	leadMassUpdateButton.click = function leadMassUpdateButton_click (event)// @startlock
@@ -191,27 +209,6 @@ function constructor (id) {
 	leadDeleteButton.click = function leadDeleteButton_click (event)// @startlock
 	{// @endlock
 		WAK5CRMUTIL.setMessage("The Delete option is not yet implemented.", 4000, "error");
-	};// @lock
-
-	changeLeadOwnerButton.click = function changeLeadOwnerButton_click (event)// @startlock
-	{// @endlock
-		waf.sources.lead.changeOwner({ownerID: $$(combobox2).getValue(), leadsSelectionArr: $$(dataGridLeadsList).getSelectedRows()}, {
-			onSuccess: function(event) {
-				WAK5CRMUTIL.setMessage(event.result, 4000);
-				waf.sources.lead.collectionRefresh();
-				//Update Recent Items because some of them may have been removed as a result of lead change owner.
-				WAK5CRMUTIL.loadRecentItems('mainComponent_recentItemsBodyContainer'); // Note: Refactor so "mainComponent_recentItemsComponent
-				$$(changeOwnerContainer).hide();
-				$$(leadsListContainer).show();
-				
-			}
-		});
-	};// @lock
-
-	cancelLeadOwnerButton.click = function cancelLeadOwnerButton_click (event)// @startlock
-	{// @endlock
-		$$(changeOwnerContainer).hide();
-		$$(leadsListContainer).show();
 	};// @lock
 
 	newLeadEventButton.click = function newLeadEventButton_click (event)// @startlock
@@ -442,8 +439,6 @@ function constructor (id) {
 	WAF.addListener(this.id + "_leadChangeOwnerButton", "click", leadChangeOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_leadMassUpdateButton", "click", leadMassUpdateButton.click, "WAF");
 	WAF.addListener(this.id + "_leadDeleteButton", "click", leadDeleteButton.click, "WAF");
-	WAF.addListener(this.id + "_changeLeadOwnerButton", "click", changeLeadOwnerButton.click, "WAF");
-	WAF.addListener(this.id + "_cancelLeadOwnerButton", "click", cancelLeadOwnerButton.click, "WAF");
 	WAF.addListener(this.id + "_newLeadEventButton", "click", newLeadEventButton.click, "WAF");
 	WAF.addListener(this.id + "_sendEmail", "click", sendEmail.click, "WAF");
 	WAF.addListener(this.id + "_cancelEmail", "click", cancelEmail.click, "WAF");

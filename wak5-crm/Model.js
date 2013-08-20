@@ -10,5 +10,5 @@ include("classes/contact.js");
 include("classes/account.js");
 include("classes/recentItem.js");
 include("classes/note.js");
+include("classes/log.js");
 
-//include("classes/priority.js");

@@ -22,11 +22,6 @@ function constructor (id) {
 
 	this.load = function (data) {// @lock
 		
-		/* waf.sources.lead.query("converted == false");
-		waf.sources.contact.all();
-		waf.sources.account.all();
-		 */
-		 
 		function handleMainMenuBarSelect(ev) {	
 			if (!ev.options) {
 				ev.options = {view: "list"};
@@ -78,7 +73,7 @@ function constructor (id) {
 		} //end - function handleMainMenuBarSelect
 		
 		WAK5CRMUTIL.mainMenubarObj.subscribe(handleMainMenuBarSelect, "on select"); 
-		WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1);
+		WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(0);
 		//WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1, {view: "list"});
 		WAK5CRMUTIL.loadRecentItems(recentItemsBodyContainer);
 		

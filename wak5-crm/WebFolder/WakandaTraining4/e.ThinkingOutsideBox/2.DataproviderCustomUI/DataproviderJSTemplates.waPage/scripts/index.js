@@ -11,6 +11,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	itemData = "";
 	
 // eventHandlers// @lock
+	function updateItemDetail(name, city, phone) {
+		itemObj.name = name;
+		itemObj.city = city;
+		itemObj.phone = phone;
+		waf.sources.itemObj.sync();
+	}
+	
 	function buildItemsList() {
 		itemsUL$.children().remove(); 
 
@@ -39,6 +46,20 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 		itemsUL$.on('mouseleave', '.itemPreview', function (event) {
 	   		$(this).removeClass('itemSelected');
+		});
+		
+		itemsUL$.on('click', '.itemPreview', function (event) {
+			var this$ = $(this);
+	   		this$.addClass('itemPermSelected');
+	   		this$.siblings().removeClass('itemPermSelected');
+
+	   		var itemId = this$.children('div.itemIdent').attr('data-id');
+	   		ds.Lead.find("ID = :1", itemId, {
+	   			onSuccess: function(event) {
+	   				updateItemDetail(event.entity.fullName.getValue(), event.entity.city.getValue(), event.entity.phone.getValue());
+	   			}
+	   		});
+
 		});
 		
 		buildItemsList();

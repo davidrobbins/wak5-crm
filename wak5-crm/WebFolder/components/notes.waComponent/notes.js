@@ -4,6 +4,7 @@
 
 function constructor (id) {
 	var notesListContainer$ = getHtmlObj('notesListContainer'),
+		selectedNotesUL$ = getHtmlObj('selectedNotesUL'),
 		inputNoteBody$ = getHtmlObj('inputNoteBody'),
 		inputNoteTitle$ = getHtmlObj('inputNoteTitle'),
 		inputNoteBodyRef = getHtmlId('inputNoteBody'),
@@ -11,7 +12,8 @@ function constructor (id) {
 		addNoteContainer$ = getHtmlObj('addNoteContainer');
 		
 	function buildNoteGrid(optionsObj) {
-		notesListContainer$.children().remove(); 
+		//notesListContainer$.children().remove(); 
+		selectedNotesUL$.children().remove(); 
 		
 		//Note: Refactor
 		switch(optionsObj.section) {
@@ -27,7 +29,7 @@ function constructor (id) {
 								createDate: ev2.entity.createDate.getValue(),
 								dataId: 	ev2.entity.ID.getValue()
 							};
-							notesListContainer$.append(WAK5CRMUTIL.noteListTemplateFn(noteData));
+							selectedNotesUL$.append(WAK5CRMUTIL.noteListTemplateFn(noteData));
 						}
 					}); //ev1.entityCollection.forEach
 				}
@@ -46,7 +48,8 @@ function constructor (id) {
 								createDate: ev2.entity.createDate.getValue(),
 								dataId: 	ev2.entity.ID.getValue()
 							};
-							notesListContainer$.append(WAK5CRMUTIL.noteListTemplateFn(noteData));
+							selectedNotesUL$.append(WAK5CRMUTIL.noteListTemplateFn(noteData));
+							//notesListContainer$.append(WAK5CRMUTIL.noteListTemplateFn(noteData));
 						}
 					}); //ev1.entityCollection.forEach
 				}
@@ -65,7 +68,7 @@ function constructor (id) {
 								createDate: ev2.entity.createDate.getValue(),
 								dataId: 	ev2.entity.ID.getValue()
 							};
-							notesListContainer$.append(WAK5CRMUTIL.noteListTemplateFn(noteData));
+							selectedNotesUL$.append(WAK5CRMUTIL.noteListTemplateFn(noteData));
 						}
 					}); //ev1.entityCollection.forEach
 				}

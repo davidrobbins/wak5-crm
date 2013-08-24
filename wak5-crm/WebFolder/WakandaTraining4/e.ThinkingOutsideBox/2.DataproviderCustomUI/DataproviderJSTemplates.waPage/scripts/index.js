@@ -2,6 +2,7 @@
 WAF.onAfterInit = function onAfterInit() {// @lock
 
 // @region namespaceDeclaration// @startlock
+	var login1 = {};	// @login
 	var documentEvent = {};	// @document
 // @endregion// @endlock
 	var itemsUL$ = $('#itemsUL'),
@@ -16,18 +17,37 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	itemData = "";
 	
 // eventHandlers// @lock
+
+	login1.logout = function login1_logout (event)// @startlock
+	{// @endlock
+		itemsUL$.children().remove(); 
+		navUL$.children('li').removeClass('navPermSelected');
+		entityObj.name = null;
+		entityObj.city = null;
+		entityObj.phone = null;
+		waf.sources.entityObj.sync();
+	};// @lock
+
+	login1.login = function login1_login (event)// @startlock
+	{// @endlock
+		buildItemsList("Leads");
+		$('#navLeads').addClass('navPermSelected');	
+	};// @lock
 	function buildNavList() {
-		navData = [{title: "Leads", dataclass: "Leads"},{title: "Contacts", dataclass: "Contacts"},{title: "Accounts", dataclass: "Accounts"}];
+		navData = [	{title: "Leads", dataclass: "Leads", navItemId: "navLeads"},
+					{title: "Contacts", dataclass: "Contacts", navItemId: "navContacts"},
+					{title: "Accounts", dataclass: "Accounts", navItemId: "navAccounts"}];
+					
 		navData.forEach(function(navItem) {
 			navUL$.append(navTemplateFn(navItem));
 		});
 	}
 	
 	function updateItemDetail(name, city, phone) {
-		itemObj.name = name;
-		itemObj.city = city;
-		itemObj.phone = phone;
-		waf.sources.itemObj.sync();
+		entityObj.name = name;
+		entityObj.city = city;
+		entityObj.phone = phone;
+		waf.sources.entityObj.sync();
 	}
 	
 	function buildItemsList(dataClassName) {
@@ -43,7 +63,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 								name:  		ev2.entity.fullName.getValue(),
 								city:    	ev2.entity.city.getValue(),
 								dataId: 	ev2.entity.ID.getValue(),
-								dataclass: 	"Leads"
+								dataclass: 	"Leads",
+								imagePath: "/images/people_small.png"
 							};
 							itemsUL$.append(listTemplateFn(itemData));
 						}
@@ -61,7 +82,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 								name:  		ev2.entity.fullName.getValue(),
 								city:    	ev2.entity.city.getValue(),
 								dataId: 	ev2.entity.ID.getValue(),
-								dataclass: 	"Contacts"
+								dataclass: 	"Contacts",
+								imagePath: "/images/people_small.png"
 							};
 							itemsUL$.append(listTemplateFn(itemData));
 						}
@@ -77,9 +99,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 						onSuccess: function(ev2) {	
 							itemData = 	{
 								name:  		ev2.entity.name.getValue(),
-								city:    	ev2.entity.city.getValue(),
+								city:    	ev2.entity.billingCity.getValue(),
 								dataId: 	ev2.entity.ID.getValue(),
-								dataclass: 	"Accounts"
+								dataclass: 	"Accounts",
+								imagePath: "/images/companies_small.png"
 							};
 							itemsUL$.append(listTemplateFn(itemData));
 						}
@@ -136,7 +159,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				case "Accounts":
 				ds.Account.find("ID = :1", itemId, {
 		   			onSuccess: function(event) {
-		   				updateItemDetail(event.entity.name.getValue(), event.entity.city.getValue(), event.entity.phone.getValue());
+		   				updateItemDetail(event.entity.name.getValue(), event.entity.billingCity.getValue(), event.entity.phone.getValue());
 		   			}
 		   		});
 				break;				
@@ -149,6 +172,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("login1", "logout", login1.logout, "WAF");
+	WAF.addListener("login1", "login", login1.login, "WAF");
 	WAF.addListener("document", "onLoad", documentEvent.onLoad, "WAF");
 // @endregion
 };// @endlock

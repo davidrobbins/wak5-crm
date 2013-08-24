@@ -101,16 +101,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	   		buildItemsList(dataclass);
 		});
 		
-		/*
-		navUL$.on('mouseenter', '.navItem', function (event) {
-	   		$(this).addClass('navSelected');
-		});
-
-		navUL$.on('mouseleave', '.navItem', function (event) {
-	   		$(this).removeClass('navSelected');
-		});
-		*/
-		
 		itemsUL$.on('mouseenter', '.itemPreview', function (event) {
 	   		$(this).addClass('itemSelected');
 		});

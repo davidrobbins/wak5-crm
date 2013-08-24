@@ -13,7 +13,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	navUL$ = $('#navUL'),
 	navTemplateSource = $("#nav-template").html(),
 	navTemplateFn = Handlebars.compile(navTemplateSource),
-
+	showDetails = false,
+	toggleDetailRichText$ = $('#toggleDetailRichText'),
+	detailBottomContainer$ = $('#detailBottomContainer'), 
 	itemData = "";
 	
 // eventHandlers// @lock
@@ -25,6 +27,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		entityObj.name = null;
 		entityObj.city = null;
 		entityObj.phone = null;
+		entityObj.industry = null;
 		waf.sources.entityObj.sync();
 	};// @lock
 
@@ -43,10 +46,15 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		});
 	}
 	
-	function updateItemDetail(name, city, phone) {
+	function updateItemDetail(name, city, phone, industry) {
 		entityObj.name = name;
 		entityObj.city = city;
 		entityObj.phone = phone;
+		if (industry !== "-none-") { 
+			entityObj.industry = industry ;
+		} else {
+			entityObj.industry = "";
+		}
 		waf.sources.entityObj.sync();
 	}
 	
@@ -116,6 +124,20 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
 		//event handlers
+		toggleDetailRichText$.on('click', function (event) {
+			if (showDetails) {
+				$$('toggleDetailRichText').setValue('Show Fewer Details');
+				showDetails = false;
+				detailBottomContainer$.animate({height:160},400); //.css('height', 160); 
+				
+			} else {
+				$$('toggleDetailRichText').setValue('Show More Details');
+				showDetails = true;
+				detailBottomContainer$.animate({height:60},400); //.css('height', 60); //.animate({height:40},200)
+			}
+		});
+		
+		
 		navUL$.on('click', '.navItem', function (event) {
 	   		var this$ = $(this);
 	   		this$.addClass('navPermSelected');
@@ -143,7 +165,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 				case "Leads":
 				ds.Lead.find("ID = :1", itemId, {
 		   			onSuccess: function(event) {
-		   				updateItemDetail(event.entity.fullName.getValue(), event.entity.city.getValue(), event.entity.phone.getValue());
+		   				updateItemDetail(event.entity.fullName.getValue(), event.entity.city.getValue(), event.entity.phone.getValue(), event.entity.industry.getValue());
 		   			}
 		   		});
 				break;

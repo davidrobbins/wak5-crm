@@ -8,9 +8,21 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	//Get jQuery reference to our <ul> for listing the collection.
 	listTemplateSource = $("#list-template").html(),
 	listTemplateFn = Handlebars.compile(listTemplateSource),
+	//Nav template.
+	navUL$ = $('#navUL'),
+	navTemplateSource = $("#nav-template").html(),
+	navTemplateFn = Handlebars.compile(navTemplateSource),
+
 	itemData = "";
 	
 // eventHandlers// @lock
+	function buildNavList() {
+		navData = [{title: "Leads", dataclass: "Leads"},{title: "Contacts", dataclass: "Contacts"},{title: "Accounts", dataclass: "Accounts"}];
+		navData.forEach(function(navItem) {
+			navUL$.append(navTemplateFn(navItem));
+		});
+	}
+	
 	function updateItemDetail(name, city, phone) {
 		itemObj.name = name;
 		itemObj.city = city;
@@ -18,28 +30,87 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		waf.sources.itemObj.sync();
 	}
 	
-	function buildItemsList() {
+	function buildItemsList(dataClassName) {
 		itemsUL$.children().remove(); 
 
-		ds.Lead.all({
-			onSuccess: function(ev1) {
-				ev1.entityCollection.forEach({
-					onSuccess: function(ev2) {	
-						itemData = 	{
-							name:  		ev2.entity.fullName.getValue(),
-							city:    	ev2.entity.city.getValue(),
-							dataId: 	ev2.entity.ID.getValue()
-						};
-						itemsUL$.append(listTemplateFn(itemData));
-					}
-				}); //ev1.entityCollection.forEach
-			}
-		});
-	}
+		switch(dataClassName) {
+			case "Leads":
+			ds.Lead.all({
+				onSuccess: function(ev1) {
+					ev1.entityCollection.forEach({
+						onSuccess: function(ev2) {	
+							itemData = 	{
+								name:  		ev2.entity.fullName.getValue(),
+								city:    	ev2.entity.city.getValue(),
+								dataId: 	ev2.entity.ID.getValue(),
+								dataclass: 	"Leads"
+							};
+							itemsUL$.append(listTemplateFn(itemData));
+						}
+					}); //ev1.entityCollection.forEach
+				}
+			});
+			break;
+			
+			case "Contacts":
+			ds.Contact.all({
+				onSuccess: function(ev1) {
+					ev1.entityCollection.forEach({
+						onSuccess: function(ev2) {	
+							itemData = 	{
+								name:  		ev2.entity.fullName.getValue(),
+								city:    	ev2.entity.city.getValue(),
+								dataId: 	ev2.entity.ID.getValue(),
+								dataclass: 	"Contacts"
+							};
+							itemsUL$.append(listTemplateFn(itemData));
+						}
+					}); //ev1.entityCollection.forEach
+				}
+			});
+			break;
+			
+			case "Accounts":
+			ds.Account.all({
+				onSuccess: function(ev1) {
+					ev1.entityCollection.forEach({
+						onSuccess: function(ev2) {	
+							itemData = 	{
+								name:  		ev2.entity.name.getValue(),
+								city:    	ev2.entity.city.getValue(),
+								dataId: 	ev2.entity.ID.getValue(),
+								dataclass: 	"Accounts"
+							};
+							itemsUL$.append(listTemplateFn(itemData));
+						}
+					}); //ev1.entityCollection.forEach
+				}
+			});
+			break;
+		} //end - switch.
+	} //end - buildItemsList.
 	
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
 		//event handlers
+		navUL$.on('click', '.navItem', function (event) {
+	   		var this$ = $(this);
+	   		this$.addClass('navPermSelected');
+	   		this$.siblings().removeClass('navPermSelected');
+	   		var dataclass = this$.children('div.itemIdent').attr('data-dataclass');
+	   		buildItemsList(dataclass);
+		});
+		
+		/*
+		navUL$.on('mouseenter', '.navItem', function (event) {
+	   		$(this).addClass('navSelected');
+		});
+
+		navUL$.on('mouseleave', '.navItem', function (event) {
+	   		$(this).removeClass('navSelected');
+		});
+		*/
+		
 		itemsUL$.on('mouseenter', '.itemPreview', function (event) {
 	   		$(this).addClass('itemSelected');
 		});
@@ -52,17 +123,39 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			var this$ = $(this);
 	   		this$.addClass('itemPermSelected');
 	   		this$.siblings().removeClass('itemPermSelected');
-
 	   		var itemId = this$.children('div.itemIdent').attr('data-id');
-	   		ds.Lead.find("ID = :1", itemId, {
-	   			onSuccess: function(event) {
-	   				updateItemDetail(event.entity.fullName.getValue(), event.entity.city.getValue(), event.entity.phone.getValue());
-	   			}
-	   		});
+	   		var dataclass = this$.children('div.itemIdent').attr('data-dataclass');
+	   		
+	   		switch(dataclass) {
+				case "Leads":
+				ds.Lead.find("ID = :1", itemId, {
+		   			onSuccess: function(event) {
+		   				updateItemDetail(event.entity.fullName.getValue(), event.entity.city.getValue(), event.entity.phone.getValue());
+		   			}
+		   		});
+				break;
+
+				case "Contacts":
+				ds.Contact.find("ID = :1", itemId, {
+		   			onSuccess: function(event) {
+		   				updateItemDetail(event.entity.fullName.getValue(), event.entity.city.getValue(), event.entity.phone.getValue());
+		   			}
+		   		});
+				break;
+
+				case "Accounts":
+				ds.Account.find("ID = :1", itemId, {
+		   			onSuccess: function(event) {
+		   				updateItemDetail(event.entity.name.getValue(), event.entity.city.getValue(), event.entity.phone.getValue());
+		   			}
+		   		});
+				break;				
+			} //end - switch.
 
 		});
 		
-		buildItemsList();
+		//buildItemsList("Leads");
+		buildNavList();
 	};// @lock
 
 // @region eventManager// @startlock

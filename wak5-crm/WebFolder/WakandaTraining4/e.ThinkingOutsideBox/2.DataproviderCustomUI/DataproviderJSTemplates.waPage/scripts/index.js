@@ -65,6 +65,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			case "Leads":
 			ds.Lead.all({
 				onSuccess: function(ev1) {
+					var count = 0;
 					ev1.entityCollection.forEach({
 						onSuccess: function(ev2) {	
 							itemData = 	{
@@ -75,6 +76,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 								imagePath: "/images/people_small.png"
 							};
 							itemsUL$.append(listTemplateFn(itemData));
+							
+							if (count === 0) {
+								updateItemDetail(ev2.entity.fullName.getValue(), ev2.entity.city.getValue(), ev2.entity.phone.getValue(), ev2.entity.industry.getValue());
+								itemsUL$.find('li').addClass('itemPermSelected');
+							}
+							count++;
 						}
 					}); //ev1.entityCollection.forEach
 				}
@@ -84,6 +91,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			case "Contacts":
 			ds.Contact.all({
 				onSuccess: function(ev1) {
+					var count = 0;
 					ev1.entityCollection.forEach({
 						onSuccess: function(ev2) {	
 							itemData = 	{
@@ -94,6 +102,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 								imagePath: "/images/people_small.png"
 							};
 							itemsUL$.append(listTemplateFn(itemData));
+							
+							if (count === 0) {
+								updateItemDetail(ev2.entity.fullName.getValue(), ev2.entity.city.getValue(), ev2.entity.phone.getValue());
+								itemsUL$.find('li').addClass('itemPermSelected');
+							}
+							count++;
+
 						}
 					}); //ev1.entityCollection.forEach
 				}
@@ -103,6 +118,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			case "Accounts":
 			ds.Account.all({
 				onSuccess: function(ev1) {
+					var count = 0;
 					ev1.entityCollection.forEach({
 						onSuccess: function(ev2) {	
 							itemData = 	{
@@ -113,6 +129,13 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 								imagePath: "/images/companies_small.png"
 							};
 							itemsUL$.append(listTemplateFn(itemData));
+							
+							if (count === 0) {
+								updateItemDetail(ev2.entity.name.getValue(), ev2.entity.billingCity.getValue());
+								itemsUL$.find('li').addClass('itemPermSelected');
+							}
+							count++;
+
 						}
 					}); //ev1.entityCollection.forEach
 				}

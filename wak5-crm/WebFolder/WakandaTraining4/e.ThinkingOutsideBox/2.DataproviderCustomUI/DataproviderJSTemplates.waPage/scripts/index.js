@@ -123,27 +123,39 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
+		WAK5CRMUTIL.setMessage("Welcome to WakandaBook. Leads, Contacts and Accounts as Easy as 1, 2 3!");
+		
 		//event handlers
 		toggleDetailRichText$.on('click', function (event) {
 			if (showDetails) {
 				$$('toggleDetailRichText').setValue('Show Fewer Details');
 				showDetails = false;
-				detailBottomContainer$.animate({height:160},400); //.css('height', 160); 
+				detailBottomContainer$.animate({height:240},400); //.css('height', 160); 
 				
 			} else {
 				$$('toggleDetailRichText').setValue('Show More Details');
 				showDetails = true;
-				detailBottomContainer$.animate({height:60},400); //.css('height', 60); //.animate({height:40},200)
+				detailBottomContainer$.animate({height:45},400); //.css('height', 60); //.animate({height:40},200)
 			}
 		});
 		
 		
 		navUL$.on('click', '.navItem', function (event) {
-	   		var this$ = $(this);
-	   		this$.addClass('navPermSelected');
-	   		this$.siblings().removeClass('navPermSelected');
-	   		var dataclass = this$.children('div.itemIdent').attr('data-dataclass');
-	   		buildItemsList(dataclass);
+			if (waf.directory.currentUser() !== null) {
+		   		var this$ = $(this);
+		   		this$.addClass('navPermSelected');
+		   		this$.siblings().removeClass('navPermSelected');
+		   		var dataclass = this$.children('div.itemIdent').attr('data-dataclass');
+		   		buildItemsList(dataclass);
+		   		if (dataclass === "Accounts") {
+		   			waf.widgets.detailMediumImage.setValue('/images/companies_medium.png');
+		   		} else {
+		   			waf.widgets.detailMediumImage.setValue('/images/people_medium.png');
+		   		}
+		   		
+		   	} else {
+		   		WAK5CRMUTIL.setMessage("Please sign in to access your account.", 4000, "normal");
+		   	}
 		});
 		
 		itemsUL$.on('mouseenter', '.itemPreview', function (event) {

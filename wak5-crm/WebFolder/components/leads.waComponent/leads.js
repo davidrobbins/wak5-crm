@@ -24,6 +24,8 @@ function constructor (id) {
 		combobox5$ = getHtmlObj('combobox5'),
 		accordion2 = getHtmlId('accordion2'),
 		changeOwnerComponent = getHtmlId('changeOwnerComponent'),
+		clickUploadText$ = getHtmlObj('clickUploadText'),
+		fileUpload2$ = getHtmlObj('fileUpload2'),
 		
 		leadPrvButton = getHtmlId('leadPrevButton'),
 		leadNxtButton = getHtmlId('leadNextButton');
@@ -118,10 +120,20 @@ function constructor (id) {
 	   		$(this).removeClass('hoverLead');
 		});
 		
+		fileUpload2$.on('mouseenter', function (event) {
+	   		clickUploadText$.animate({'color' : '#7f7f7f'}, 900);      //.css('color', '#7f7f7f'); 
+		});
+		
+		fileUpload2$.on('mouseleave', function (event) {
+	   		clickUploadText$.animate({'color' : 'white'}, 900);      //.css('color', 'white');
+		});
+		//fileUpload2$
+		
 		//Load activity detail component.
 		//$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
 	
 	// @region namespaceDeclaration// @startlock
+	var fileUpload2 = {};	// @fileUpload
 	var leadNextButton = {};	// @button
 	var leadPrevButton = {};	// @button
 	var leadChangeOwnerButton = {};	// @button
@@ -146,6 +158,11 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	fileUpload2.filesUploaded = function fileUpload2_filesUploaded (event)// @startlock
+	{// @endlock
+		clickUploadText$.animate({'color' : 'white'}, 900);  
+	};// @lock
 
 	leadNextButton.click = function leadNextButton_click (event)// @startlock
 	{// @endlock
@@ -370,6 +387,7 @@ function constructor (id) {
 	{// @endlock
 		waf.sources.lead.addNewElement();
 		waf.sources.lead.serverRefresh({
+			autoExpand: "avatar",
 			onSuccess: function(event) {
 				waf.sources.lead.save({
 					onSuccess: function(ev2) {
@@ -434,6 +452,7 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_fileUpload2", "filesUploaded", fileUpload2.filesUploaded, "WAF");
 	WAF.addListener(this.id + "_leadNextButton", "click", leadNextButton.click, "WAF");
 	WAF.addListener(this.id + "_leadPrevButton", "click", leadPrevButton.click, "WAF");
 	WAF.addListener(this.id + "_leadChangeOwnerButton", "click", leadChangeOwnerButton.click, "WAF");

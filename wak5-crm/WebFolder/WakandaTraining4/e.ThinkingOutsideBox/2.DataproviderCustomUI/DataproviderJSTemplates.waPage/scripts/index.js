@@ -18,24 +18,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	detailBottomContainer$ = $('#detailBottomContainer'), 
 	itemData = "";
 	
-// eventHandlers// @lock
-
-	login1.logout = function login1_logout (event)// @startlock
-	{// @endlock
-		itemsUL$.children().remove(); 
-		navUL$.children('li').removeClass('navPermSelected');
-		entityObj.name = null;
-		entityObj.city = null;
-		entityObj.phone = null;
-		entityObj.industry = null;
-		waf.sources.entityObj.sync();
-	};// @lock
-
-	login1.login = function login1_login (event)// @startlock
-	{// @endlock
-		buildItemsList("Leads");
-		$('#navLeads').addClass('navPermSelected');	
-	};// @lock
 	function buildNavList() {
 		navData = [	{title: "Leads", dataclass: "Leads", navItemId: "navLeads"},
 					{title: "Contacts", dataclass: "Contacts", navItemId: "navContacts"},
@@ -143,9 +125,44 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			break;
 		} //end - switch.
 	} //end - buildItemsList.
+
+// eventHandlers// @lock
+
+	login1.logout = function login1_logout (event)// @startlock
+	{// @endlock
+		itemsUL$.children().remove(); 
+		navUL$.children('li').removeClass('navPermSelected');
+		entityObj.name = null;
+		entityObj.city = null;
+		entityObj.phone = null;
+		entityObj.industry = null;
+		waf.sources.entityObj.sync();
+	};// @lock
+
+	login1.login = function login1_login (event)// @startlock
+	{// @endlock
+		buildItemsList("Leads");
+		$('#navLeads').addClass('navPermSelected');	
+		//WAK5CRMUTIL.loadRecentItems('recentItemsContainer');
+	};// @lock
+	
 	
 	documentEvent.onLoad = function documentEvent_onLoad (event)// @startlock
 	{// @endlock
+		if (WAF.directory.currentUser() === null) {
+			itemsUL$.children().remove(); 
+			navUL$.children('li').removeClass('navPermSelected');
+			entityObj.name = null;
+			entityObj.city = null;
+			entityObj.phone = null;
+			entityObj.industry = null;
+			waf.sources.entityObj.sync();
+		} else {
+			buildItemsList("Leads");
+			$('#navLeads').addClass('navPermSelected');	
+		}
+		
+		
 		WAK5CRMUTIL.setMessage("Welcome to WakandaBook. Leads, Contacts and Accounts as Easy as 1, 2 3!");
 		
 		//event handlers

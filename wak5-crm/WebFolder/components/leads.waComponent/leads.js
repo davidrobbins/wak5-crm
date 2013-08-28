@@ -13,6 +13,7 @@ function constructor (id) {
 		changeOwnerContainer = getHtmlId('changeOwnerContainer'),
 		leadsEmailContainer = getHtmlId('leadsEmailContainer'),
 		firstNameInputfield = getHtmlId('firstNameInputfield'),
+		firstNameInputfield$ = getHtmlObj('firstNameInputfield'),
 		emailSubject = getHtmlId('emailSubject'),
 		combobox2 = getHtmlId('combobox2'), 
 		combobox1 = getHtmlId('combobox1'), 
@@ -26,14 +27,23 @@ function constructor (id) {
 		changeOwnerComponent = getHtmlId('changeOwnerComponent'),
 		clickUploadText$ = getHtmlObj('clickUploadText'),
 		fileUpload2$ = getHtmlObj('fileUpload2'),
+		fUpload2 = getHtmlId('fileUpload2'),
+		img1 = getHtmlId('image1'),
+		img2 = getHtmlId('image2'),
+		image2$ = getHtmlObj('image2'),
 		
 		leadPrvButton = getHtmlId('leadPrevButton'),
-		leadNxtButton = getHtmlId('leadNextButton');
+		leadNxtButton = getHtmlId('leadNextButton'),
+		
+		convertLeadBtn = getHtmlId('convertLeadButton'),
+		cloneLeadBtn = getHtmlId('cloneLeadButton'),
+		sendMailBtn = getHtmlId('sendMailButton'),
 		
 		selectedLeadsUL$ = getHtmlObj('selectedLeadsUL'),
 		selectedLeadsListTemplateSource = $('#selected-leads-list-template').html(),
 		selectedLeadsListTemplateFn = Handlebars.compile(selectedLeadsListTemplateSource),
 		leadData = {};
+		
 		
 		function loadNewLead() {
 			waf.sources.activity.query("lead.ID = :1", waf.sources.lead.ID);
@@ -44,6 +54,21 @@ function constructor (id) {
 			combobox4$.find('input').val(waf.sources.lead.industry);
 			combobox5$.find('input').val(waf.sources.lead.leadStatus);
 			resetPrevNextButtons();
+			$$(convertLeadBtn).enable();
+			$$(cloneLeadBtn).enable();
+			$$(sendMailBtn).enable();
+			
+			/**/
+			if (waf.sources.lead.avatar === null) {
+				$$(img2).show();
+				$$(img1).hide();
+			} else {
+				$$(img2).hide();
+				$$(img1).show();
+			}
+			
+			$$(fUpload2).show();
+			image2$.off('mouseenter');	
 		} //end - loadNewContact.
 	
 		function resetPrevNextButtons() {
@@ -112,6 +137,18 @@ function constructor (id) {
 			} //end - onSuccess
 		});
 		
+		/*
+		firstNameInputfield$.blur(function (event) {
+			if (waf.sources.lead.isNewElement()) {
+				waf.sources.hack = true;
+				waf.sources.lead.save();
+			}
+	   		//waf.sources.lead.save();
+	   		//console.log('blur');
+	   		//console.log(waf.sources.lead.isNewElement());
+		});
+		*/
+		
 		selectedLeadsUL$.on('mouseenter', '.selectedLeads', function (event) {
 	   		$(this).addClass('hoverLead');
 		});
@@ -142,7 +179,7 @@ function constructor (id) {
 	var newLeadEventButton = {};	// @button
 	var sendEmail = {};	// @button
 	var cancelEmail = {};	// @button
-	var cloneButton = {};	// @button
+	var cloneLeadButton = {};	// @button
 	var sendMailButton = {};	// @button
 	var dataGrid3 = {};	// @dataGrid
 	var dataGrid2 = {};	// @dataGrid
@@ -162,22 +199,72 @@ function constructor (id) {
 	fileUpload2.filesUploaded = function fileUpload2_filesUploaded (event)// @startlock
 	{// @endlock
 		clickUploadText$.animate({'color' : 'white'}, 900);  
+		$$(img2).hide();
+		image2$.off('mouseenter');	
+		$$(img1).show();
 	};// @lock
 
 	leadNextButton.click = function leadNextButton_click (event)// @startlock
 	{// @endlock
-		waf.sources.lead.selectNext({
+		waf.sources.lead.save({
 			onSuccess: function(event) {
-				loadNewLead();
+				if (waf.sources.lead.getPosition() === -1) {
+					waf.sources.lead.addEntity(event.dataSource.getCurrentElement());
+				}
+				
+				//WAK5CRMUTIL.setMessage("Lead: " + event.dataSource.firstName + " " + event.dataSource.lastName + " has been saved to the server.", 5000, "normal");
+				//WAK5CRMUTIL.newRecentItem("leads", "Lead: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer'); 
+				
+				waf.sources.lead.selectNext({
+					onSuccess: function(event) {
+						loadNewLead();
+					}
+		});
+			},
+			
+			onError: function(error) {
+				//error['error'][0].message + " (" + error['error'][0].errCode + ")"
+				//WAK5CRMUTIL.setMessage(error['error'][0].message + " (" + error['error'][0].errCode + ")", 7000, "error");
+				
+				waf.sources.lead.selectNext({
+					onSuccess: function(event) {
+						loadNewLead();
+					}
+				});
 			}
 		});
+		
+		
 	};// @lock
 
 	leadPrevButton.click = function leadPrevButton_click (event)// @startlock
 	{// @endlock
-		waf.sources.lead.selectPrevious({
+		waf.sources.lead.save({
 			onSuccess: function(event) {
-				loadNewLead();
+				if (waf.sources.lead.getPosition() === -1) {
+					waf.sources.lead.addEntity(event.dataSource.getCurrentElement());
+				}
+				
+				//WAK5CRMUTIL.setMessage("Lead: " + event.dataSource.firstName + " " + event.dataSource.lastName + " has been saved to the server.", 5000, "normal");
+				//WAK5CRMUTIL.newRecentItem("leads", "Lead: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer');
+				
+				waf.sources.lead.selectPrevious({
+					onSuccess: function(event) {
+						loadNewLead();
+					}
+				}); 
+			},
+			
+			onError: function(error) {
+				//error['error'][0].message + " (" + error['error'][0].errCode + ")"
+				//WAK5CRMUTIL.setMessage(error['error'][0].message + " (" + error['error'][0].errCode + ")", 7000, "error");
+				
+				waf.sources.lead.selectPrevious({
+					onSuccess: function(event) {
+						loadNewLead();
+					}
+				}); 
+
 			}
 		});
 	};// @lock
@@ -232,21 +319,30 @@ function constructor (id) {
 	{// @endlock
 		
 		//Note: Refactor!
-		waf.sources.activity.addNewElement();
-		waf.sources.activity.type = "event";
-		waf.sources.activity.status = "Started";
-		waf.sources.activity.priority = "Normal";
-		//Bug: date attr.
-		//waf.sources.activity.due = new Date();
-		//Bug report: Activity onInit() is not running. Why?
-		waf.sources.activity.serverRefresh({
-			onSuccess: function(event) {
-				waf.sources.activity.lead.set(waf.sources.lead);
-				$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
-				$$(leadsDetailMainContainer).hide();
-				$$(leadsActivityDetailContainer).show();
-			}
-		});
+		try 
+		{
+			waf.sources.activity.addNewElement();
+			waf.sources.activity.type = "event";
+			waf.sources.activity.status = "Started";
+			waf.sources.activity.priority = "Normal";
+			//Bug: date attr.
+			//waf.sources.activity.due = new Date();
+			//Bug report: Activity onInit() is not running. Why?
+			waf.sources.activity.serverRefresh({
+				onSuccess: function(event) {
+					waf.sources.activity.lead.set(waf.sources.lead);
+					$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
+					$$(leadsDetailMainContainer).hide();
+					$$(leadsActivityDetailContainer).show();
+				}
+			});
+		} 
+		catch(err) {
+			WAK5CRMUTIL.setMessage("A new event cannot be added until you save the Lead.", 4000, "error");
+		}
+		
+		
+		
 	};// @lock
 
 	sendEmail.click = function sendEmail_click (event)// @startlock
@@ -265,7 +361,7 @@ function constructor (id) {
 		$$(leadsDetailContainer).show();
 	};// @lock
 
-	cloneButton.click = function cloneButton_click (event)// @startlock
+	cloneLeadButton.click = function cloneLeadButton_click (event)// @startlock
 	{// @endlock
 		//$$(leadsDetailContainer).hide();
 		//$$(leadsConvertContainer).show();
@@ -310,23 +406,29 @@ function constructor (id) {
 	newLeadTaskButton.click = function newLeadTaskButton_click (event)// @startlock
 	{// @endlock
 		/**/
-		waf.sources.activity.addNewElement();
-		waf.sources.activity.type = "task";
-		waf.sources.activity.status = "Started";
-		waf.sources.activity.priority = "Normal";
-		
-		//Bug report: Activity onInit() is not running. Why?
-		
-		/**/
-		waf.sources.activity.serverRefresh({
-			onSuccess: function(event) {
-				waf.sources.activity.lead.set(waf.sources.lead);
-				waf.sources.activity.due = new Date();
-				$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
-				$$(leadsDetailMainContainer).hide();
-				$$(leadsActivityDetailContainer).show();
-			}
-		});
+		try 
+		{
+			waf.sources.activity.addNewElement();
+			waf.sources.activity.type = "task";
+			waf.sources.activity.status = "Started";
+			waf.sources.activity.priority = "Normal";
+			
+			//Bug report: Activity onInit() is not running. Why?
+			
+			/**/
+			waf.sources.activity.serverRefresh({
+				onSuccess: function(event) {
+					waf.sources.activity.lead.set(waf.sources.lead);
+					waf.sources.activity.due = new Date();
+					$$(activityDetailComponent).loadComponent({path: '/components/activityDetail.waComponent', userData: {detailMainContainer: leadsDetailMainContainer, activityDetailContainer: leadsActivityDetailContainer}});
+					$$(leadsDetailMainContainer).hide();
+					$$(leadsActivityDetailContainer).show();
+				}
+			});
+		}
+		catch(err) {
+			WAK5CRMUTIL.setMessage("A new task cannot be added until you save the Lead.", 4000, "error");
+		}
 		
 		
 		
@@ -385,26 +487,77 @@ function constructor (id) {
 
 	leadNewButton.click = function leadNewButton_click (event)// @startlock
 	{// @endlock
+		/*
+		waf.sources.lead.createNewLead({
+			onSuccess: function(event) {
+				waf.sources.lead.setCurrentEntity(event.result);
+				waf.sources.lead.addEntity(event.result);
+				
+				$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "leads", entityID: waf.sources.lead.ID}});
+				//Super Hack
+				combobox3$.find('input').val(waf.sources.lead.leadSource);
+				combobox4$.find('input').val(waf.sources.lead.industry);
+				combobox5$.find('input').val(waf.sources.lead.leadStatus);
+				
+				$$(leadNxtButton).disable();
+				$$(leadPrvButton).disable();
+				$$(convertLeadBtn).disable();
+				$$(cloneLeadBtn).disable();
+				$$(sendMailBtn).disable();
+			
+				//Note: Bug - Refactor - Super hack fix later.
+				//combobox3$.find('input').val('-none-');
+				//combobox4$.find('input').val('-none-');
+				//combobox5$.find('input').val('-none-');
+	
+				$$(leadsListContainer).hide();
+				$$(leadsDetailContainer).show();
+				$$(firstNameInputfield).focus();
+				waf.sources.activity.setEntityCollection();
+			} //end - onSuccess.
+		});
+		*/
+		
+		
+		/**/
 		waf.sources.lead.addNewElement();
 		waf.sources.lead.serverRefresh({
-			autoExpand: "avatar",
 			onSuccess: function(event) {
+				
+				$$(leadsListContainer).hide();
+				waf.sources.lead.leadEntityState = "initOnClient";
 				waf.sources.lead.save({
 					onSuccess: function(ev2) {
+						
+						$$(notesComponent).loadComponent({path: '/components/notes.waComponent', userData: {section: "leads", entityID: waf.sources.lead.ID}});
 						//Note: Bug - Refactor - Super hack fix later.
 						combobox3$.find('input').val('-none-');
 						combobox4$.find('input').val('-none-');
 						combobox5$.find('input').val('-none-');
 			
-						$$(leadsListContainer).hide();
+						//$$(leadsListContainer).hide();
 						$$(leadsDetailContainer).show();
+						
+						$$(fUpload2).hide();
+						$$(img1).hide();
+						$$(img2).show();
+						image2$.on('mouseenter', function (event) {
+					   		WAK5CRMUTIL.setMessage("You must save the Lead before you can upload a photo.", 4000, "error");
+						});
+						
 						$$(firstNameInputfield).focus();
 						waf.sources.activity.setEntityCollection();
-						//waf.sources.note.setEntityCollection();
+						
+						$$(leadNxtButton).disable();
+						$$(leadPrvButton).disable();
+						$$(convertLeadBtn).disable();
+						$$(cloneLeadBtn).disable();
+						$$(sendMailBtn).disable();
 					}
 				});
 			}
 		});
+		
 	};// @lock
 
 	leadSaveButton.click = function leadSaveButton_click (event)// @startlock
@@ -413,13 +566,22 @@ function constructor (id) {
 		$$(leadsDetailContainer).hide();
 		$$(leadsListContainer).show();
 		
+		waf.sources.lead.leadEntityState = "savedByUser";
 		waf.sources.lead.save({
 			onSuccess: function(event) {
+				if (waf.sources.lead.getPosition() === -1) {
+					waf.sources.lead.addEntity(event.dataSource.getCurrentElement());
+				}
+				
 				WAK5CRMUTIL.setMessage("Lead: " + event.dataSource.firstName + " " + event.dataSource.lastName + " has been saved to the server.", 5000, "normal");
 				WAK5CRMUTIL.newRecentItem("leads", "Lead: ", event.dataSource.firstName + " " + event.dataSource.lastName, event.dataSource.ID, 'mainComponent_recentItemsBodyContainer'); 
-				//WAK5CRMUTIL.setMessage("Lead: " + waf.sources.lead.firstName + " " + waf.sources.lead.lastName + " has been saved to the server.", 7000, "normal");
-				//WAK5CRMUTIL.newRecentItem("leads", "Lead: ", waf.sources.lead.firstName + " " + waf.sources.lead.lastName, waf.sources.lead.ID, 'mainComponent_recentItemsBodyContainer'); 
-		},
+				
+				/*
+				$$(img2).hide();
+				$$(img1).show();
+				$$(fUpload2).show();
+				*/
+			},
 			
 			onError: function(error) {
 				//error['error'][0].message + " (" + error['error'][0].errCode + ")"
@@ -433,10 +595,21 @@ function constructor (id) {
 
 	leadCancelButton.click = function leadCancelButton_click (event)// @startlock
 	{// @endlock
-			if (waf.sources.lead.isNewElement()) {
-			//Bug Report: isNewElement() reports true for an entity that has been saved it is still the current entity.
-			waf.sources.lead.removeCurrentReference();
+		if ((waf.sources.lead.leadEntityState === "initOnClient") || (waf.sources.lead.leadEntityState === "initOnServer")) {
+			//let's remove it.
+			waf.sources.lead.removeCurrent();
 		}
+		
+		
+		//waf.sources.lead.leadEntityState = "initOnClient";
+		/*
+		if (waf.sources.lead.isNewElement()) {
+			//Bug Report: isNewElement() reports true for an entity that has been saved it is still the current entity.
+			//waf.sources.lead.removeCurrentReference();
+			
+			WAK5CRMUTIL.setMessage("This is a new element. Let's delete it.", 4000, "error");
+		}
+		*/
 		
 		$$(accordion2).expand(1);
 		$$(leadsDetailContainer).hide();
@@ -461,7 +634,7 @@ function constructor (id) {
 	WAF.addListener(this.id + "_newLeadEventButton", "click", newLeadEventButton.click, "WAF");
 	WAF.addListener(this.id + "_sendEmail", "click", sendEmail.click, "WAF");
 	WAF.addListener(this.id + "_cancelEmail", "click", cancelEmail.click, "WAF");
-	WAF.addListener(this.id + "_cloneButton", "click", cloneButton.click, "WAF");
+	WAF.addListener(this.id + "_cloneLeadButton", "click", cloneLeadButton.click, "WAF");
 	WAF.addListener(this.id + "_sendMailButton", "click", sendMailButton.click, "WAF");
 	WAF.addListener(this.id + "_dataGrid3", "onRowDblClick", dataGrid3.onRowDblClick, "WAF");
 	WAF.addListener(this.id + "_dataGrid2", "onRowDblClick", dataGrid2.onRowDblClick, "WAF");

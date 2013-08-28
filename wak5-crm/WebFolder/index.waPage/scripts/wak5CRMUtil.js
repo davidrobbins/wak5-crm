@@ -234,8 +234,6 @@ var WAK5CRMUTIL = (function() {
 		 	theEntityID = $this.data('entity');
 		 	theNewPath = 'components/' + theDataClass + '.waComponent';
 			theView = "detail";	
-			
-			//console.log(theEntityID);
 			 	
 		 	switch(theDataClass) {
 				case "accounts":

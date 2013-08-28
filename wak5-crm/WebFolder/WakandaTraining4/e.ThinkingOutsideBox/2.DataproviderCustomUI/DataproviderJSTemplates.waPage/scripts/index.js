@@ -216,7 +216,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	   		switch(dataclass) {
 				case "Leads":
 				ds.Lead.find("ID = :1", itemId, {
-		   			onSuccess: function(event) {
+		   			onSuccess: function(event) {		
 		   				updateItemDetail(event.entity.fullName.getValue(), event.entity.city.getValue(), event.entity.phone.getValue(), event.entity.industry.getValue());
 		   			}
 		   		});

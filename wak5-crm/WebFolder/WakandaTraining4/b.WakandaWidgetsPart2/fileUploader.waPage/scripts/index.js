@@ -2,17 +2,23 @@
 WAF.onAfterInit = function onAfterInit() {// @lock
 
 // @region namespaceDeclaration// @startlock
-	var fileUpload1 = {};	// @fileUpload
+	var login1 = {};	// @login
 // @endregion// @endlock
 
 // eventHandlers// @lock
 
-	fileUpload1.filesUploaded = function fileUpload1_filesUploaded (event)// @startlock
+	login1.logout = function login1_logout (event)// @startlock
 	{// @endlock
-		console.log(event);
+		waf.sources.lead.setEntityCollection();
+	};// @lock
+
+	login1.login = function login1_login (event)// @startlock
+	{// @endlock
+		waf.sources.lead.all();
 	};// @lock
 
 // @region eventManager// @startlock
-	WAF.addListener("fileUpload1", "filesUploaded", fileUpload1.filesUploaded, "WAF");
+	WAF.addListener("login1", "logout", login1.logout, "WAF");
+	WAF.addListener("login1", "login", login1.login, "WAF");
 // @endregion
 };// @endlock

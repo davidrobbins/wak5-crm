@@ -74,6 +74,9 @@ var WAK5CRMUTIL = (function() {
 			case "error":
 			$$('messageText').setTextColor('#cc0000'); 
 			break;
+			
+			default:
+			$$('messageText').setTextColor('#4c4c4c'); 
 		}
 
 		

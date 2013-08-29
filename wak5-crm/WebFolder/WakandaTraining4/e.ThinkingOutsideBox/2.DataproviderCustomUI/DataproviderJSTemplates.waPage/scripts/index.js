@@ -68,6 +68,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 					}); //ev1.entityCollection.forEach
 				}
 			});
+			waf.widgets.detailMediumImage.setValue('/images/people_medium.png');
 			break;
 			
 			case "Contacts":
@@ -95,6 +96,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 					}); //ev1.entityCollection.forEach
 				}
 			});
+			waf.widgets.detailMediumImage.setValue('/images/people_medium.png');
 			break;
 			
 			case "Accounts":
@@ -108,7 +110,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 								city:    	ev2.entity.billingCity.getValue(),
 								dataId: 	ev2.entity.ID.getValue(),
 								dataclass: 	"Accounts",
-								imagePath: "/images/companies_small.png"
+								imagePath: "/images/people_small.png"
 							};
 							itemsUL$.append(listTemplateFn(itemData));
 							
@@ -122,6 +124,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 					}); //ev1.entityCollection.forEach
 				}
 			});
+			waf.widgets.detailMediumImage.setValue('/images/companies_medium.png');
 			break;
 		} //end - switch.
 	} //end - buildItemsList.
@@ -143,6 +146,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	{// @endlock
 		buildItemsList("Leads");
 		$('#navLeads').addClass('navPermSelected');	
+		WAK5CRMUTIL.setMessage("Welcome to WakandaBook. Leads, Contacts and Accounts as Easy as 1, 2 3!", 6000);
 		//WAK5CRMUTIL.loadRecentItems('recentItemsContainer');
 	};// @lock
 	
@@ -162,8 +166,6 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 			$('#navLeads').addClass('navPermSelected');	
 		}
 		
-		
-		WAK5CRMUTIL.setMessage("Welcome to WakandaBook. Leads, Contacts and Accounts as Easy as 1, 2 3!");
 		
 		//event handlers
 		toggleDetailRichText$.on('click', function (event) {
@@ -196,6 +198,12 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		   	} else {
 		   		WAK5CRMUTIL.setMessage("Please sign in to access your account.", 4000, "normal");
 		   	}
+		   	
+		   	entityObj.name = null;
+			entityObj.city = null;
+			entityObj.phone = null;
+			entityObj.industry = null;
+			waf.sources.entityObj.sync();
 		});
 		
 		itemsUL$.on('mouseenter', '.itemPreview', function (event) {

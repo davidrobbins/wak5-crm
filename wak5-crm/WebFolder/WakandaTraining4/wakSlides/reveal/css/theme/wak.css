@@ -22,9 +22,18 @@ p {
 	margin-top: 40px;
 }
 
+#uploadLocation ul li {
+	margin-top: 80px;
+}
+
 .quiet {
 	color:  #e5e5e5;
 	font-size: .8em;
+}
+
+.subtext {
+	color:  #999999;
+	font-size: .7em;
 }
 
 .definition {

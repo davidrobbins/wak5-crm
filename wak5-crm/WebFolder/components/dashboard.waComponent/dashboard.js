@@ -73,6 +73,13 @@ function constructor (id) {
 		} //end - function handleMainMenuBarSelect
 		
 		WAK5CRMUTIL.mainMenubarObj.subscribe(handleMainMenuBarSelect, "on select"); 
+		/*
+		if (waf.directory.currentUser().userName == "greg@wakanda.org") {
+			WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(2);
+		} else {
+			WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(0);
+		}
+		*/
 		WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(0);
 		//WAK5CRMUTIL.mainMenubarObj.setSelectedMenuItem(1, {view: "list"});
 		WAK5CRMUTIL.loadRecentItems(recentItemsBodyContainer);

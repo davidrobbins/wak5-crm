@@ -18,6 +18,21 @@ body {
 p {
 	max-width: 900px;
 }
+
+
+div.tight p {
+	font-size: .8em;
+}
+
+div.tight ul li {
+    line-height: 1.1em !important;
+    margin-top: 0.0em;
+    margin-left: 0;
+    padding-left: 0;
+    font-size: .8em;
+}
+
+
 .spread ul li {
 	margin-top: 40px;
 }

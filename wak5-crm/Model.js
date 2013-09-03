@@ -13,30 +13,14 @@ include("classes/note.js");
 include("classes/log.js");
 
 
+var dataClassNames = ['Lead', 'Account', 'Contact']; 
 
-/*
-var dataClassNames = []; 
-for (var theName in ds.dataClasses) { // put each datastore class of ds
- 	dataClassNames.push (theName); // in the array
-}
-
-//model.Lead.collectionMethods.jqPlotLeadStatus = function() {
-	
-	
 for (var i = 0, len = dataClassNames.length; i < len; i++) 
 {
 	model[dataClassNames[i]].collectionMethods.collectionEcho = function() {
-		return "There are " + this.length + " entities in the " + dataClassNames[i] + " collection."
+		return "There are " + this.length + " entities in the collection."
 	};
-}
-*/
-
-/*
-var dataClassNames = [];
 	
-for (var property in model) {
-    dataClassNames.push(property);
+	model[dataClassNames[i]].collectionMethods.collectionEcho.scope = "public";
 }
 
-dataClassNames
-*/

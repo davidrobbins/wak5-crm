@@ -2,10 +2,19 @@
 WAF.onAfterInit = function onAfterInit() {// @lock
 
 // @region namespaceDeclaration// @startlock
+	var matrix1 = {};	// @matrix
 	var login1 = {};	// @login
 // @endregion// @endlock
 
 // eventHandlers// @lock
+
+	matrix1.onChildrenDraw = function matrix1_onChildrenDraw (event)// @startlock
+	{// @endlock
+		var elem$ = $(event.htmlObject);
+		if (waf.sources.lead.leadStatus == "Contacted") {
+			elem$.find('.contactedCircle').css('background-color', 'red');
+		}		
+	};// @lock
 
 	login1.logout = function login1_logout (event)// @startlock
 	{// @endlock
@@ -18,6 +27,7 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	};// @lock
 
 // @region eventManager// @startlock
+	WAF.addListener("matrix1", "onChildrenDraw", matrix1.onChildrenDraw, "WAF");
 	WAF.addListener("login1", "logout", login1.logout, "WAF");
 	WAF.addListener("login1", "login", login1.login, "WAF");
 // @endregion

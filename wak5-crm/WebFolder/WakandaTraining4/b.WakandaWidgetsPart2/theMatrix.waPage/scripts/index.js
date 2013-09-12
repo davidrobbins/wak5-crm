@@ -10,10 +10,14 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	matrix1.onChildrenDraw = function matrix1_onChildrenDraw (event)// @startlock
 	{// @endlock
+		/**/	
 		var elem$ = $(event.htmlObject);
 		if (waf.sources.lead.leadStatus == "Contacted") {
-			elem$.find('.contactedCircle').css('background-color', 'red');
-		}		
+			//elem$.find('.contactedCircle').css('background-color', 'red');
+			elem$.find('img').show();
+		} else {
+			elem$.find('img').hide();
+		}	
 	};// @lock
 
 	login1.logout = function login1_logout (event)// @startlock

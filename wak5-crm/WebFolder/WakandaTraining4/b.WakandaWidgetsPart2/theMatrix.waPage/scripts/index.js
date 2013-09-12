@@ -14,9 +14,10 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 		var elem$ = $(event.htmlObject);
 		if (waf.sources.lead.leadStatus == "Contacted") {
 			//elem$.find('.contactedCircle').css('background-color', 'red');
-			elem$.find('img').show();
+			//contactedCheck
+			elem$.find('.contactedCheck').show();
 		} else {
-			elem$.find('img').hide();
+			elem$.find('.contactedCheck').hide();
 		}	
 	};// @lock
 

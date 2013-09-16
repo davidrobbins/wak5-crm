@@ -1,0 +1,1 @@
+﻿var result 	= {},	_		= require('underscore');		result.generatePerson = function generate_person(){};module.exports = result;

@@ -10,11 +10,8 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 
 	matrix1.onChildrenDraw = function matrix1_onChildrenDraw (event)// @startlock
 	{// @endlock
-		/**/	
 		var elem$ = $(event.htmlObject);
 		if (waf.sources.lead.leadStatus == "Contacted") {
-			//elem$.find('.contactedCircle').css('background-color', 'red');
-			//contactedCheck
 			elem$.find('.contactedCheck').show();
 		} else {
 			elem$.find('.contactedCheck').hide();

@@ -10164,3 +10164,397 @@
 2013-09-05 11:59:57 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
 2013-09-05 11:59:57 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
 2013-09-05 11:59:57 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-06 09:56:03 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-06 09:56:03 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-06 09:56:03 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 400 ms)
+2013-09-06 10:17:44 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-06 10:17:45 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-06 10:17:46 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-06 10:17:46 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-06 10:17:46 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-06 10:17:47 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-06 10:17:47 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-06 10:17:47 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-07 08:24:59 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-07 08:24:59 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-07 08:24:59 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 406 ms)
+2013-09-07 08:40:53 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore model reloaded
+2013-09-07 09:11:08 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-07 09:11:09 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-07 09:11:10 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-07 09:11:10 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-07 09:11:10 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-07 09:11:10 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-07 09:11:10 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-07 09:11:10 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-11 08:47:52 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-11 08:47:52 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-11 08:47:52 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 414 ms)
+2013-09-11 09:16:47 [com.wakanda-software.dbmg] ERROR - [1500] The "$expand=accountCollection" attribute cannot be found in The "User" datastore class, task #27651, task name is HTTP connection handler
+2013-09-11 09:16:47 [com.wakanda-software.dbmg] ERROR - [1500] The "$expand=accountCollection" attribute cannot be found in The "User" datastore class, task #27651, task name is HTTP connection handler
+2013-09-11 09:16:47 [com.wakanda-software.dbmg] ERROR - [1804] Cannot completely build a list of attributes with "$expand=accountCollection" for the "User" datastore class, task #27651, task name is HTTP connection handler
+2013-09-11 09:55:54 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-11 09:55:55 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-11 09:55:56 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-11 09:55:56 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-11 09:55:56 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-11 09:55:56 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-11 09:55:56 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-11 09:55:56 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-11 11:21:59 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-11 11:21:59 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-11 11:21:59 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-11 11:22:00 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-11 11:22:00 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-11 11:22:00 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 349 ms)
+2013-09-11 14:30:36 [com.wakanda-software.dbmg] ERROR - [1800] The "Product" datastore class cannot be found, task #29699, task name is HTTP connection handler
+2013-09-11 14:31:27 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-11 14:31:28 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-11 14:31:29 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-11 14:31:29 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-11 14:31:29 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-11 14:31:29 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-11 14:31:29 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-11 14:31:29 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-11 14:37:23 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-11 14:37:23 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-11 14:37:23 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-11 14:37:23 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-11 14:37:23 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-11 14:37:23 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-11 14:37:23 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-11 14:37:23 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-11 14:37:24 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-11 14:37:24 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-11 14:37:24 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-11 14:37:24 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-11 14:37:24 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-11 14:37:24 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-11 14:37:24 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-11 14:37:24 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 336 ms)
+2013-09-11 14:45:53 [com.wakanda-software.dbmg] ERROR - [1800] The "Product" datastore class cannot be found, task #28931, task name is HTTP connection handler
+2013-09-11 15:05:11 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-11 15:05:12 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-11 15:05:13 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-11 15:05:13 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-11 15:05:13 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-11 15:05:14 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-11 15:05:14 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-11 15:05:14 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-11 15:11:33 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-11 15:11:33 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-11 15:11:33 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 348 ms)
+2013-09-11 15:27:42 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-11 15:27:43 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-11 15:27:44 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-11 15:27:44 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-11 15:27:44 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-11 15:27:44 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-11 15:27:44 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-11 15:27:44 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-11 15:34:42 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-11 15:34:42 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-11 15:34:42 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-11 15:34:42 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-11 15:34:42 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-11 15:34:42 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-11 15:34:43 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-11 15:34:43 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-11 15:34:43 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-11 15:34:43 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-11 15:34:43 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-11 15:34:43 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-11 15:34:43 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-11 15:34:43 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-11 15:34:43 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-11 15:34:43 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 335 ms)
+2013-09-11 16:00:18 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-11 16:00:19 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-11 16:00:20 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-11 16:00:20 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-11 16:00:20 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-11 16:00:20 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-11 16:00:20 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-11 16:00:20 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-12 03:44:17 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-12 03:44:17 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-12 03:44:17 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-12 03:44:17 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-12 03:44:17 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-12 03:44:17 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-12 03:44:18 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-12 03:44:18 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-12 03:44:18 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-12 03:44:18 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-12 03:44:18 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-12 03:44:18 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-12 03:44:18 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-12 03:44:18 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-12 03:44:18 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-12 03:44:18 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 439 ms)
+2013-09-12 03:53:45 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-12 03:53:46 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-12 03:53:47 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-12 03:53:47 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-12 03:53:47 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-12 03:53:47 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-12 03:53:47 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-12 03:53:47 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-12 04:27:47 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-12 04:27:47 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-12 04:27:47 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 366 ms)
+2013-09-12 04:53:34 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-12 04:53:35 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-12 04:53:36 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-12 04:53:36 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-12 04:53:36 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-12 04:53:36 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-12 04:53:36 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-12 04:53:36 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-12 05:05:25 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-12 05:05:25 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-12 05:05:25 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 370 ms)
+2013-09-12 05:10:06 [com.wakanda-software.wak5-crm.wak5-crm.JS4D] ERROR - [1] Error: File "" not found (), task #30467, task name is HTTP connection handler
+2013-09-12 05:10:06 [com.wakanda-software.HTTP] ERROR - [500] , task #30467, task name is HTTP connection handler
+2013-09-12 05:18:42 [com.wakanda-software.wak5-crm.wak5-crm.JS4D] ERROR - [1] Error: Wrong type for parameter #1, expected File or String., task #28675, task name is HTTP connection handler
+2013-09-12 05:18:42 [com.wakanda-software.HTTP] ERROR - [500] , task #28675, task name is HTTP connection handler
+2013-09-12 05:20:35 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-12 05:20:36 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-12 05:20:37 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-12 05:20:37 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-12 05:20:37 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-12 05:20:38 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-12 05:20:38 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-12 05:20:38 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-13 10:02:33 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-13 10:02:33 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-13 10:02:33 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 427 ms)
+2013-09-13 10:17:05 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-13 10:17:06 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-13 10:17:07 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-13 10:17:07 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-13 10:17:07 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-13 10:17:08 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-13 10:17:08 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-13 10:17:08 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-13 10:22:25 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-13 10:22:25 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-13 10:22:25 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 356 ms)
+2013-09-13 10:24:18 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-13 10:24:19 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-13 10:24:20 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-13 10:24:20 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-13 10:24:20 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-13 10:24:20 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-13 10:24:20 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-13 10:24:20 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-13 10:35:49 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-13 10:35:49 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-13 10:35:49 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-13 10:35:49 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-13 10:35:50 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-13 10:35:50 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-13 10:35:50 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-13 10:35:50 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-13 10:35:50 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-13 10:35:50 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-13 10:35:50 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-13 10:35:50 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-13 10:35:50 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-13 10:35:50 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-13 10:35:50 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-13 10:35:50 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 446 ms)
+2013-09-13 12:02:56 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-13 12:02:57 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-13 12:02:58 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-13 12:02:58 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-13 12:02:58 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-13 12:02:58 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-13 12:02:58 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-13 12:02:58 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-13 12:03:05 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-13 12:03:05 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-13 12:03:05 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-13 12:03:05 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-13 12:03:05 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-13 12:03:05 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-13 12:03:05 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-13 12:03:05 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-13 12:03:05 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-13 12:03:05 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-13 12:03:05 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-13 12:03:06 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-13 12:03:06 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-13 12:03:06 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-13 12:03:06 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-13 12:03:06 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 370 ms)
+2013-09-13 12:03:22 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-13 12:03:23 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-13 12:03:24 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-13 12:03:24 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-13 12:03:24 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-13 12:03:24 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-13 12:03:24 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-13 12:03:24 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-15 10:18:57 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-15 10:18:57 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-15 10:18:57 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-15 10:18:57 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-15 10:18:57 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-15 10:18:57 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-15 10:18:58 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-15 10:18:58 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-15 10:18:58 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-15 10:18:58 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-15 10:18:58 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-15 10:18:58 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-15 10:18:58 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-15 10:18:58 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-15 10:18:58 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-15 10:18:58 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 381 ms)
+2013-09-15 23:15:25 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-15 23:15:26 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-15 23:15:27 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-15 23:15:27 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-15 23:15:27 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-15 23:15:27 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-15 23:15:27 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-15 23:15:27 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm] INFO - Users and groups directory opened
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Datastore opened
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project opened
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project opened
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution opened
+2013-09-16 09:03:38 [com.wakanda-software] INFO - Starts "wak5-crm" solution
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - HTTP Server started
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project started
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.wak5-crm] INFO - HTTP Server started
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project started
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Executes the bootstrap file(s)
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - Bootstrap file(s) executed
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Executes the bootstrap file(s)
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm.wak5-crm] INFO - Bootstrap file(s) executed
+2013-09-16 09:03:38 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution started
+2013-09-16 09:03:38 [com.wakanda-software] INFO - "wak5-crm" solution has been successfully opened for running (duration: 441 ms)
+2013-09-16 09:06:28 [com.wakanda-software] INFO - Stops "wak5-crm" solution
+2013-09-16 09:06:29 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project stopped
+2013-09-16 09:06:30 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project stopped
+2013-09-16 09:06:30 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution stopped
+2013-09-16 09:06:30 [com.wakanda-software] INFO - Closes "wak5-crm" solution
+2013-09-16 09:06:30 [com.wakanda-software.wak5-crm.wak5-crm] INFO - "wak5-crm" project closed
+2013-09-16 09:06:30 [com.wakanda-software.wak5-crm.ServerAdmin] INFO - "ServerAdmin" project closed
+2013-09-16 09:06:30 [com.wakanda-software.wak5-crm] INFO - "wak5-crm" solution closed

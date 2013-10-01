@@ -47,6 +47,22 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	{// @endlock
 		buildUserList();
 		
+		leadGridUL$.on('click', '.leadGridColumn', function (event) {
+			leadGridUL$.find('.leadGridColumn').removeClass('gridCellSelectedPerm');
+			//$(this).siblings().removeClass('gridCellSelectedPerm');
+	   		$(this).addClass('gridCellSelectedPerm');
+		});
+		
+		
+		leadGridUL$.on('mouseenter', '.leadGridColumn', function (event) {
+	   		$(this).addClass('gridCellSelected');
+		});
+
+		leadGridUL$.on('mouseleave', '.leadGridColumn', function (event) {
+	   		$(this).removeClass('gridCellSelected');
+		});
+		
+		
 		userListUL$.on('mouseenter', '.userPreview', function (event) {
 	   		$(this).addClass('userSelected');
 		});

@@ -37,9 +37,44 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	}
 	
 	function buildLeadGridRow(leadRowObject) {
-		//   /rest/Lead(544)/avatar?$imageformat=best&$expand=avatar
 		leadGridUL$.append(leadGridRowTemplateFn(leadRowObject));
 	} //end - buildLeadGridRow.
+	
+	function buildLeadGridForUser(userId) {
+ 		ds.User.find("email = :1", userId, {
+			autoExpand: "leadCollection",
+			onSuccess: function(event) {
+				var count = 0,
+					leadsArray = [];
+
+				event.entity.leadCollection.relEntityCollection.forEach({
+					onSuccess: function(ev2) {
+						count += 1;
+						leadsArray.push({
+							name: ev2.entity.fullName.getValue(), 
+							imagePath: "/rest/Lead(" + ev2.entity.ID.getValue() + ")/avatar?$imageformat=best&$expand=avatar"
+						});
+						
+						if ((count % 3 == 0) & (count > 0)) {
+							var leadRowObject = {name1: leadsArray[0].name, name2: leadsArray[1].name, name3: leadsArray[2].name,
+								imagePath1: leadsArray[0].imagePath, 
+								imagePath2: leadsArray[1].imagePath, 
+								imagePath3: leadsArray[2].imagePath
+							};
+							
+							buildLeadGridRow(leadRowObject);
+							leadsArray = [];
+						} //end - if ((count % 3 == 0) & (count > 0)) {
+					},
+					
+					atTheEnd: function(ev2) {
+						//console.log(leadsArray);
+						//buildLeadGridRow(leadRowObject);
+					}
+				}); //end - event.entity.leadCollection.relEntityCollection.forEach
+			}
+		}); //end - ds.User.find("email = :1", userId
+	} //end - function buildLeadGridForUser
 	
 // eventHandlers// @lock
 
@@ -79,43 +114,9 @@ WAF.onAfterInit = function onAfterInit() {// @lock
 	   		this$.siblings().removeClass('userPermSelected');
 	   		
 	   		var userId = this$.children('div.userIdent').attr('data-id');
-	   		ds.User.find("email = :1", userId, {
-	   			autoExpand: "leadCollection",
-	   			onSuccess: function(event) {
-	   				var count = 0,
-	   					leadsArray = [];
-	   					
-	   					
-	   				event.entity.leadCollection.relEntityCollection.forEach({
-	   					onSuccess: function(ev2) {
-	   						count += 1;
-	   						leadsArray.push({
-	   							name: ev2.entity.fullName.getValue(), 
-	   							imagePath: "/rest/Lead(" + ev2.entity.ID.getValue() + ")/avatar?$imageformat=best&$expand=avatar"
-	   						});
-	   						
-	   						if ((count % 3 == 0) & (count > 0)) {
-	   							var leadRowObject = {name1: leadsArray[0].name, name2: leadsArray[1].name, name3: leadsArray[2].name,
-	   								imagePath1: leadsArray[0].imagePath, 
-	   								imagePath2: leadsArray[1].imagePath, 
-	   								imagePath3: leadsArray[2].imagePath
-	   							};
-	   							
-	   							buildLeadGridRow(leadRowObject);
-	   							leadsArray = [];
-	   						} //end - if ((count % 3 == 0) & (count > 0)) {
-	   					},
-	   					
-	   					atTheEnd: function(ev2) {
-	   						//console.log(leadsArray);
-	   						//buildLeadGridRow();
-	   					}
-	   				});
-	   				
-	   				
-	   			}
-	   		});
-		});
+	   		buildLeadGridForUser(userId);
+	  		
+		}); //end - userListUL$.on('click'
 
 	};// @lock
 

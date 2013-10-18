@@ -272,6 +272,9 @@ function constructor (id) {
 	leadChangeOwnerButton.click = function leadChangeOwnerButton_click (event)// @startlock
 	{// @endlock
 		
+		
+			
+		/**/
 		if (waf.directory.currentUserBelongsTo("Manager")) {
 			waf.sources.lead.getEntityCollection().buildFromSelection(waf.sources.lead.getSelection(), {
 				onSuccess: function(event) {

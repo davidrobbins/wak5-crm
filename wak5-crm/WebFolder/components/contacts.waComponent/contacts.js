@@ -69,6 +69,8 @@ function constructor (id) {
 
 
 	// @region namespaceDeclaration// @startlock
+	var contactDeleteButton = {};	// @button
+	var contactMassUpdateButton = {};	// @button
 	var contactNextButton = {};	// @button
 	var contactPrevButton = {};	// @button
 	var contactChangeOwnerButton = {};	// @button
@@ -83,6 +85,16 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	contactDeleteButton.click = function contactDeleteButton_click (event)// @startlock
+	{// @endlock
+		WAK5CRMUTIL.setMessage("The Delete option is not yet implemented.", 4000, "error");
+	};// @lock
+
+	contactMassUpdateButton.click = function contactMassUpdateButton_click (event)// @startlock
+	{// @endlock
+		WAK5CRMUTIL.setMessage("The global update feature is not yet implemented.", 4000, "error");
+	};// @lock
 
 	contactNextButton.click = function contactNextButton_click (event)// @startlock
 	{// @endlock
@@ -229,6 +241,8 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_contactDeleteButton", "click", contactDeleteButton.click, "WAF");
+	WAF.addListener(this.id + "_contactMassUpdateButton", "click", contactMassUpdateButton.click, "WAF");
 	WAF.addListener(this.id + "_contactNextButton", "click", contactNextButton.click, "WAF");
 	WAF.addListener(this.id + "_contactPrevButton", "click", contactPrevButton.click, "WAF");
 	WAF.addListener(this.id + "_contactChangeOwnerButton", "click", contactChangeOwnerButton.click, "WAF");

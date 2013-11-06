@@ -310,7 +310,7 @@ function constructor (id) {
 
 	leadMassUpdateButton.click = function leadMassUpdateButton_click (event)// @startlock
 	{// @endlock
-		WAK5CRMUTIL.setMessage("The Mass Update option is not yet implemented.", 4000, "error");
+		WAK5CRMUTIL.setMessage("The global update feature is not yet implemented.", 4000, "error");
 	};// @lock
 
 	leadDeleteButton.click = function leadDeleteButton_click (event)// @startlock

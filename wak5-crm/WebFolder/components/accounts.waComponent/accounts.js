@@ -73,6 +73,8 @@ function constructor (id) {
 
 	
 	// @region namespaceDeclaration// @startlock
+	var accountDeleteButton = {};	// @button
+	var accountMassUpdateButton = {};	// @button
 	var accountNextButton = {};	// @button
 	var accountPrevButton = {};	// @button
 	var accountChangeOwnerButton = {};	// @button
@@ -87,6 +89,16 @@ function constructor (id) {
 	// @endregion// @endlock
 
 	// eventHandlers// @lock
+
+	accountDeleteButton.click = function accountDeleteButton_click (event)// @startlock
+	{// @endlock
+		WAK5CRMUTIL.setMessage("The Delete option is not yet implemented.", 4000, "error");
+	};// @lock
+
+	accountMassUpdateButton.click = function accountMassUpdateButton_click (event)// @startlock
+	{// @endlock
+		WAK5CRMUTIL.setMessage("The global update feature is not yet implemented.", 4000, "error");
+	};// @lock
 
 	accountNextButton.click = function accountNextButton_click (event)// @startlock
 	{// @endlock
@@ -241,6 +253,8 @@ function constructor (id) {
 	};// @lock
 
 	// @region eventManager// @startlock
+	WAF.addListener(this.id + "_accountDeleteButton", "click", accountDeleteButton.click, "WAF");
+	WAF.addListener(this.id + "_accountMassUpdateButton", "click", accountMassUpdateButton.click, "WAF");
 	WAF.addListener(this.id + "_accountNextButton", "click", accountNextButton.click, "WAF");
 	WAF.addListener(this.id + "_accountPrevButton", "click", accountPrevButton.click, "WAF");
 	WAF.addListener(this.id + "_accountChangeOwnerButton", "click", accountChangeOwnerButton.click, "WAF");

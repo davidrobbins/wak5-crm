@@ -598,21 +598,22 @@ function constructor (id) {
 
 	leadCancelButton.click = function leadCancelButton_click (event)// @startlock
 	{// @endlock
+		/*
 		if ((waf.sources.lead.leadEntityState === "initOnClient") || (waf.sources.lead.leadEntityState === "initOnServer")) {
 			//let's remove it.
 			waf.sources.lead.removeCurrent();
 		}
-		
+		*/
 		
 		//waf.sources.lead.leadEntityState = "initOnClient";
-		/*
+		
 		if (waf.sources.lead.isNewElement()) {
 			//Bug Report: isNewElement() reports true for an entity that has been saved it is still the current entity.
-			//waf.sources.lead.removeCurrentReference();
+			waf.sources.lead.removeCurrentReference();
 			
-			WAK5CRMUTIL.setMessage("This is a new element. Let's delete it.", 4000, "error");
+			//WAK5CRMUTIL.setMessage("This is a new element. Let's delete it.", 4000, "error");
 		}
-		*/
+		
 		
 		$$(accordion2).expand(1);
 		$$(leadsDetailContainer).hide();

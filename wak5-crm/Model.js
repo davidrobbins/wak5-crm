@@ -4,7 +4,7 @@ model = new DataStoreCatalog();
 include("classes/utility.js"); //Utility methods used my all dataclasses.
 
 //Use module pattern for User dataclass definition. I use this dataclass in many projects.
-model.User = require('User');
+model.User = require('user');
 
 include("classes/activity.js");
 include("classes/lead.js");
